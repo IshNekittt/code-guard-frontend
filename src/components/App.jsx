@@ -1,5 +1,8 @@
+import RegistrationForm from "./components/RegisterForm/RegisterForm.jsx";
 function App() {
-  return <></>;
+  return <>
+    <RegistrationForm />
+  </>;
 }
 
 export default App;
