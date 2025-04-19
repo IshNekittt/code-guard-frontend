@@ -30,7 +30,7 @@ const handleSubmit = (values) => {
         navigate("/contacts", { replace: true });
       })
       .catch(() => {
-        toast.error("Oops! Something went wrong");
+        toast.error("Something went wrong! Check your email or password!");
       });
     };
       return (
@@ -39,13 +39,13 @@ const handleSubmit = (values) => {
       onSubmit={handleSubmit}
       validationSchema={LoginSchema}
     >
-      <Form className={s.form}>
+      <Form>
         <label>
           Email
           <Field type="text" name="email" />
           <ErrorMessage name="email" component="span" />
         </label>
-        <label className={s.label}>
+        <label>
           Password
           <Field type="password" name="password" />
           <ErrorMessage name="password" component="span" />
