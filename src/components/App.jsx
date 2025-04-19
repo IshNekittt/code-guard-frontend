@@ -1,5 +1,20 @@
+import { useEffect } from "react";
+import { getTransactions } from "../redux/transactionsOp";
+import TransactionsList from "./transactions/TransactionsList";
+import { useDispatch } from "react-redux";
+import ButtonAddTransactions from "./transactions/ButtonAddTransactions";
+
 function App() {
-  return <></>;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch]);
+  return (
+    <>
+      <TransactionsList />
+      <ButtonAddTransactions />
+    </>
+  );
 }
 
 export default App;
