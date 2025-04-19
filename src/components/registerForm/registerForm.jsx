@@ -19,9 +19,9 @@ const RegistrationForm = () =>{
     });
 
     const onSubmit = (data) => {
-        console.log(data);
+        const data = { confirmPassword, ...safeData};
+        console.log(safeData);
     }
-
     const watchedFields = watch();
   const filledFieldsCount = ['name', 'email', 'password', 'confirmPassword'].filter(field => watchedFields[field]?.length > 0).length;
   const progressPercent = (filledFieldsCount / 4) * 100;
