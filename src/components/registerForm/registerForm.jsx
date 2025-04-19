@@ -40,37 +40,40 @@ const RegistrationForm = () =>{
                     </svg>
                     <input type="text" placeholder="Name" {...register('name')} />
                 </div>
-                {errors.name && <p className={s.errorMessage}>{errors.name.message}</p>}
-
+                <p className={s.errorMessage}>
+                    {errors.name?.message || '\u00A0'}
+                </p>
                 <div className={s.inputGroup}>
                     <svg className={s.inputIcon} width="24" height="24">
                         <use href="/src/assets/icons.svg#icon-email"></use>
                     </svg>
                     <input type="email" placeholder="E-mail" {...register('email')} />
                 </div>
-                {errors.email && <p className={s.errorMessage}>{errors.email.message}</p>}
-
+                <p className={s.errorMessage}>
+                    {errors.email?.message || '\u00A0'}
+                </p>
                 <div className={s.inputGroup}>
                     <svg className={s.inputIcon} width="24" height="24">
                         <use href="/src/assets/icons.svg#icon-password"></use>
                     </svg>
                     <input type="password" placeholder="Password" {...register('password')} />
                 </div>
-                {errors.password && <p className={s.errorMessage}>{errors.password.message}</p>}
-
-                <div className={s.inputGroup} style={{marginBottom: '10px'}}>
+                <p className={s.errorMessage}>
+                    {errors.password?.message || '\u00A0'}
+                </p>
+                <div className={s.inputGroup} style={{marginBottom: '10px', height: '40px'}}>
                     <svg className={s.inputIcon} width="24" height="24">
                         <use href="/src/assets/icons.svg#icon-password"></use>
                     </svg>
                     <input type="password" placeholder="Confirm password" {...register('confirmPassword')} />
-                    {errors.confirmPassword && (<p className={s.errorMessage}>{errors.confirmPassword.message}</p>)}
-
                 </div>
-
-               
+                
                 <div className={s.progressBar}>
                     <div className={s.progress} style={{ width: `${progressPercent}%` }}></div>
                 </div>
+                <p className={s.errorMessage} style={{top: '-50px'}}>
+                    {errors.confirmPassword?.message || '\u00A0'}
+                </p>
 
                 <button type="submit" className={s.registerButton}> 
                     Register
