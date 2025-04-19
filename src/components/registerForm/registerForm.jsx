@@ -18,10 +18,14 @@ const RegistrationForm = () =>{
         mode: 'onChange',
     });
 
-    const onSubmit = (data) => {
-        const data = { confirmPassword, ...safeData};
-        console.log(safeData);
-    }
+    const onSubmit = (formData) => {
+        const data = {
+            confirmPassword: formData.confirmPassword,
+            ...safeData
+        };
+        console.log(data); // Перевірка виведення
+    };
+    
     const watchedFields = watch();
   const filledFieldsCount = ['name', 'email', 'password', 'confirmPassword'].filter(field => watchedFields[field]?.length > 0).length;
   const progressPercent = (filledFieldsCount / 4) * 100;
@@ -71,9 +75,9 @@ const RegistrationForm = () =>{
                 <div className={s.progressBar}>
                     <div className={s.progress} style={{ width: `${progressPercent}%` }}></div>
                 </div>
-                <p className={s.errorMessage} style={{top: '-50px'}}>
-                    {errors.confirmPassword?.message || '\u00A0'}
-                </p>
+                    <p className={s.errorMessage} style={{top: '-50px'}}>
+                        {errors.confirmPassword?.message || '\u00A0'}
+                    </p>
 
                 <button type="submit" className={s.registerButton}> 
                     Register
