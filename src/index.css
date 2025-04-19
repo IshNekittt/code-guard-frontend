@@ -12,7 +12,19 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+@font-face {
+  font-family: "PoppinsSemiBold";
+  src: url("./fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "PoppinsMedium";
+  src: url("./fonts/Poppins-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+/* 
 a {
   font-weight: 500;
   color: #646cff;
@@ -65,4 +77,65 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. Наследуем шрифты и убираем декорации */
+body,
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 100%;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* 3. Удаляем стили списков */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 4. Удаляем стили ссылок */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 5. Удаляем обводки и веб-специфичные стили */
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* 6. Убираем жирный шрифт у заголовков */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+
+/* 7. Устанавливаем html и body на 100% */
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/* 8. Убираем фокус-обводки (если не нужны) */
+*:focus {
+  outline: none;
 }

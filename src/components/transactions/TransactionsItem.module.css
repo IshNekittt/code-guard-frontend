@@ -1,0 +1,185 @@
+.card {
+  background: linear-gradient(135deg, #2e1959, #391652);
+  width: 280px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  padding: 12px 20px;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #ff4b5c;
+}
+
+.card.positive::before {
+  background-color: #ffb627;
+}
+.sum.positive {
+  color: #ffb627;
+}
+
+.sum.negative {
+  color: #ff868d;
+}
+
+.card.negative::before {
+  background-color: #ff868d;
+}
+
+.row span {
+  font-family: "PoppinsSemiBold", sans-serif;
+
+  font-size: 16px;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 12px;
+}
+
+.delete.btnCard {
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+}
+
+.btnCard {
+  border-radius: 18px;
+  padding: 4px 12px;
+  width: 69px;
+  height: 29px;
+}
+
+@media screen and (min-width: 768px) {
+  .transactionRow {
+    display: flex;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid gray;
+  }
+  .transactionRow:last-child {
+    border-bottom: none;
+  }
+  .cell {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    font-family: "PoppinsMedium", sans-serif;
+  }
+
+  .cell:nth-child(1) {
+    flex: 0 0 15%;
+  }
+
+  .cell:nth-child(2) {
+    flex: 0 0 10%;
+  }
+
+  .cell:nth-child(3) {
+    flex: 0 0 20%;
+  }
+
+  .cell:nth-child(4) {
+    flex: 0 0 20%;
+  }
+
+  .headerCell:nth-child(5),
+  .cell:nth-child(5) {
+    flex: 0 0 15%;
+  }
+
+  .headerCell:nth-child(6),
+  .cell:nth-child(6) {
+    flex: 0 0 5%;
+  }
+
+  .cell.sumCell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+  .sum {
+    font-weight: bold;
+  }
+
+  .sum.negative {
+    color: #ff4b5c;
+  }
+
+  .sum.positive {
+    color: #ffb627;
+  }
+
+  .actions {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .deleteBtn {
+    background: linear-gradient(
+      167deg,
+      #ffc727 0%,
+      #9e40ba 61.46%,
+      #7000ff 90.54%
+    );
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+
+  .deleteBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(243, 108, 61, 0.4);
+  }
+
+  .editBtn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .editIcon {
+    width: 18px;
+    height: 18px;
+    color: white;
+  }
+}
