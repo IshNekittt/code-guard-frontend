@@ -1,0 +1,23 @@
+.sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 20px;
+  z-index: 1; 
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: 
+    linear-gradient(220deg, #6d54eb 3.47%, #652392 90.06%),
+    linear-gradient(46deg, #8e2e79 0%, #ab33ad 100%),
+    rgba(47, 21, 176, 0.73);
+  filter: blur(200px); /* Можеш змінити розмиття тут */
+  opacity: 0.9;
+  border-radius: 20px; /* якщо потрібно м’яке закруглення */
+}
+
