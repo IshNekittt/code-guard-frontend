@@ -1,0 +1,279 @@
+/* Mobile First (320px) */
+.header {
+  display: flex;
+  background: linear-gradient(to right, #4b0082, #2e0854);
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  z-index: 20;
+  width: 320px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0px 12px 20px;
+}
+
+.logo {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  stroke-width: 0;
+  stroke: currentColor;
+}
+
+.title {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 12.84px;
+  line-height: 100%;
+  vertical-align: middle;
+  top: 17.11px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.username {
+  font-family: Circe;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-align: right;
+  color: #ffffff99;
+}
+
+.exit-button {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding-left: 0.5rem;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.exit-button span {
+  display: none;
+}
+
+.exit-button:hover {
+  color: #f87171;
+}
+
+.exit-button:focus {
+  outline: none;
+}
+.icon {
+  height: 1rem;
+  width: 1rem;
+  fill: #ffffff99;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #4a56e280, #2e0854);
+  z-index: 10;
+  width: 250px;
+}
+
+.modal-content {
+  width: 90%;
+  max-width: 280px;
+  padding: 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.modal-inner {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo2,
+.modal-title {
+  display: none;
+}
+
+.modal-text {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  text-align: center;
+  color: #ffffff;
+  max-width: 180px;
+  margin-bottom: 40px;
+}
+
+.logout-button {
+  width: 100%;
+  padding: 13px 58px;
+  margin-bottom: 0.75rem;
+  border-radius: 20px;
+  background: linear-gradient(to right, #ffc727, #9e40ba, #7000ff);
+  color: #fbfbfb;
+  border: none;
+  cursor: pointer;
+
+  font-family: Circe;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.logout-button:hover {
+  opacity: 0.9;
+}
+
+.cancel-button {
+  width: 100%;
+  padding: 13px 58px;
+  border-radius: 20px;
+  background-color: #f3f4f6;
+  color: #623f8b;
+  border: none;
+  cursor: pointer;
+
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.cancel-button:hover {
+  background-color: #e5e7eb;
+}
+
+.error-message {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #fca5a5;
+}
+
+/* Tablet (min-width: 768px) */
+@media (min-width: 768px) {
+  .header {
+    width: 768px;
+  }
+
+  .header-left {
+    padding: 16px 0px 16px 32px;
+  }
+
+  .logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .title {
+    font-size: 17.1px;
+  }
+
+  .username {
+    position: relative;
+  }
+
+  .username::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    width: 1px;
+    height: 100%;
+    background-color: #ffffff99;
+    transform: translateY(-50%);
+    margin-left: 12px;
+  }
+
+  .exit-button {
+    padding: 0px 32px 0px 24px;
+  }
+
+  .exit-button span {
+    display: inline-block;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 100%;
+    color: #ffffff99;
+  }
+
+  .modal-overlay {
+    backdrop-filter: blur(10px);
+    width: 768px;
+  }
+
+  .logo2,
+  .modal-title {
+    display: inline-block;
+  }
+
+  .modal-title {
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 26.96px;
+    line-height: 100%;
+    vertical-align: middle;
+    margin: 0;
+  }
+
+  .modal-text {
+    max-width: 300px;
+    margin-bottom: 52px;
+    margin-top: 52px;
+  }
+
+  .modal-content {
+    background: linear-gradient(to bottom, #4b0082, #2e0854);
+    color: white;
+    padding: 60px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 24rem;
+  }
+
+  .logout-button {
+    width: 300px;
+  }
+
+  .cancel-button {
+    width: 300px;
+  }
+}
+
+/* Desktop (min-width: 1280px) */
+@media (min-width: 1280px) {
+  .header {
+    width: 1280px;
+  }
+
+  .username::after {
+    height: 140%;
+  }
+
+  .modal-overlay {
+    width: 1280px;
+  }
+}
