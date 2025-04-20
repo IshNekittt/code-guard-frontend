@@ -4,8 +4,6 @@
   gap: 12px;
   padding: 8px 73px 12px 32px;
   border-radius: 8px;
-  width: 280px;
-  height: 80px;
   backdrop-filter: blur(100px);
 box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
 background: rgba(82, 59, 126, 0.6);
