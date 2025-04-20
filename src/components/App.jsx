@@ -4,7 +4,7 @@ import TransactionsList from "./transactions/TransactionsList";
 import { useDispatch } from "react-redux";
 import ButtonAddTransactions from "./transactions/ButtonAddTransactions";
 
-function App() {
+export default function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTransactions());
