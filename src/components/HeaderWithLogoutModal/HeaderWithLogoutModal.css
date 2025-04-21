@@ -6,7 +6,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
-  /* z-index: 20; */
+  z-index: 20;
   min-width: 320px;
   align-items: center;
   justify-content: space-between;
@@ -93,6 +93,8 @@
   z-index: 10;
   width: 100%;
   max-width: 100vw;
+
+  background: linear-gradient(to bottom, #4a56e280, #2e0854);
 }
 
 .modal-content {
@@ -123,14 +125,14 @@
   line-height: 100%;
   text-align: center;
   color: #ffffff;
-  max-width: 180px;
+  max-width: 200px;
   margin-bottom: 40px;
 }
 
 .logout-button {
-  width: 100%;
+  width: 280px;
   padding: 13px 58px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 20px;
   border-radius: 20px;
   background: linear-gradient(to right, #ffc727, #9e40ba, #7000ff);
   color: #fbfbfb;
@@ -150,7 +152,7 @@
 }
 
 .cancel-button {
-  width: 100%;
+  width: 280px;
   padding: 13px 58px;
   border-radius: 20px;
   background-color: #f3f4f6;
@@ -178,6 +180,9 @@
 
 /* Tablet (min-width: 768px) */
 @media (min-width: 768px) {
+  .header {
+    z-index: 0;
+  }
   .header-left {
     padding: 16px 0px 16px 32px;
   }
@@ -220,6 +225,10 @@
     color: #ffffff99;
   }
 
+  .modal-overlay {
+    background: none;
+  }
+
   .logo2,
   .modal-title {
     display: inline-block;
@@ -245,8 +254,9 @@
     color: white;
     padding: 60px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 24rem;
+    width: 533px;
+    max-width: 533px;
+    border-radius: 8px;
   }
 
   .logout-button {
