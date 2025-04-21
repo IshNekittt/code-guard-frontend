@@ -2,9 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 32px;
-  padding: 20px;
   z-index: 1; 
+  padding: 20px 16px;
+  
+  
 }
 
 .sidebar::before {
@@ -16,8 +19,30 @@
     linear-gradient(220deg, #6d54eb 3.47%, #652392 90.06%),
     linear-gradient(46deg, #8e2e79 0%, #ab33ad 100%),
     rgba(47, 21, 176, 0.73);
-  filter: blur(200px); /* Можеш змінити розмиття тут */
+  filter: blur(200px); 
   opacity: 0.9;
-  border-radius: 20px; /* якщо потрібно м’яке закруглення */
+  border-radius: 20px; 
 }
 
+
+
+@media screen and (min-width: 768px) {
+  .sidebar {
+ flex-direction: row;
+ justify-content: space-between;
+
+  }
+
+  .balance_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .sidebar {
+    flex-direction: column;
+  }
+}

@@ -4,6 +4,8 @@
     justify-content: center;
     align-items: center;
     gap: 35px;
+    padding-top: 12px;
+    margin-bottom: 12px;
    
   }
   
@@ -14,6 +16,7 @@
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    
   }
   
  
@@ -26,30 +29,43 @@
   
   /* Прямокутник навколо іконки */
   .iconBox {
-    background-color: #2e2f42;    
-    border-radius: 6px;
-    transition: background-color 0.3s ease;
+    fill: #515169;
+padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: none;      
+    outline: none;       
+    box-shadow: none;  
+  
   }
   
  
   .active .iconBox {
-    background-color: #6e78e8;
+    background-color: white;
+    border-radius: 6px;
+    padding: 0;
+    border: none;      
+    outline: none;       
+    box-shadow: none;  
+    box-shadow: 0 3px 10px 0 rgba(74, 86, 226, 0.5);
   }
   
 
   .icon {
     width: 44px;
     height: 44px;
-    fill: #3f3f57;
+    fill: #515169;
+    border-radius: 6px;
     transition: fill 0.3s ease;
+    stroke: none;      
+    outline: none;
+    box-shadow: none;
   }
   
  
   .active .icon {
-    fill: white;
+    fill: #6e78e8;
   }
   
 
@@ -67,5 +83,41 @@
     color: white;
     font-weight: 700;
     font-size: 18px;
+  }
+
+
+
+  @media screen and (min-width: 768px) {
+.label {
+  display: block;
+}
+.link_statistics {
+  display: none;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 40px;
+  gap: 12px;
+ 
+}
+
+.active .iconBox {
+ 
+  border-radius: 2px;
+width: 18px;
+height: 18px;
+  
+}
+
+.icon {
+  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+}
+
   }
   

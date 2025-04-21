@@ -30,7 +30,8 @@ const Navigation = () => {
         )}
       </NavLink>
 
-      <NavLink to="/exchange-rates" className={s.link}>
+      <NavLink to="/exchange-rates" className={`${s.link} ${s.link_statistics}`}>
+
 
         {({ isActive }) => (
           <div className={isActive ? s.active : ''}>
