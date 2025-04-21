@@ -4,9 +4,41 @@
   font-family: "PoppinsMedium", sans-serif;
 }
 
+.imgTransaction {
+  width: 280px;
+  height: 293px;
+  display: block;
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 768px) {
+  .transactionList::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .transactionList::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .transactionList::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
   .transactionList {
     width: 704px;
+    height: 312px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .imgTransaction {
+    content: url("/src/assets/transactionsImgDesk.png");
+    width: 704px;
+    height: 350px;
+    /* width: 704px; */
+    /* height: 312px; */
   }
   .transactionContainer {
     border-radius: 12px;

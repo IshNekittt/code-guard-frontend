@@ -8,6 +8,18 @@ const TransactionsList = () => {
   const transactions = useSelector(selectTransaction);
   const isMobile = useIsMobile();
 
+  if (transactions.length === 0) {
+    return (
+      <div>
+        <img
+          className={css.imgTransaction}
+          src="../../../src/assets/transactionsImg.png"
+          alt=""
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={css.transactionList}>
       {isMobile ? (
