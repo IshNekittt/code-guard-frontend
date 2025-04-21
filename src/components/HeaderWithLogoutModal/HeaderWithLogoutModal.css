@@ -1,15 +1,17 @@
 /* Mobile First (320px) */
 .header {
   display: flex;
-  background: linear-gradient(to right, #4b0082, #2e0854);
+  background: linear-gradient(to right, #2e225f, #2e1746);
   color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   position: fixed;
   top: 0;
-  z-index: 20;
-  width: 320px;
+  /* z-index: 20; */
+  min-width: 320px;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .header-left {
@@ -28,12 +30,13 @@
 }
 
 .title {
-  font-family: Poppins;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 12.84px;
   line-height: 100%;
   vertical-align: middle;
   top: 17.11px;
+  color: #ffffff99;
 }
 
 .header-right {
@@ -43,11 +46,10 @@
 }
 
 .username {
-  font-family: Circe;
+  font-family: "Circe";
   font-weight: 400;
   font-size: 18px;
   line-height: 100%;
-  letter-spacing: 0%;
   text-align: right;
   color: #ffffff99;
 }
@@ -57,6 +59,7 @@
   align-items: center;
   gap: 0.25rem;
   padding-left: 0.5rem;
+  padding-right: 20px;
   background: none;
   border: none;
   color: white;
@@ -86,9 +89,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(to bottom, #4a56e280, #2e0854);
+  backdrop-filter: blur(10px);
   z-index: 10;
-  width: 250px;
+  width: 100%;
+  max-width: 100vw;
 }
 
 .modal-content {
@@ -174,10 +178,6 @@
 
 /* Tablet (min-width: 768px) */
 @media (min-width: 768px) {
-  .header {
-    width: 768px;
-  }
-
   .header-left {
     padding: 16px 0px 16px 32px;
   }
@@ -213,16 +213,11 @@
 
   .exit-button span {
     display: inline-block;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-weight: 400;
     font-size: 16px;
     line-height: 100%;
     color: #ffffff99;
-  }
-
-  .modal-overlay {
-    backdrop-filter: blur(10px);
-    width: 768px;
   }
 
   .logo2,
@@ -265,15 +260,7 @@
 
 /* Desktop (min-width: 1280px) */
 @media (min-width: 1280px) {
-  .header {
-    width: 1280px;
-  }
-
   .username::after {
     height: 140%;
-  }
-
-  .modal-overlay {
-    width: 1280px;
   }
 }
