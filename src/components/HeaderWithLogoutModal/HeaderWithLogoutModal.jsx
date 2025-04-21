@@ -35,6 +35,35 @@ const HeaderWithLogoutModal = () => {
       {/* Header */}
       <header className="header">
         <div className="header-left">
+          <svg style={{ display: 'none' }}>
+                <symbol id="icon--Money-Guard-2" viewBox="0 0 32 32">
+                  <path
+                    fill="#ffc727"
+                    style={{ fill: 'var(--color1, #ffc727)' }}
+                    d="M22.25 4.181c-2.153-0.538-4.307-1.615-5.922-3.23-1.615 1.615-3.769 2.692-5.922 3.23 0.538 4.845 2.154 8.076 5.922 10.768 3.769-2.692 5.922-5.922 5.922-10.768z"
+                  />
+                  <path
+                    fill="#fbfbfb"
+                    style={{ fill: 'var(--color2, #fbfbfb)' }}
+                    d="M20.097 24.227l-15.075-17.766v8.614l11.844 13.459 3.23-4.307z"
+                  />
+                  <path
+                    fill="#fbfbfb"
+                    style={{ fill: 'var(--color2, #fbfbfb)' }}
+                    d="M21.712 22.612l6.461-7.537v-8.076l-10.229 11.844 3.769 3.769z"
+                  />
+                  <path
+                    fill="#fbfbfb"
+                    style={{ fill: 'var(--color2, #fbfbfb)' }}
+                    d="M22.25 25.304v4.845l5.922-6.999v-4.846l-5.922 6.999z"
+                  />
+                  <path
+                    fill="#fbfbfb"
+                    style={{ fill: 'var(--color2, #fbfbfb)' }}
+                    d="M10.944 25.304l-5.922-6.999v4.846l5.922 6.999v-4.845z"
+                  />
+                </symbol>
+              </svg>
           <svg className="logo" width="18" height="18">
             <use href="#icon--Money-Guard-2"></use>
           </svg> 
@@ -64,35 +93,7 @@ const HeaderWithLogoutModal = () => {
         <div className="modal-overlay">
           <div className="modal-content">
             <div className="modal-inner">
-              <svg style={{ display: 'none' }}>
-                <symbol id="icon--Money-Guard-2" viewBox="0 0 32 32">
-                  <path
-                    fill="#ffc727"
-                    style={{ fill: 'var(--color1, #ffc727)' }}
-                    d="M22.25 4.181c-2.153-0.538-4.307-1.615-5.922-3.23-1.615 1.615-3.769 2.692-5.922 3.23 0.538 4.845 2.154 8.076 5.922 10.768 3.769-2.692 5.922-5.922 5.922-10.768z"
-                  />
-                  <path
-                    fill="#fbfbfb"
-                    style={{ fill: 'var(--color2, #fbfbfb)' }}
-                    d="M20.097 24.227l-15.075-17.766v8.614l11.844 13.459 3.23-4.307z"
-                  />
-                  <path
-                    fill="#fbfbfb"
-                    style={{ fill: 'var(--color2, #fbfbfb)' }}
-                    d="M21.712 22.612l6.461-7.537v-8.076l-10.229 11.844 3.769 3.769z"
-                  />
-                  <path
-                    fill="#fbfbfb"
-                    style={{ fill: 'var(--color2, #fbfbfb)' }}
-                    d="M22.25 25.304v4.845l5.922-6.999v-4.846l-5.922 6.999z"
-                  />
-                  <path
-                    fill="#fbfbfb"
-                    style={{ fill: 'var(--color2, #fbfbfb)' }}
-                    d="M10.944 25.304l-5.922-6.999v4.846l5.922 6.999v-4.845z"
-                  />
-                </symbol>
-              </svg>
+              
               <svg className="logo2" width="36" height="36">
                 <use href="#icon--Money-Guard-2"></use>
               </svg> 
