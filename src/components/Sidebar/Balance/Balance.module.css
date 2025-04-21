@@ -6,8 +6,8 @@ max-width: 280px;
   padding: 8px 18px 12px 32px;
   border-radius: 8px;
   backdrop-filter: blur(100px);
-box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-background: rgba(82, 59, 126, 0.6);
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  background: rgba(82, 59, 126, 0.6);
 }
 
 
@@ -19,6 +19,10 @@ background: rgba(82, 59, 126, 0.6);
   color: white;
   margin: 0;
   opacity: 0.5;
+}
+
+.amount_symbol {
+  font-weight: normal;
 }
 
 
@@ -44,5 +48,7 @@ background: rgba(82, 59, 126, 0.6);
   .balance {
     width: 100%;
     max-width: 400px; 
+    border: none;
+    border-radius: 0;
   }
 }
