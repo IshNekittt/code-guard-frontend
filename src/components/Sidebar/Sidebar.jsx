@@ -8,8 +8,10 @@ import Balance from './Balance/Balance';
 const SideBar = () => {
   return (
     <div className={s.sidebar}> 
-    <Navigation/>
-      <Balance />
+   <div className={s.balance_content}>
+      <Navigation/>
+        <Balance />
+   </div>
       <ExchangeRates />
     </div>
   );
