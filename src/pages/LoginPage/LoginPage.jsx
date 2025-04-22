@@ -4,7 +4,7 @@ import s from "./LoginPage.module.css";
 
 export default function LoginPage() {
     return (
-        <div className={s.loginPage}>
+        <div className="s.loginPage">
             <Helmet>
                 <title>Login</title>
             </Helmet>
