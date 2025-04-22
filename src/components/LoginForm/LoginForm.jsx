@@ -42,7 +42,7 @@ const handleSubmit = (values) => {
     
           <Form className={s.loginForm}>
           <div className={s.loginLogo}>
-          <svg viewBox="0 0 33 32" xmlns="http://www.w3.org/2000/svg" width="27" height="26"
+          <svg className={s.loginLogoIcon} viewBox="0 0 33 32" xmlns="http://www.w3.org/2000/svg" 
 >
   <path fill="#ffc727" d="M22.44 4.308c-2.219-0.555-4.438-1.664-6.102-3.328-1.664 1.664-3.883 2.774-6.102 3.328 0.555 4.993 2.219 8.321 6.102 11.095 3.883-2.774 6.102-6.102 6.102-11.095z"/>
   <path fill="#fbfbfb" d="M20.221 24.963l-15.533-18.307v8.876l12.204 13.869 3.329-4.438z"/>
@@ -62,7 +62,7 @@ const handleSubmit = (values) => {
   />
 </svg>
 
-              <Field type="text" name="email" className={s.loginField} placeholder="E-mail*" />
+              <Field type="text" name="email" className={s.loginField} placeholder="E-mail" />
               </label>
 
             <label className={s.loginLabel}>
@@ -74,7 +74,7 @@ const handleSubmit = (values) => {
   />
 </svg>
 
-          <Field type="password" name="password" className={s.loginField} placeholder="Password*" />
+          <Field type="password" name="password" className={s.loginField} placeholder="Password" />
               </label>
             
         <div className={s.buttonGroup}>

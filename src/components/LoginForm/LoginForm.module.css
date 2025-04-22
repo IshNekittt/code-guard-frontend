@@ -1,5 +1,14 @@
 body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: linear-gradient(to bottom right, #2a0f57, #502f93);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .loginForm {
@@ -7,13 +16,17 @@ body {
     flex-direction: column;
     row-gap: 40px;
     padding: 0 20px;
-    margin: 0 auto;
 }
 
 .loginLogo {
     margin-top: 97px;
     text-align: center;
     margin-bottom: 12px;
+}
+
+.loginLogoIcon {
+    width: 27px;
+    height: 26px;
 }
 
 .loginIcon {
@@ -27,8 +40,8 @@ body {
     margin: 0;
     font-size: 19px;
     color: #fbfbfb;
+    font-weight: 400;
 }
-
 
 .loginLabel {
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -43,6 +56,7 @@ body {
     border: none;
     padding-bottom: 8px;
     font-size: 18px;
+    font-weight: 400;
     outline: none;
     color: rgba(255, 255, 255, 0.6); 
 }
@@ -65,6 +79,7 @@ body {
     width: 280px;
     height: 50px;
     font-size: 18px;
+    font-weight: 400;
     cursor: pointer;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -91,6 +106,7 @@ body {
     width: 280px;
     height: 50px;
     font-size: 18px;
+    font-weight: 400;
     cursor: pointer;
     letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -113,28 +129,25 @@ body {
  @media (min-width: 768px) {
     body {
         background-image: url('/src/assets/images/tablet.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0; 
     }
 
     .loginForm {
         padding: 0 62px;
         border-radius: 8px;
-        background: linear-gradient(135deg, rgba(42,15,87,0.9) 0%, rgba(80,47,147,0.85) 50%, rgba(80,47,147,1) 100%);
+        box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+        background: linear-gradient(135deg, rgba(80, 47, 147, 0.5), rgba(20, 20, 20, 0.2));
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
       }
 
       .loginLogo {
         margin-top: 80px;
         margin-bottom: 12px;
+    }
+
+    .loginLogoIcon {
+        width: 36px;
+        height: 36px;
     }
 
     .loginTitle {
@@ -159,7 +172,6 @@ body {
     }
 }
     
-
 @media (min-width: 1280px) {
     body {
         background-image: url('/src/assets/images/iMac.png');
