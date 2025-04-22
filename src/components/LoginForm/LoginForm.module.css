@@ -163,16 +163,5 @@ body {
 @media (min-width: 1280px) {
     body {
         background-image: url('/src/assets/images/iMac.png');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0; 
     }
 }
