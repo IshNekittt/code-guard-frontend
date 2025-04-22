@@ -1,20 +1,37 @@
-import { useEffect } from "react";
-import { getTransactions } from "../redux/transactionsOp";
-import TransactionsList from "./transactions/TransactionsList";
-import { useDispatch } from "react-redux";
-import ButtonAddTransactions from "./transactions/ButtonAddTransactions";
-import HeaderWithLogoutModal from "./HeaderWithLogoutModal/HeaderWithLogoutModal";
+import "./App.css";
+import { Routes } from "react-router";
+import { Route } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { refresh } from "../redux/auth/operations";
+import { selectIsRefreshing } from "../redux/auth/selectors";
+import { lazy, Suspense, useEffect } from "react";
+import Layout from "./Layout";
+import RestrictedRoute from "./RestrictedRoute";
 
-export default function App() {
+const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
+
+function App() {
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
   useEffect(() => {
-    dispatch(getTransactions());
+    dispatch(refresh());
   }, [dispatch]);
-  return (
-    <>
-      <HeaderWithLogoutModal />
-      <TransactionsList />
-      <ButtonAddTransactions />
-    </>
+
+  return isRefreshing ? (
+    <h2>Refreshing the user...</h2>
+  ) : (
+    <Suspense fallback={null}>
+      <Layout>
+        <Routes>
+          <Route
+            path="/login"
+            element={<RestrictedRoute route={<LoginPage />} />}
+          />
+        </Routes>
+      </Layout>
+    </Suspense>
   );
 }
+
+export default App;
