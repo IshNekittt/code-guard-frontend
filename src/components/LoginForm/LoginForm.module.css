@@ -99,7 +99,6 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-
 .registerButton {
     font-family: "Poppins", sans-serif;
     border-radius: 20px;
@@ -110,7 +109,9 @@ body {
     cursor: pointer;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #623f8b;
     background-color: #fcfcfc;
     border: 1px solid #4a56e2;

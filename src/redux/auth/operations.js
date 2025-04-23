@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "";
+axios.defaults.baseURL = "https://code-guard-backend.onrender.com/";
 
 const setToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -9,8 +9,6 @@ const setToken = (token) => {
 const removeToken = () => {
   delete axios.defaults.headers.common.Authorization;
 };
-
-
 
 
 export const logIn = createAsyncThunk("auth/login", async (user, thunkAPI) => {
