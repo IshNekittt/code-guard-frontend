@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 axios.defaults.baseURL = "https://code-guard-backend.onrender.com/";
+axios.defaults.withCredentials = true;
 
 const setToken = (token) => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -9,7 +10,6 @@ const setToken = (token) => {
 const removeToken = () => {
   delete axios.defaults.headers.common.Authorization;
 };
-
 
 export const logIn = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
@@ -20,7 +20,6 @@ export const logIn = createAsyncThunk("auth/login", async (user, thunkAPI) => {
     return thunkAPI.rejectWithValue(e.message);
   }
 });
-
 
 export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
   const state = thunkAPI.getState();
