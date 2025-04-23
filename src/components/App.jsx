@@ -27,6 +27,7 @@ export default function App() {
     </Layout>
   </Suspense>
      <Sidebar/>
+     
       <TransactionsList />
       <ButtonAddTransactions />
     </>
