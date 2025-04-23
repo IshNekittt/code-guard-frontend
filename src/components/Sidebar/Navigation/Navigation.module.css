@@ -1,0 +1,71 @@
+.nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+   
+  }
+  
+
+  .link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  
+ 
+  .link > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 23px;
+  }
+  
+  /* Прямокутник навколо іконки */
+  .iconBox {
+    background-color: #2e2f42;    
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+ 
+  .active .iconBox {
+    background-color: #6e78e8;
+  }
+  
+
+  .icon {
+    width: 44px;
+    height: 44px;
+    fill: #3f3f57;
+    transition: fill 0.3s ease;
+  }
+  
+ 
+  .active .icon {
+    fill: white;
+  }
+  
+
+  .label {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+    transition: all 0.3s ease;
+    display: none; 
+  }
+  
+
+  .active .label {
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  
