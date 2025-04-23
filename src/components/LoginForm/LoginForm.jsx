@@ -1,10 +1,11 @@
 import { logIn } from "../../redux/auth/operations";
 import s from "./LoginForm.module.css";
 import { useDispatch } from "react-redux";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 
 const LoginSchema = Yup.object().shape({
@@ -27,7 +28,7 @@ const handleSubmit = (values) => {
       .unwrap()
       .then(() => {
         toast.success("Logged in");
-        navigate("/contacts", { replace: true });
+        navigate("/home", { replace: true });
       })
       .catch(() => {
         toast.error("Something went wrong! Check your email or password!");
@@ -81,9 +82,7 @@ const handleSubmit = (values) => {
           <button type="submit" className={s.loginButton}>
             Log In
           </button>
-          <button type="submit" className={s.registerButton}>
-            Register
-          </button>
+          <Link to="/register" className={s.registerButton}>Register</Link>
         </div>
       </Form>
         </Formik>

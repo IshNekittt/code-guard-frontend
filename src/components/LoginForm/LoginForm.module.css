@@ -1,179 +1,184 @@
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom right, #2a0f57, #502f93);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #2a0f57, #502f93);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .loginForm {
-    display: flex;
-    flex-direction: column;
-    row-gap: 40px;
-    padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  padding: 0 20px;
 }
 
 .loginLogo {
-    margin-top: 97px;
-    text-align: center;
-    margin-bottom: 12px;
+  margin-top: 97px;
+  text-align: center;
+  margin-bottom: 12px;
 }
 
 .loginLogoIcon {
-    width: 27px;
-    height: 26px;
+  width: 27px;
+  height: 26px;
 }
 
 .loginIcon {
-    margin-bottom: 10px;
-    margin-left: 11px;
-    margin-right: 19.5px
+  margin-bottom: 10px;
+  margin-left: 11px;
+  margin-right: 19.5px;
 }
 
 .loginTitle {
-    font-family: "Poppins", sans-serif;
-    margin: 0;
-    font-size: 19px;
-    color: #fbfbfb;
-    font-weight: 400;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  font-size: 19px;
+  color: #fbfbfb;
+  font-weight: 400;
 }
 
 .loginLabel {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    display: flex;
-    align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  align-items: center;
 }
 
 .loginField {
-    font-family: "Poppins", sans-serif;
-    padding: 0;
-    background: transparent;
-    border: none;
-    padding-bottom: 8px;
-    font-size: 18px;
-    font-weight: 400;
-    outline: none;
-    color: rgba(255, 255, 255, 0.6); 
+  font-family: "Poppins", sans-serif;
+  padding: 0;
+  background: transparent;
+  border: none;
+  padding-bottom: 8px;
+  font-size: 18px;
+  font-weight: 400;
+  outline: none;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .loginField::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .buttonGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: center;
-    margin-bottom: 98px;   
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 98px;
 }
 
 .loginButton {
-    font-family: "Poppins", sans-serif;
-    border-radius: 20px;
-    width: 280px;
-    height: 50px;
-    font-size: 18px;
-    font-weight: 400;
-    cursor: pointer;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-align: center;
-    color: #fbfbfb;
-    box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
-    background: linear-gradient(90deg, #FFB627 10%, #9e40ba 100%);
-    border: none;
+  font-family: "Poppins", sans-serif;
+  border-radius: 20px;
+  width: 280px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  color: #fbfbfb;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, #ffb627 10%, #9e40ba 100%);
+  border: none;
 }
 
 .loginButton:focus {
-    outline: none;
+  outline: none;
 }
 
 .loginButton:active {
-    transform: scale(0.96);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: scale(0.96);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-
 .registerButton {
-    font-family: "Poppins", sans-serif;
-    border-radius: 20px;
-    width: 280px;
-    height: 50px;
-    font-size: 18px;
-    font-weight: 400;
-    cursor: pointer;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    text-align: center;
-    color: #623f8b;
-    background-color: #fcfcfc;
-    border: 1px solid #4a56e2;
-    box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  font-family: "Poppins", sans-serif;
+  border-radius: 20px;
+  width: 280px;
+  height: 50px;
+  font-size: 18px;
+  font-weight: 400;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #623f8b;
+  background-color: #fcfcfc;
+  border: 1px solid #4a56e2;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
 }
 
 .registerButton:focus {
-    outline: none;
+  outline: none;
 }
 
 .registerButton:active {
-    transform: scale(0.96);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transform: scale(0.96);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
- @media (min-width: 768px) {
-    body {
-        background-image: url('/src/assets/images/tablet.png');
-    }
+@media (min-width: 768px) {
+  body {
+    background-image: url("/src/assets/images/tablet.png");
+  }
 
-    .loginForm {
-        padding: 0 62px;
-        border-radius: 8px;
-        box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-        background: linear-gradient(135deg, rgba(80, 47, 147, 0.5), rgba(20, 20, 20, 0.2));
-        backdrop-filter: blur(30px);
-        -webkit-backdrop-filter: blur(30px);
-      }
+  .loginForm {
+    padding: 0 62px;
+    border-radius: 8px;
+    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+    background: linear-gradient(
+      135deg,
+      rgba(80, 47, 147, 0.5),
+      rgba(20, 20, 20, 0.2)
+    );
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
 
-      .loginLogo {
-        margin-top: 80px;
-        margin-bottom: 12px;
-    }
+  .loginLogo {
+    margin-top: 80px;
+    margin-bottom: 12px;
+  }
 
-    .loginLogoIcon {
-        width: 36px;
-        height: 36px;
-    }
+  .loginLogoIcon {
+    width: 36px;
+    height: 36px;
+  }
 
-    .loginTitle {
-        font-size: 26px;
-    }
+  .loginTitle {
+    font-size: 26px;
+  }
 
-    .loginField {
-        width: 354.5px;
-    } 
+  .loginField {
+    width: 354.5px;
+  }
 
-    .buttonGroup {
-        margin-top: 12px;
-        margin-bottom: 80px;   
-    }
+  .buttonGroup {
+    margin-top: 12px;
+    margin-bottom: 80px;
+  }
 
-    .loginButton {
-        width: 300px;
-    }
-    
-    .registerButton {
-        width: 300px;
-    }
+  .loginButton {
+    width: 300px;
+  }
+
+  .registerButton {
+    width: 300px;
+  }
 }
-    
+
 @media (min-width: 1280px) {
-    body {
-        background-image: url('/src/assets/images/iMac.png');
-    }
+  body {
+    background-image: url("/src/assets/images/iMac.png");
+  }
 }
