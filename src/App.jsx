@@ -1,5 +1,16 @@
+import StatisticsPage from "./pages/StatisticsPage/StatisticsPage";
+
 function App() {
-  return <></>;
+  return (
+    
+    <div>
+      
+        <StatisticsPage/>
+      
+      
+    </div>
+  
+  );
 }
 
 export default App;
