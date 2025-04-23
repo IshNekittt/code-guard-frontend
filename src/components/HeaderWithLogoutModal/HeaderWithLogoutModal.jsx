@@ -1,34 +1,37 @@
 import React, { useState } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
-// import { logoutUser } from '../../services/api';
-// import { clearUser } from '../../store/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { logOut } from '../../redux/auth/operations';
+import { selectUser } from '../../redux/auth/selectors';
+import { useNavigate } from 'react-router-dom';
 import './HeaderWithLogoutModal.css';
 
 const HeaderWithLogoutModal = () => {
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+
   // const email = useSelector((state) => state.user.email);
-  const email = 'testuser@example.com';
-  const username = email?.split('@')[0];
+  //const email = 'testuser@example.com';
+  const username = user?.email?.split('@')[0];
+
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState('');
 
   const handleLogout = async () => {
-    // try {
-    //   await logoutUser();
-    //   localStorage.clear();
-    //   dispatch(clearUser());
-    //   navigate('/login');
-    // } catch (err) {
-    //   setError('Error on exit: ' + (err?.message || 'Unknown error'));
-    //   localStorage.clear();
-    //   dispatch(clearUser());
-    //   navigate('/login');
-    // }
-    console.log('Выход выполнен');
+  try {
+    await dispatch(logOut()).unwrap(); 
+    console.log('Logout successful');
+    localStorage.clear(); 
+    navigate('/login'); 
+  } catch (err) {
+    console.error('Logout failed:', err);
+    setError('Logout failed: ' + (err || 'Unknown error'));
+    localStorage.clear();      
+    dispatch(logOut());
+  } finally {
     setShowModal(false);
-  };
+  }
+};
 
   return (
     <div>
@@ -121,3 +124,5 @@ const HeaderWithLogoutModal = () => {
 };
 
 export default HeaderWithLogoutModal;
+
+
