@@ -1,6 +1,8 @@
+
 .wrapper {
     padding: 1.5rem;
-    min-height: 100vh;
+    /* min-height: 100vh; */
+   
     display: flex;
     justify-content: center;
     background: linear-gradient(to right, #1e1e3f, #24142f);
@@ -14,12 +16,64 @@
     width: 100%;
     max-width: 80rem;
     justify-content: space-between;
+margin-top: 73px;
+}
+@media (max-width: 768px) {
+    .wrapper {
+            padding: 8px;
+            max-width: 100%;
+        }
+    
+    
+    .container {
+        padding: 8px;
+        display: flex;
+        flex-direction: column;
+              
+    }
+        .selectBox {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+            margin-bottom: 15px;
+        }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 6px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+}
+.chartNameBox{
+    /* margin-right: auto; */
+    position: relative;
+}
+
+.chartName{
+    font-family: Poppins;
+        font-weight: 400;
+        font-size: 30px;
+        line-height: 100%;
+        letter-spacing: 0%;
+        text-align: center;
+        vertical-align: middle;
+        position: absolute;
+            left: 50%;
+            /* центр */
+            transform: translateX(-100%);
+            /* сдвигаем влево от центра */
+            top: calc(50% - 70px);
+
 }
 
 .chartSection {
-    flex: 1;
+    
     min-height: 300px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -27,6 +81,7 @@
 .selectBox{
 display: flex;
     justify-content: space-between;
+    min-width: 336px;
     margin-bottom: 15px;
 }
 
