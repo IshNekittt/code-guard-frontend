@@ -8,9 +8,9 @@ import HomePage from "../pages/HomePage/HomePage";
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<LoginPage />}>
-        <Route path="home" element={<HomePage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
+      <Route path="/" element={<LoginPage />} />
+      <Route path="home" element={<HomePage />} />
+      <Route path="*" element={<ErrorPage />} />
+    </Routes>
   );
 }
