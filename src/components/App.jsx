@@ -5,11 +5,11 @@ import HomePage from "../pages/HomePage/HomePage";
 import Sidebar from "./Sidebar/Sidebar";
 import ExchangeRates from "./Sidebar/ExchangeRates/ExchangeRates";
 import Balance from "./Sidebar/Balance/Balance";
-import Statistics from "./Sidebar/StatisticsTest";
 
 import Layout from "./Layout";
 import { Suspense } from "react";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
+import StatisticsPage from "../pages/StatisticsPage/StatisticsPage";
 
 export default function App() {
   return (
