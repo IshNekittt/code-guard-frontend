@@ -159,10 +159,10 @@ const MonthYearCustomOption = (props) => {
                     border: '1px solid  rgba(255, 255, 255, 0.6)',
                     borderRadius: '8px',
                     padding: '4px',
-                    width: '181px',
+                    width: '160px',
                     height: '50px',
                     fontFamily: 'Poppins, sans-serif',
-                    marginRight: ' 30px',
+                    //marginRight: ' 30px',
                     color: 'white',
                     fontSize: '16px',
       
@@ -300,7 +300,10 @@ verticalAlign: 'middle',
         <div className={css.container}>
          
           {/* Левая часть — круг */}
-         <div className={css.chartSection}>
+          <div className={css.chartSection}>
+            <div className={css.chartNameBox}>
+              <p className={css.chartName}>Statistics</p>
+            </div>
             <Chart data={categories} />
           </div>
          
@@ -330,7 +333,7 @@ verticalAlign: 'middle',
               />
             </div>
 
-            <div className="flex flex-col gap-4">
+            <div className={css.selectorBlock}>
 
               <Select
                 isMulti
