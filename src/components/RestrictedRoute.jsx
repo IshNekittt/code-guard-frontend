@@ -7,3 +7,4 @@ export default function RestrictedRoute({ route: Route }) {
 
   return isLoggedIn ? <Navigate to="/home" /> : Route;
 }
+
