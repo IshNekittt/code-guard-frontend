@@ -1,0 +1,34 @@
+.btnAddWrapp {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.iconAdd {
+  width: 20px;
+  height: 20px;
+  background-color: inherit;
+}
+.iconWrapp {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+  border-radius: 100%;
+  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (min-width: 768px) {
+  .btnAddWrapp {
+    right: 40px;
+    bottom: 40px;
+  }
+}
