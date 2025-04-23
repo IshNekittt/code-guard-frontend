@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor } from "./redux/store";
+import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -17,5 +18,6 @@ createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </PersistGate>
     </Provider>
+    <Toaster position="top-center" />
   </StrictMode>
 );
