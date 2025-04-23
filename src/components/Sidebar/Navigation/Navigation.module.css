@@ -8,7 +8,6 @@
     margin-bottom: 12px;
    
   }
-  
 
   .link {
     display: flex;
@@ -19,15 +18,15 @@
     
   }
   
- 
+
   .link > div {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 23px;
+    
   }
-  
-  /* Прямокутник навколо іконки */
+
   .iconBox {
     fill: #515169;
 padding: 0;
@@ -35,38 +34,35 @@ padding: 0;
     align-items: center;
     justify-content: center;
     border: none;      
-    outline: none;       
-    box-shadow: none;  
+    outline: none;        
   
   }
-  
- 
+
   .active .iconBox {
-    background-color: white;
+    background-color: #734aef;
     border-radius: 6px;
-    padding: 0;
     border: none;      
-    outline: none;       
-    box-shadow: none;  
-    box-shadow: 0 3px 10px 0 rgba(74, 86, 226, 0.5);
+    outline: none !important;       
   }
-  
+
 
   .icon {
     width: 44px;
     height: 44px;
-    fill: #515169;
+    fill: #d1d1e5;
     border-radius: 6px;
     transition: fill 0.3s ease;
     stroke: none;      
     outline: none;
     box-shadow: none;
   }
-  
+
  
   .active .icon {
-    fill: #6e78e8;
+    fill: white;
+    box-shadow: 0px 4px 12px rgba(74, 86, 226, 0.5); 
   }
+
   
 
   .label {
@@ -84,10 +80,16 @@ padding: 0;
     font-weight: 700;
     font-size: 18px;
   }
-
-
+  
 
   @media screen and (min-width: 768px) {
+    .active .iconBox {
+      background-color: white;
+    }
+    .active .icon {
+      fill: #734aef;
+    }
+
 .label {
   display: block;
 }
@@ -106,18 +108,19 @@ padding: 0;
 }
 
 .active .iconBox {
- 
   border-radius: 2px;
-width: 18px;
-height: 18px;
+width: 24px;
+height: 24px;
   
 }
 
 .icon {
   border-radius: 2px;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px
 }
 
   }
+
+  
   

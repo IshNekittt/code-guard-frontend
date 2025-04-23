@@ -26,7 +26,7 @@ const Balance = () => {
   return (
     <section className={s.balance}>
       <p className={s.label}>Your balance</p>
-      <p className={s.amount}>₴ {totalBalance?.toFixed(2) ?? '0.00'}</p>
+      <p className={s.amount}><span className={s.amount_symbol}>₴</span> {totalBalance?.toFixed(2) ?? '0.00'}</p>
     </section>
   );
 };
