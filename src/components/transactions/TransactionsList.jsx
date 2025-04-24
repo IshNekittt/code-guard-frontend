@@ -3,13 +3,23 @@ import TransactionsItem from "./TransactionsItem";
 import { selectTransaction } from "../../redux/transactionsSlice";
 import css from "../transactions/TransactionsList.module.css";
 import { useIsMobile } from "../hooks/isMobile";
+import ButtonAddTransactions from "./ButtonAddTransactions";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransaction);
   const isMobile = useIsMobile();
+  if (transactions.length === 0) {
+    return (
+      <div>
+        <h3 className={css.noTransactions}>No transactions</h3>
+        <ButtonAddTransactions />
+      </div>
+    );
+  }
 
   return (
     <div className={css.transactionList}>
+      <ButtonAddTransactions />
       {isMobile ? (
         transactions.map((transact) => (
           <TransactionsItem key={transact.id} data={transact} />
