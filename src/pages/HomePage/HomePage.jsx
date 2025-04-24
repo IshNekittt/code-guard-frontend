@@ -1,10 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { Outlet } from 'react-router-dom';
 
 export default function HomePage() {
   return (
     <div>
-      <title>Home</title>
+      <Outlet />
     </div>
   );
 }

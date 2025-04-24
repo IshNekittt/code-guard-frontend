@@ -6,7 +6,7 @@ const Navigation = () => {
   
   return (
     <nav className={s.nav}>
-      <NavLink to="/home" className={s.link} >
+      <NavLink to="." className={s.link} >
         {({ isActive }) => (
           <div className={isActive ? s.active : ''}>
             <div className={s.iconBox}>
@@ -20,7 +20,7 @@ const Navigation = () => {
       </NavLink>
 
 
-      <NavLink to="/statistics" className={s.link}>
+      <NavLink to="statistics" className={s.link}>
         {({ isActive }) => (
           <div className={isActive ? s.active : ''}>
             <div className={s.iconBox}>
@@ -33,7 +33,7 @@ const Navigation = () => {
         )}
       </NavLink>
 
-      <NavLink to="/exchange-rates" className={`${s.link} ${s.link_statistics}`}>
+      <NavLink to="exchange-rates" className={`${s.link} ${s.link_statistics}`}>
         {({ isActive }) => (
           <div className={isActive ? s.active : ''}>
             <div className={s.iconBox}>

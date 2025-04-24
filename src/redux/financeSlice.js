@@ -6,7 +6,7 @@ export const updateBalanceAsync = createAsyncThunk(
   'finance/updateBalance',
   async (amount, thunkAPI) => {
     const res = await axios.patch(
-      'https://code-guard-backend.onrender.com/api/sidebar/balance');
+      'https://code-guard-backend.onrender.com/sidebar/balance');
     return res.data.balance;
   }
 );

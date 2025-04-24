@@ -12,7 +12,7 @@ const Balance = () => {
   useEffect(() => {
     const fetchBalance = async () => {
       try {
-        const res = await axios.get('/api/sidebar/balance');
+        const res = await axios.get('/sidebar/balance');
         dispatch(setTotalBalance(res.data.balance));
       } catch (error) {
         console.error('Error loading balance:', error);

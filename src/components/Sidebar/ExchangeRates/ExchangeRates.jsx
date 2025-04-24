@@ -32,7 +32,7 @@ const ExchangeRates = () => {
       }
 
       try {
-        const { data } = await axios.get('/api/sidebar/exchange-rates');
+        const { data } = await axios.get('/sidebar/exchange-rates');
         if (data && typeof data === 'object') {
           setRates(data);
           localStorage.setItem(STORAGE_KEY, JSON.stringify({ timestamp: now, data }));
