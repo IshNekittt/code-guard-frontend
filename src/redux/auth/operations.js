@@ -13,7 +13,7 @@ const removeToken = () => {
 
 export const logIn = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
-    const { data } = await axios.post("/users/login", user);
+    const { data } = await axios.post("/auth/login", user);
     setToken(data.data.accessToken);
     return data;
   } catch (e) {
