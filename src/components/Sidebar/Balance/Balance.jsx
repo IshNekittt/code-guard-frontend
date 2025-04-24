@@ -1,35 +1,28 @@
-import { useEffect } from 'react';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { setTotalBalance } from '../../../redux/financeSlice';
+import { useSelector } from 'react-redux';
 import s from './Balance.module.css';
 
-
 const Balance = () => {
-  const dispatch = useDispatch();
-  const totalBalance = useSelector(state => state.finance.totalBalance);
 
-  useEffect(() => {
-    const fetchBalance = async () => {
-      try {
-        const res = await axios.get('/sidebar/balance');
-        dispatch(setTotalBalance(res.data.balance));
-      } catch (error) {
-        console.error('Error loading balance:', error);
+  // Отримуємо масив транзакцій зі стору
+  const transactions = useSelector(state => state.transactions.items);
 
-      }
-    };
-
-    fetchBalance();
-  }, [dispatch]);
+  
+  // Обчислюємо баланс: додаємо доходи, віднімаємо витрати
+  const totalBalance = transactions.reduce((acc, transaction) => {
+    return transaction.type === 'income'
+      ? acc + transaction.amount
+      : acc - transaction.amount;
+  }, 0);
 
   return (
     <section className={s.balance}>
       <p className={s.label}>Your balance</p>
-      <p className={s.amount}><span className={s.amount_symbol}>₴</span> {totalBalance?.toFixed(2) ?? '0.00'}</p>
+      <p className={s.amount}>
+        <span className={s.amount_symbol}>₴</span>{' '}
+        {totalBalance.toFixed(2)}
+      </p>
     </section>
   );
 };
-
 
 export default Balance;
