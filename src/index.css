@@ -34,14 +34,14 @@ a:hover {
   box-sizing: border-box;
 }
 
-
 body {
   margin: 0;
-  display: flex;
- justify-content: center;
+  padding: 0;
   min-width: 320px;
   min-height: 100vh;
 }
+
+
 
 h1 {
   font-size: 3.2em;

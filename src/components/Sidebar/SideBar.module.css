@@ -3,9 +3,8 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 32px;
   z-index: 1;
-  padding: 20px 16px;
+  /* padding: 20px 16px; */
   background: radial-gradient(
       600px at 100% 20%,
       rgba(109, 84, 235, 0.6) 0%,
@@ -19,8 +18,8 @@
       transparent 100%
     );
   background-color: #1d1132; 
-  width: 100%;
-  max-width: 1280px;
+  width: 100vw;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -35,6 +34,8 @@
   .sidebar {
  flex-direction: row;
  justify-content: space-between;
+   padding: 20px 32px;
+   padding-top: 0;
   }
 
   .balance_content {
@@ -46,7 +47,10 @@
 
 @media screen and (min-width: 1280px) {
   .sidebar {
+    width: 480px;
     flex-direction: column;
+    gap: 32px;
+    padding: 0;
   }
 
 }

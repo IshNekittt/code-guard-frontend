@@ -19,7 +19,6 @@ const SideBar = () => {
   }, []);
 
   const showBalance = isTabletOrDesktop || pathname === '/home';
-  const showStatistics = isTabletOrDesktop || pathname === '/statistics' || pathname === '/home';
   const showExchangeRates = isTabletOrDesktop || pathname === '/exchange-rates';
 
   return (
@@ -29,13 +28,6 @@ const SideBar = () => {
           <Navigation />
           {showBalance && <Balance />}
         </div>
-  
-        {showStatistics && (
-          <div className={s.placeholder}>
-            Statistics section TEST
-          </div>
-        )}
-  
         {showExchangeRates && <ExchangeRates />}
       </div>
  

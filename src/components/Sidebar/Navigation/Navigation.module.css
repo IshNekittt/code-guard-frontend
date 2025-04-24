@@ -5,7 +5,7 @@
     align-items: center;
     gap: 35px;
     padding-top: 12px;
-    margin-bottom: 12px;
+    margin-bottom: 24px;
    
   }
 
@@ -28,28 +28,29 @@
   }
 
   .iconBox {
-    fill: #515169;
-padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;      
-    outline: none;        
+    outline: none;   
+    box-shadow: none;     
+    
   
   }
 
   .active .iconBox {
-    background-color: #734aef;
+background-color: white;
     border-radius: 6px;
     border: none;      
-    outline: none !important;       
+    outline: none !important; 
+    box-shadow: none !important;      
   }
 
 
   .icon {
     width: 44px;
     height: 44px;
-    fill: #d1d1e5;
+    fill: rgba(255, 255, 255, 0.4);
     border-radius: 6px;
     transition: fill 0.3s ease;
     stroke: none;      
@@ -59,8 +60,8 @@ padding: 0;
 
  
   .active .icon {
-    fill: white;
-    box-shadow: 0px 4px 12px rgba(74, 86, 226, 0.5); 
+    fill:#734aef;
+    padding: 0;
   }
 
   
@@ -122,5 +123,9 @@ height: 24px;
 
   }
 
-  
+  @media screen and (min-width: 1280px) {
+    .nav {
+      margin-left: 16px;
+    }
+  }
   
