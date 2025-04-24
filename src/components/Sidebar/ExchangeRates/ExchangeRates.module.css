@@ -66,15 +66,15 @@ color: #fff;
  
   }
   .header {
-    justify-content: flex-start;
+    justify-content: center;
     gap: 50px;
-    padding-left: 60px;
+
   }
 
   .row {
-    justify-content: flex-start;
+    justify-content: center;
    gap: 88px;
-   padding-left: 60px;
+ 
     }
  
 

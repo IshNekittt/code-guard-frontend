@@ -3,11 +3,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 12px;
 width: 280px;
 height: 80px;
 margin: 0 auto;
-  padding: 8px 18px 12px 32px;
+  padding: 8px 0 12px 32px;
   border-radius: 8px;
   backdrop-filter: blur(100px);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
@@ -20,6 +19,7 @@ margin: 0 auto;
   font-weight: 400;
   font-size: 12px;
   text-transform: uppercase;
+
   color: white;
   margin: 0;
   opacity: 0.5;
@@ -35,6 +35,7 @@ margin: 0 auto;
   font-weight: 700;
   font-size: 30px;
   color: white;
+
   margin: 0;
 }
 
@@ -42,7 +43,7 @@ margin: 0 auto;
 @media screen and (min-width: 768px) {
   .balance {
     width: 336px; 
-    padding: 16px 40px; 
+    padding: 8px 0 12px 40px; 
   }
 }
 
@@ -52,12 +53,7 @@ margin: 0 auto;
     max-width: 1280px; 
     border: none;
     border-radius: 0;
+    padding: 8px 0 12px 56px; 
   }
 
-  .label {
-    margin-left: 25px;
-  }
-  .amount {
-    margin-left: 25px;
-  }
 }

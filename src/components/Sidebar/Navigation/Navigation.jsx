@@ -6,7 +6,7 @@ const Navigation = () => {
   
   return (
     <nav className={s.nav}>
-      <NavLink to="." className={s.link} >
+      <NavLink to="" end className={s.link} >
         {({ isActive }) => (
           <div className={isActive ? s.active : ''}>
             <div className={s.iconBox}>

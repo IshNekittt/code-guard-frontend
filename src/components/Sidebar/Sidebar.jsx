@@ -4,6 +4,7 @@ import Balance from './Balance/Balance';
 import ExchangeRates from './ExchangeRates/ExchangeRates';
 import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import StatisticsTest from './StatisticsTest';
 
 const SideBar = () => {
   const [isTabletOrDesktop, setIsTabletOrDesktop] = useState(window.innerWidth >= 768);
@@ -24,9 +25,9 @@ const SideBar = () => {
     {isTabletOrDesktop && <Balance />}
     {!isTabletOrDesktop && <Outlet />}
   </div>
-  {isTabletOrDesktop && (pathname.includes('exchange-rates') || pathname === '/home') && (
-    <ExchangeRates />
-  )}
+  {isTabletOrDesktop && <ExchangeRates />}
+  
+  {isTabletOrDesktop && pathname.includes('statistics') && <StatisticsTest />}
 </div>
 
   );

@@ -5,7 +5,7 @@ import HomePage from '../pages/HomePage/HomePage';
 import Sidebar from './Sidebar/Sidebar';
 import ExchangeRates from './Sidebar/ExchangeRates/ExchangeRates';
 import Balance from './Sidebar/Balance/Balance';
-
+import Statistics from './Sidebar/StatisticsTest';
 
 export default function App() {
   return (
@@ -16,7 +16,7 @@ export default function App() {
   <Route element={<Sidebar />}>
     <Route index element={<Balance />} />
     <Route path="exchange-rates" element={<ExchangeRates />} />
-
+    <Route path="statistics" element={<Statistics />} /> 
   </Route>
 </Route>
 

@@ -61,7 +61,8 @@ background-color: white;
  
   .active .icon {
     fill:#734aef;
-    padding: 0;
+box-shadow: none;
+
   }
 
   
