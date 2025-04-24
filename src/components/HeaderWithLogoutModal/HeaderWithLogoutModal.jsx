@@ -11,8 +11,7 @@ const HeaderWithLogoutModal = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
 
-  // const email = useSelector((state) => state.user.email);
-  // const user = 'testuser@example.com';
+  const email = useSelector((state) => state.auth.user.email);
   const username = user?.email?.split('@')[0];
 
   const [showModal, setShowModal] = useState(false);
