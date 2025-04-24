@@ -18,9 +18,8 @@ export default function App() {
     <Route path="exchange-rates" element={<ExchangeRates />} />
     <Route path="statistics" element={<Statistics />} /> 
   </Route>
+  
 </Route>
-
-
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
