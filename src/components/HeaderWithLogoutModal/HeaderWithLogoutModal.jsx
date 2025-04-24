@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../redux/auth/operations';
 import { selectUser } from '../../redux/auth/selectors';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import './HeaderWithLogoutModal.css';
 
 const HeaderWithLogoutModal = () => {
@@ -11,7 +12,7 @@ const HeaderWithLogoutModal = () => {
   const navigate = useNavigate();
 
   // const email = useSelector((state) => state.user.email);
-  //const email = 'testuser@example.com';
+  // const user = 'testuser@example.com';
   const username = user?.email?.split('@')[0];
 
   const [showModal, setShowModal] = useState(false);
@@ -25,9 +26,8 @@ const HeaderWithLogoutModal = () => {
     navigate('/login'); 
   } catch (err) {
     console.error('Logout failed:', err);
-    setError('Logout failed: ' + (err || 'Unknown error'));
-    localStorage.clear();      
-    dispatch(logOut());
+    localStorage.clear(); 
+    toast.error('Error exiting: ' + (err?.message || 'Try later'));
   } finally {
     setShowModal(false);
   }
