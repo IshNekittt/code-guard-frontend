@@ -1,36 +1,34 @@
 import s from './SideBar.module.css';
 import Navigation from './Navigation/Navigation';
-import ExchangeRates from './ExchangeRates/ExchangeRates';
 import Balance from './Balance/Balance';
-import { useLocation } from 'react-router-dom';
+import ExchangeRates from './ExchangeRates/ExchangeRates';
+import { Outlet, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 const SideBar = () => {
-  const { pathname } = useLocation();
   const [isTabletOrDesktop, setIsTabletOrDesktop] = useState(window.innerWidth >= 768);
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
       setIsTabletOrDesktop(window.innerWidth >= 768);
     };
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const showBalance = isTabletOrDesktop || pathname === '/home';
-  const showExchangeRates = isTabletOrDesktop || pathname === '/exchange-rates';
-
   return (
+    <div className={s.sidebar}>
+  <div className={s.balance_content}>
+    <Navigation />
+    {isTabletOrDesktop && <Balance />}
+    {!isTabletOrDesktop && <Outlet />}
+  </div>
+  {isTabletOrDesktop && (pathname.includes('exchange-rates') || pathname === '/home') && (
+    <ExchangeRates />
+  )}
+</div>
 
-      <div className={s.sidebar}>
-        <div className={s.balance_content}>
-          <Navigation />
-          {showBalance && <Balance />}
-        </div>
-        {showExchangeRates && <ExchangeRates />}
-      </div>
- 
   );
 };
 

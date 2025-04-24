@@ -29,7 +29,7 @@ const Chart = () => {
     // 🔸 Коли бекенд готовий — підключити:
     /*
     axios
-      .get('/api/sidebar/chart')
+      .get('/sidebar/chart')
       .then(res => setData(res.data.points))
       .catch(err => console.error('Chart fetch error:', err));
     */
