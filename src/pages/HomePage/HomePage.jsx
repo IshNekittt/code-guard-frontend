@@ -6,7 +6,7 @@ import styles from "./HomePage.module.css";
 
 export default function HomePage() {
   return (
-    <div className={styles.logout}>
+    <div>
       <HeaderWithLogoutModal />
       <Outlet />
     </div>
