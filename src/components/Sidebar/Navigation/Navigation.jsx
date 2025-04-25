@@ -10,7 +10,7 @@ const Navigation = () => {
         {({ isActive }) => (
           <div className={isActive ? s.active : ''}>
             <div className={s.iconBox}>
-                <svg className={s.icon} >
+                <svg className={s.icon}  >
                   <use href="/symbol-defs.svg#icon-home" />
                 </svg>
             </div>
