@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api/axios";
+import axios from "axios";
 
 export const getTransactions = createAsyncThunk(
   "transactions/fetchAllTransaction",

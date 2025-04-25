@@ -21,22 +21,25 @@ export const logIn = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   }
 });
 
-export const getUserInfo = createAsyncThunk("users/currentUser", async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const persistedToken = state.auth.token;
+export const getUserInfo = createAsyncThunk(
+  "users/currentUser",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-  if (persistedToken === null) {
-    return thunkAPI.rejectWithValue("Not authorized");
-  }
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue("Not authorized");
+    }
 
-  try {
-    setToken(persistedToken);
-    const { data } = await axios.get("/users/currentUser");
-    return data;
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
+    try {
+      setToken(persistedToken);
+      const { data } = await axios.get("/users/currentUser");
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
-});
+);
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
