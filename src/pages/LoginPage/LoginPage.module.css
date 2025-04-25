@@ -1,0 +1,25 @@
+.loginWrapper {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom right, #2a0f57, #502f93);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  } 
+
+  @media (min-width: 768px) {
+    .loginWrapper {
+      background-image: url("/src/assets/images/tablet.png");
+    } 
+  }
+
+  @media (min-width: 1280px) {
+    .loginWrapper {
+      background-image: url("/src/assets/images/iMac.png");
+    } 
+  }
+  
