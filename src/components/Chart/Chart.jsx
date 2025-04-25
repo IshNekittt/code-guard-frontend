@@ -65,7 +65,7 @@ const Chart = ({ data = [] }) => {
 
   // определим радиусы в зависимости от ширины экрана
   const screenWidth = window.innerWidth;
-  const outerRadius = screenWidth <= 480 ? 65 : screenWidth <= 768 ? 80 : 110;
+  const outerRadius = screenWidth <= 480 ? 100 : screenWidth <= 768 ? 80 : 110;
   const innerRadius = outerRadius - 30;
 
   const renderCenterLabel = () => {
@@ -92,7 +92,7 @@ const Chart = ({ data = [] }) => {
           <Pie
             data={data}
             cx="50%"
-            cy="40%"
+            cy="50%"
             outerRadius={outerRadius}
             innerRadius={innerRadius}
             fill="#8884d8"
