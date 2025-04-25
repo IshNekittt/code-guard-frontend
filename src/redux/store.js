@@ -1,9 +1,44 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { statisticsReducer } from "./statistics/statisticsSlice";
+
+import { configureStore } from '@reduxjs/toolkit';
+import { transactionReducer } from "./transactionsSlice";
+import { financeReducer } from './financeSlice';
+import authReducer from "./auth/slice";
+import storage from "redux-persist/lib/storage";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
+
+const persistConfig = {
+  key: "token",
+  version: 1,
+  storage,
+  whitelist: ["token"],
+};
+
+const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
-    statistics: statisticsReducer,
+    transactions: transactionReducer,
+
+    auth: persistedAuthReducer,
+
+    finance: financeReducer,
+
   },
-})
-export default store
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
+});
+
+export const persistor = persistStore(store);

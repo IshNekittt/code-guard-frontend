@@ -8,6 +8,7 @@ import StatisticsTable from '../StatisticsTable';
 import Chart from '../Chart/Chart';
 import './StatisticsMain.css';
 import Select from 'react-select';
+import { getTransactions } from '../../redux/statistics/operations';
 
 const months = [
   'January', 'February', 'March', 'April',
@@ -193,8 +194,9 @@ const StatisticsMain = () => {
   
 
     useEffect(() => {
-  localStorage.setItem('selectedCategories', JSON.stringify(selected));
-    }, [selected]);
+      localStorage.setItem('selectedCategories', JSON.stringify(selected));
+      dispatch(getTransactions({ month, year }));
+    }, [selected, month, year, dispatch]);
   
   
     return (
