@@ -1,7 +1,7 @@
 import { logIn } from "../../redux/auth/operations";
 import s from "./LoginForm.module.css";
 import { useDispatch } from "react-redux";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 
 
 const LoginSchema = Yup.object().shape({
-    email: Yup.string().trim().required("Field requred"),
+    email: Yup.string().trim().required("Field required"),
     password: Yup.string().trim().required("Field required"),
 });
 
@@ -65,6 +65,7 @@ const handleSubmit = (values) => {
 
               <Field type="text" name="email" className={s.loginField} placeholder="E-mail" />
               </label>
+              <ErrorMessage name="email" component="span" className={s.error} />
 
             <label className={s.loginLabel}>
             <svg className={s.loginIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24">
@@ -75,9 +76,10 @@ const handleSubmit = (values) => {
   />
 </svg>
 
-          <Field type="password" name="password" className={s.loginField} placeholder="Password" />
-              </label>
-            
+          <Field type="password" name="password" className={s.loginField} placeholder="Password" />    
+          </label>
+          <ErrorMessage name="password" component="span" className={s.error} />
+             
         <div className={s.buttonGroup}>
           <button type="submit" className={s.loginButton}>
             Log In
@@ -85,6 +87,6 @@ const handleSubmit = (values) => {
           <Link to="/register" className={s.registerButton}>Register</Link>
         </div>
       </Form>
-        </Formik>
+      </Formik>
   );
 }
