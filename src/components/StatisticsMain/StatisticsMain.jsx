@@ -6,7 +6,7 @@ import React, { useState,useEffect } from 'react'
 import StatisticsDashboard from '../StatisticsDashboard';
 import StatisticsTable from '../StatisticsTable';
 import Chart from '../Chart/Chart';
-import css from './StatisticsMain.module.css'
+import './StatisticsMain.css';
 import Select from 'react-select';
 
 const months = [
@@ -79,10 +79,7 @@ const StatisticsMain = () => {
     cursor: 'pointer',
     transition: 'transform 0.2s ease',
     transform: 'scale(1)',
-   // color: '#fff',
-    //fontWeight: 'normal',
-   // backgroundColor: '#2e2e48', // фон по умолчанию
-    //: '1px solid #3d3d5c',
+   
    color: isSelected ? '#FF868D' : '#fff',
     fontWeight: isSelected ? 'bold' : 'normal',
     border: 'none',
@@ -116,174 +113,81 @@ const StatisticsMain = () => {
   selected.some(sel => sel.value === cat.name)
   );
   
-const MonthYearCustomOption = (props) => {
-  const { data, isFocused, innerRef, innerProps } = props;
-  //const isSelected = selected.some(sel => sel.value === data.value);
 
-  // Базовые стили
-  const baseStyle = {
-    padding: '10px 14px',
-    cursor: 'pointer',
-    transition: 'transform 0.2s ease',
-    transform: 'scale(1)',
-  
-    //color: isSelected ? '#FF868D' : '#fff',
-    //fontWeight: isSelected ? 'bold' : 'normal',
-    border: 'none',
-     
-  };
+//     const customStyles = {
+//     control: (base, state) => ({
+//     ...base,
+//         backgroundColor: '#523B7E99',
+//       backdropFilter:' blur(100px)',
 
-
-  if (isFocused) {
-    baseStyle.transform = 'scale(1.05)';
-    baseStyle.backgroundColor = '#FFFFFF1A'; // светлее при фокусе
-  }
-
-  return (
-    <div ref={innerRef} {...innerProps}
-      style={baseStyle}
-    >
-       {data.label} 
-    </div>
-  );
-};
-
-
-
-  
-  const customStylesMonthYear = {
+//       boxShadow: '0px 4px 60px 0px #00000040',
+//       fontFamily:' Poppins',
+//       fontWeight: '600',
+//       fontSize: '16px',
+//       lineHeight: '100%',
+//       letterSpacing: '0%',
+//       color: '#FBFBFB',
+//           borderRadius: 8,
+//               padding: 4,
+//           border: 'none',
     
-       control: (base, state) => ({
-                    ...base,
-                    backgroundColor: 'rgba(74, 86, 226, 0.1)',
-                    border: '1px solid  rgba(255, 255, 255, 0.6)',
-                    borderRadius: '8px',
-                    padding: '4px',
-                    width: '160px',
-                    height: '50px',
-                    fontFamily: 'Poppins, sans-serif',
-                    //marginRight: ' 30px',
-                    color: 'white',
-                    fontSize: '16px',
-      
-                    boxShadow: 'none',
-                  }),
-                  singleValue: (base) => ({
-                    ...base,
-                    color: 'white',
-                    fontFamily: 'Poppins, sans-serif',
-                    
-                  }),
-                  option: (base, state) => ({
-                    ...base,
-                   
-                    //backgroundColor: state.isFocused ? 'rgba(74, 86, 226, 0.2)' : 'white',
-                   
-                     fontFamily: 'Poppins',
-                    fontWeight: '400',
-                    fontSize: '16px',
-                    lineHeight: '100%',
-                    letterSpacing: '0%',
-                    color: '#FBFBFB',
+//     //borderColor: state.isFocused ? '#50309A' : '#444',
+//     boxShadow: state.isFocused ? '0 0 0 1px #50309A' : 'none',
+//     '&:hover': {
+//       borderColor: '#50309A',
+//     },
+//       }),
+//       dropdownIndicator: () => ({
+//     display: 'none', // 🔥 убираем стрелочку
+//       }),
+//        indicatorSeparator: () => ({
+//     display: 'none', // 🔥 убираем перегородку
+//   }),
+//   menu: (base) => ({
+//     ...base,
+//    background: '#50309A',
 
-                  }),
-                  menu: (base) => ({
-                    ...base,
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    fontFamily: 'Poppins, sans-serif',
-                    background: '#50309A',
-                    //backgroundColor: state.isFocused ? 'rgba(74, 86, 226, 0.2)' : '#50309A',
-                  }),
-                  indicatorSeparator: () => ({
-                    display: 'none',
-    }),
-                  
-                  menuList: (base) => ({
-  ...base,
+//     marginTop: 4,
+//     width: '394',
+// height: '444',
+// borderRadius: '8px',
+
+//     overflow: 'hidden',
+//     padding: 0,
+//     border: 'none',
+    
+//       }),
+//   menuList: (base) => ({
+//   ...base,
  
-   
-  overflowY: 'auto',
+//     padding: 0,
+//    maxHeight: 240, // 👈 ограничиваем максимальную высоту
+//   overflowY: 'auto',
   
-  overflowX: 'hidden', // ещё раз тут, чтобы наверняка
-}),
-  }
-  
-  
-    const customStyles = {
-    control: (base, state) => ({
-    ...base,
-        backgroundColor: '#523B7E99',
-      backdropFilter:' blur(100px)',
-
-      boxShadow: '0px 4px 60px 0px #00000040',
-      fontFamily:' Poppins',
-      fontWeight: '600',
-      fontSize: '16px',
-      lineHeight: '100%',
-      letterSpacing: '0%',
-      color: '#FBFBFB',
-          borderRadius: 8,
-              padding: 4,
-          border: 'none',
-    
-    //borderColor: state.isFocused ? '#50309A' : '#444',
-    boxShadow: state.isFocused ? '0 0 0 1px #50309A' : 'none',
-    '&:hover': {
-      borderColor: '#50309A',
-    },
-      }),
-      dropdownIndicator: () => ({
-    display: 'none', // 🔥 убираем стрелочку
-      }),
-       indicatorSeparator: () => ({
-    display: 'none', // 🔥 убираем перегородку
-  }),
-  menu: (base) => ({
-    ...base,
-   background: '#50309A',
-
-    marginTop: 4,
-    width: '394',
-height: '444',
-borderRadius: '8px',
-
-    overflow: 'hidden',
-    padding: 0,
-    border: 'none',
-    
-      }),
-  menuList: (base) => ({
-  ...base,
- 
-    padding: 0,
-   maxHeight: 240, // 👈 ограничиваем максимальную высоту
-  overflowY: 'auto',
-  
-  overflowX: 'hidden', // ещё раз тут, чтобы наверняка
-}),
-  placeholder: (base) => ({
-  ...base,
-  display: 'flex',
-  justifyContent: 'space-between',
-  width: '100%',
-    color: '#FBFBFB',
+//   overflowX: 'hidden', // ещё раз тут, чтобы наверняка
+// }),
+//   placeholder: (base) => ({
+//   ...base,
+//   display: 'flex',
+//   justifyContent: 'space-between',
+//   width: '100%',
+//     color: '#FBFBFB',
  
     
-}),
+// }),
 
-  singleValue: (base) => ({
-    ...base,
-    color: '#fff',
-    fontFamily: 'Poppins',
-fontWeight: '400',
-fontSize: '16px',
-lineHeight: '100%',
-letterSpacing: '0%',
-verticalAlign: 'middle',
+//   singleValue: (base) => ({
+//     ...base,
+//     color: '#fff',
+//     fontFamily: 'Poppins',
+// fontWeight: '400',
+// fontSize: '16px',
+// lineHeight: '100%',
+// letterSpacing: '0%',
+// verticalAlign: 'middle',
 
-  }),
-};
+//   }),
+// };
 
 
   
@@ -294,50 +198,50 @@ verticalAlign: 'middle',
   
   
     return (
-   <div className={css.wrapper}>
+   <div className="wrapper">
 
 
-        <div className={css.container}>
+        <div className="container">
          
           {/* Левая часть — круг */}
-          <div className={css.chartSection}>
-            <div className={css.chartNameBox}>
-              <p className={css.chartName}>Statistics</p>
+          <div className="chartSection">
+            <div className="chartNameBox">
+              <p className="chartName">Statistics</p>
             </div>
             <Chart data={categories} />
           </div>
          
           {/* Правая часть — категории */}
-          <div className={css.raitBar}>
-            <div className={css.selectBox}>
+          <div className="raitBar">
+            <div className="selectBox">
             
               <Select
                
                 value={monthOptions.find((option) => option.value === selectedMonth)}
                 onChange={(option) => setSelectedMonth(option.value)}
                 options={monthOptions}
-                 components={{
-                  Option: MonthYearCustomOption,
-                }}
-                styles={customStylesMonthYear}
+                className='custom-select'
+                classNamePrefix="custom-select"
+          
               />
              
               <Select
                 value={yearsOptions.find((option) => option.value === selectedYear)}
                 onChange={(option) => setSelectedYear(option.value)}
                 options={yearsOptions}
-                styles={customStylesMonthYear}
-                 components={{
-                  Option: MonthYearCustomOption,
-                }}
+               className='custom-select'
+               classNamePrefix="custom-select"           
               />
             </div>
 
-            <div className={css.selectorBlock}>
+            <div className="selectorBlock">
 
               <Select
                 isMulti
                 options={categoryOptions}
+                
+                classNamePrefix="category-select"
+                className="category-select"
                 components={{
                   MultiValue: () => null, 
                   Option: CustomOption,
@@ -350,22 +254,18 @@ verticalAlign: 'middle',
                     <span>Sum</span>
                   </div>
                 }
-                              styles={customStyles}
-                              closeMenuOnSelect={false}
-                hideSelectedOptions={false}
-                onChange={() => {}}
               />
 
               {visibleCategories.map((cat) => (
-                <div key={cat.name} className={css.categoriWrapper}>
+                <div key={cat.name} className="categoriWrapper">
                  
-                    <div className={css.nameCategoriContainer}>
-                       <div className={css.quad} style={{ backgroundColor: cat.color }} />
+                    <div className="nameCategoriContainer">
+                       <div className="quad" style={{ backgroundColor: cat.color }} />
                     <span>{cat.name}</span>
                     </div>
                    
                   
-                  <span className={css.numberSpan}>{cat.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+                  <span className="numberSpan">{cat.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                 </div>
               ))}
 
@@ -375,13 +275,13 @@ verticalAlign: 'middle',
              
             </div>
 
-            <div className={css.expensesIncomeBlock}>
+            <div className="expensesIncomeBlock">
 
-              <div className={css.expenses}>Expenses:
-                <span className={css.expensesNumber}>10 000.00</span>
+              <div className="expenses">Expenses:
+                <span className="expensesNumber">10 000.00</span>
               </div>
-              <div className={css.income}>Income:
-                <span className={css.incomeNumber}>34 000.00
+              <div className="income">Income:
+                <span className="incomeNumber">34 000.00
                 </span>
               </div>
             </div>
