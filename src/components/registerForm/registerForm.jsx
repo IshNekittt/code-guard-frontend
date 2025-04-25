@@ -33,13 +33,13 @@ const RegistrationForm = () =>{
         <div className={s.formContainer}>
             <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
                 <div className={s.header}>
-                    <svg class="money-guard" width="36" height="36">
+                    <svg  className={s.headerIcon}>
                         <use href="/src/assets/icons.svg#icon-money-guard"></use>
                     </svg>
                     <h2 className={s.formTitle}>Money Guard</h2>
                 </div>
                 <div className={s.inputGroup}>
-                    <svg className={s.inputIcon} width="24" height="24">
+                    <svg className={s.inputIcon}>
                         <use href="/src/assets/icons.svg#icon-user"></use>
                     </svg>
                     <input type="text" placeholder="Name" {...register('name')} />
@@ -48,7 +48,7 @@ const RegistrationForm = () =>{
                     {errors.name?.message || '\u00A0'}
                 </p>
                 <div className={s.inputGroup}>
-                    <svg className={s.inputIcon} width="24" height="24">
+                    <svg className={s.inputIcon} >
                         <use href="/src/assets/icons.svg#icon-email"></use>
                     </svg>
                     <input type="email" placeholder="E-mail" {...register('email')} />
@@ -57,7 +57,7 @@ const RegistrationForm = () =>{
                     {errors.email?.message || '\u00A0'}
                 </p>
                 <div className={s.inputGroup}>
-                    <svg className={s.inputIcon} width="24" height="24">
+                    <svg className={s.inputIcon}>
                         <use href="/src/assets/icons.svg#icon-password"></use>
                     </svg>
                     <input type="password" placeholder="Password" {...register('password')} />
@@ -65,8 +65,8 @@ const RegistrationForm = () =>{
                 <p className={s.errorMessage}>
                     {errors.password?.message || '\u00A0'}
                 </p>
-                <div className={s.inputGroup} style={{marginBottom: '10px', height: '40px'}}>
-                    <svg className={s.inputIcon} width="24" height="24">
+                <div className={s.inputGroup} style={{marginBottom: '0', height: '40px'}}>
+                    <svg className={s.inputIcon} >
                         <use href="/src/assets/icons.svg#icon-password"></use>
                     </svg>
                     <input type="password" placeholder="Confirm password" {...register('confirmPassword')} />
@@ -83,11 +83,13 @@ const RegistrationForm = () =>{
                     Register
                 </button>
 
-                <button type="button" className={s.loginButton}> 
-                    Log In
-                </button>
+                <Link className={s.loginButton} to="/login">
+                    Log in
+                </Link>
+
             </form>
         </div>
+        
     )
 }
 

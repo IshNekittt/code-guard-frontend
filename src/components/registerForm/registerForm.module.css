@@ -29,6 +29,12 @@ body{
   margin-top: 40px;
   margin-bottom: 40px;
 }
+
+.headerIcon{
+width: 36px;
+height: 36px;
+}
+
 .formTitle {
   font-family: "Poppins", sans-serif;
     font-weight: 400;
@@ -49,6 +55,8 @@ body{
     top: 50%;
     transform: translateY(-50%);
     color: gray;
+    width: 24px;
+    height: 24px;
   } 
   .inputGroup input {
     width: 100%;
@@ -149,7 +157,18 @@ body{
     text-transform: uppercase;
     text-align: center;
     color: #623f8b;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* ← це важливо */
+    text-decoration: none;
   }
+
+  @media (max-width:768px){
+    body{
+      background-image: url('/src/assets/tablet.jpg');
+    }
+  }
+
   @media (max-width: 375px) {
     .form {
       width: 320px;
@@ -161,6 +180,11 @@ body{
       margin-top: 10px;
       margin-bottom: 20px;
     }
+    .headerIcon{
+      width: 21px;
+      height: 26px;
+      }
+      
   
     .formTitle {
       font-size: 22px;
@@ -185,7 +209,7 @@ body{
     }
   
     .progressBar {
-      width: 80%;
+      width: 101%;
       margin-bottom: 20px;
     }
   
