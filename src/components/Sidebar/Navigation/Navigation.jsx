@@ -10,9 +10,9 @@ const Navigation = () => {
         {({ isActive }) => (
           <div className={isActive ? s.active : ''}>
             <div className={s.iconBox}>
-              <svg className={s.icon} >
-                <use href="/src/assets/sidebarsvg/symbol-defs.svg#icon-home" />
-              </svg>
+                <svg className={s.icon} >
+                  <use href="/symbol-defs.svg#icon-home" />
+                </svg>
             </div>
             <span className={s.label}>Home</span>
           </div>
@@ -25,7 +25,7 @@ const Navigation = () => {
           <div className={isActive ? s.active : ''}>
             <div className={s.iconBox}>
               <svg className={s.icon} draggable={false}>
-                <use href="/src/assets/sidebarsvg/symbol-defs.svg#icon-hrafic" />
+                <use href="/symbol-defs.svg#icon-chart" />
               </svg>
             </div>
             <span className={s.label}>Statistics</span>
@@ -38,7 +38,7 @@ const Navigation = () => {
           <div className={isActive ? s.active : ''}>
             <div className={s.iconBox}>
               <svg className={s.icon} draggable={false}>
-                <use href="/src/assets/sidebarsvg/symbol-defs.svg#icon-Valyte" />
+                <use href="/symbol-defs.svg#icon-money" />
               </svg>
             </div>
           </div>
