@@ -60,8 +60,9 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 const COLORS = ['#FF6B6B', '#A18AFF', '#7BDFF2', '#5C7CFA', '#63E6BE', '#38D9A9', '#69DB7C'];
 
-const Chart = ({ data = [] }) => {
-  const total = data.reduce((acc, item) => acc + (item.amount || 0), 0);
+const Chart = ({statistics} ) => {
+  console.log("что приходит",statistics)
+  const total = statistics.reduce((acc, item) => acc + (item.summ || 0), 0);
 
   // определим радиусы в зависимости от ширины экрана
   const screenWidth = window.innerWidth;
@@ -90,17 +91,17 @@ const Chart = ({ data = [] }) => {
       <ResponsiveContainer width="100%" height={screenWidth <= 480 ? 220 : 280}>
         <PieChart>
           <Pie
-            data={data}
+            data={statistics}
             cx="50%"
             cy="50%"
             outerRadius={outerRadius}
             innerRadius={innerRadius}
             fill="#8884d8"
-            dataKey="amount"
+            dataKey="summ"
             labelLine={false}
             isAnimationActive={true}
           >
-            {data.map((entry, index) => (
+            {statistics.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
             {renderCenterLabel()}

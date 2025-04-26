@@ -1,6 +1,6 @@
 
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMonthlyStats } from '../../redux/statistics/operations';
+//import { fetchMonthlyStats } from '../../redux/statistics/operations';
 import { selectStatistics } from '../../redux/statistics/selectors';
 import React, { useState,useEffect } from 'react'
 import StatisticsDashboard from '../StatisticsDashboard';
@@ -10,288 +10,248 @@ import './StatisticsMain.css';
 import Select from 'react-select';
 import { getTransactions } from '../../redux/statistics/operations';
 
+
+
+
 const months = [
   'January', 'February', 'March', 'April',
   'May', 'June', 'July', 'August',
   'September', 'October', 'November', 'December'
-]
+];
 
-const years = ['2020', '2021', '2022', '2023', '2024']
+const years = ['2020', '2021', '2022', '2023', '2024', '2025'];
 
-const categories = [
-  { color: '#FF6B6B', name: 'Car', amount: 1500 },
-  { color: '#A18AFF', name: 'Self care', amount: 800 },
-  { color: '#7BDFF2', name: 'Child care', amount: 2208.5 },
-  { color: '#5C7CFA', name: 'Household products', amount: 300 },
-  { color: '#63E6BE', name: 'Education', amount: 3400 },
-  { color: '#38D9A9', name: 'Leisure', amount: 1230 },
-  { color: '#69DB7C', name: 'Other expenses', amount: 610 }
-]
-const totalExpenses = categories.reduce((acc, cur) => acc + cur.amount, 0);
-const totalIncome = 27350; // пока заглушка
+
+
+const categoryColors = {
+  'Main expenses': '#FF6B6B',
+  'Products': '#FF6B6B',
+  'Car': '#FF6B6B',
+  'Self care': '#A18AFF',
+  'Child care': '#7BDFF2',
+  'Household products': '#5C7CFA',
+  'Education': '#63E6BE',
+  'Leisure': '#38D9A9',
+  'Other expenses': '#69DB7C',
+  'Entertainment': '#69DB7C',
+  'Income': '#69DB7C'
+};
+
+// const totalExpenses = categories.reduce((acc, cur) => acc + cur.amount, 0);
+// const totalIncome = 27350; // пока заглушка
+
+
+const getStartEndDates = (monthName, year) => {
+  const monthIndex = months.indexOf(monthName);
+  if (monthIndex === -1) throw new Error('Invalid month name');
+
+  const startDate = new Date(year, monthIndex, 1);
+  const endDate = new Date(year, monthIndex + 1, 0);
+
+  const format = (date) => date.toISOString().slice(0, 10);
+
+  return {
+    start: format(startDate),
+    end: format(endDate),
+  };
+};
 
 const StatisticsMain = () => {
 
-  const [selectedMonth, setSelectedMonth] = useState('March')
-  const [selectedYear, setSelectedYear] = useState('2023')
-  
+  const [selectedMonth, setSelectedMonth] = useState('April');
+  const [selectedYear, setSelectedYear] = useState('2024');
   const dispatch = useDispatch();
   const statistics = useSelector(selectStatistics);
+
+//   const totalExpenses = statistics.reduce((acc, transaction) => acc + transaction.amount, 0);
+  
+//   console.log(statistics)
+// const totalIncome = 27350; // пока заглушка
 
   const monthOptions = months.map((month) => ({
     value: month,
     label: month
   }));
+
   const yearsOptions = years.map((year) => ({
     value: year,
     label: year
   }));
-  
-  const categoryOptions = categories.map(cat => ({
-    value: cat.name,
-    label: cat.name
-  }));
-  
-  
+
+  // const categoryOptions = categories.map(cat => ({
+  //   value: cat.name,
+  //   label: cat.name
+  // }));
+
+  const categoryOptions = Array.from(
+  new Set(statistics.map(statis => statis.category))
+).map(category => ({
+  value: category,
+  label: category
+}));
+
   const [selected, setSelected] = useState(() => {
-  const saved = localStorage.getItem('selectedCategories');
-  return saved ? JSON.parse(saved) : [];
-});
-  
-
-    const toggleCategory = (option) => {
-       setSelected((prevSelected) => {
-    const isAlreadySelected = prevSelected.some(sel => sel.value === option.value);
-    if (isAlreadySelected) {
-      return prevSelected.filter(sel => sel.value !== option.value);
-    } else {
-      return [...prevSelected, option];
-    }
+    const saved = localStorage.getItem('selectedCategories');
+    return saved ? JSON.parse(saved) : [];
   });
-    };
-  
-  const CustomOption = (props) => {
-  const { data, isFocused, innerRef, innerProps } = props;
-  const isSelected = selected.some(sel => sel.value === data.value);
 
-  // Базовые стили
-  const baseStyle = {
-    padding: '10px 14px',
-    cursor: 'pointer',
-    transition: 'transform 0.2s ease',
-    transform: 'scale(1)',
-   
-   color: isSelected ? '#FF868D' : '#fff',
-    fontWeight: isSelected ? 'bold' : 'normal',
-    border: 'none',
-     
+  const toggleCategory = (option) => {
+    setSelected((prevSelected) => {
+      const isAlreadySelected = prevSelected.some(sel => sel.value === option.value);
+      if (isAlreadySelected) {
+        return prevSelected.filter(sel => sel.value !== option.value);
+      } else {
+        return [...prevSelected, option];
+      }
+    });
   };
 
+  const CustomOption = (props) => {
+    const { data, isFocused, innerRef, innerProps } = props;
+    const isSelected = selected.some(sel => sel.value === data.value);
 
-  if (isFocused) {
-    baseStyle.transform = 'scale(1.05)';
-    baseStyle.backgroundColor = '#FFFFFF1A'; // светлее при фокусе
-  }
+    const baseStyle = {
+      padding: '10px 14px',
+      cursor: 'pointer',
+      transition: 'transform 0.2s ease',
+      transform: 'scale(1)',
+      color: isSelected ? '#FF868D' : '#fff',
+      fontWeight: isSelected ? 'bold' : 'normal',
+      border: 'none',
+    };
+
+    if (isFocused) {
+      baseStyle.transform = 'scale(1.05)';
+      baseStyle.backgroundColor = '#FFFFFF1A';
+    }
+
+    return (
+      <div
+        ref={innerRef}
+        {...innerProps}
+        style={baseStyle}
+        onMouseDown={(e) => {
+          e.preventDefault();
+          toggleCategory(data);
+        }}
+      >
+        {data.label}
+      </div>
+    );
+  };
+
+const totalIncome = statistics
+  .filter(stat => stat.category === 'Income')  // ищем только доходы
+  .reduce((acc, stat) => acc + (stat.summ || 0), 0);
+ console.log(totalIncome)
+const totalExpenses = statistics
+  .filter(stat => stat.category !== 'Income')  // всё кроме доходов = расходы
+  .reduce((acc, stat) => acc + (stat.summ || 0), 0);
+  
+const visibleCategories = statistics.filter(stat =>
+  selected.some(sel => sel.value === stat.category)
+);
+  useEffect(() => {
+    const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+
+    console.log('📅 Start:', start, 'End:', end);
+
+    dispatch(getTransactions({ start, end }))
+      .then(res => {
+        console.log('👉 Transactions:', res.payload);
+      });
+  }, [selectedMonth, selectedYear, dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem('selectedCategories', JSON.stringify(selected));
+  }, [selected]);
 
   return (
-    <div
-      ref={innerRef}
-      {...innerProps}
-      style={baseStyle}
-      // onClick={() => toggleCategory(data)}
-        onMouseDown={(e) => {
-        e.preventDefault(); // ❗️Останавливаем закрытие меню
-        toggleCategory(data);
-      }}
-    >
-      {data.label}
-    </div>
-  );
-};
-
-
- const visibleCategories = categories.filter(cat =>
-  selected.some(sel => sel.value === cat.name)
-  );
-  
-
-//     const customStyles = {
-//     control: (base, state) => ({
-//     ...base,
-//         backgroundColor: '#523B7E99',
-//       backdropFilter:' blur(100px)',
-
-//       boxShadow: '0px 4px 60px 0px #00000040',
-//       fontFamily:' Poppins',
-//       fontWeight: '600',
-//       fontSize: '16px',
-//       lineHeight: '100%',
-//       letterSpacing: '0%',
-//       color: '#FBFBFB',
-//           borderRadius: 8,
-//               padding: 4,
-//           border: 'none',
-    
-//     //borderColor: state.isFocused ? '#50309A' : '#444',
-//     boxShadow: state.isFocused ? '0 0 0 1px #50309A' : 'none',
-//     '&:hover': {
-//       borderColor: '#50309A',
-//     },
-//       }),
-//       dropdownIndicator: () => ({
-//     display: 'none', // 🔥 убираем стрелочку
-//       }),
-//        indicatorSeparator: () => ({
-//     display: 'none', // 🔥 убираем перегородку
-//   }),
-//   menu: (base) => ({
-//     ...base,
-//    background: '#50309A',
-
-//     marginTop: 4,
-//     width: '394',
-// height: '444',
-// borderRadius: '8px',
-
-//     overflow: 'hidden',
-//     padding: 0,
-//     border: 'none',
-    
-//       }),
-//   menuList: (base) => ({
-//   ...base,
- 
-//     padding: 0,
-//    maxHeight: 240, // 👈 ограничиваем максимальную высоту
-//   overflowY: 'auto',
-  
-//   overflowX: 'hidden', // ещё раз тут, чтобы наверняка
-// }),
-//   placeholder: (base) => ({
-//   ...base,
-//   display: 'flex',
-//   justifyContent: 'space-between',
-//   width: '100%',
-//     color: '#FBFBFB',
- 
-    
-// }),
-
-//   singleValue: (base) => ({
-//     ...base,
-//     color: '#fff',
-//     fontFamily: 'Poppins',
-// fontWeight: '400',
-// fontSize: '16px',
-// lineHeight: '100%',
-// letterSpacing: '0%',
-// verticalAlign: 'middle',
-
-//   }),
-// };
-
-
-  
-
-    useEffect(() => {
-      localStorage.setItem('selectedCategories', JSON.stringify(selected));
-      dispatch(getTransactions({ month, year }));
-    }, [selected, month, year, dispatch]);
-  
-  
-    return (
-   <div className="wrapper">
-
-
-        <div className="container">
-         
-          {/* Левая часть — круг */}
-          <div className="chartSection">
-            <div className="chartNameBox">
-              <p className="chartName">Statistics</p>
-            </div>
-            <Chart data={categories} />
+    <div className="wrapper">
+      <div className="container">
+        <div className="chartSection">
+          <div className="chartNameBox">
+            <p className="chartName">Statistics</p>
           </div>
-         
-          {/* Правая часть — категории */}
-          <div className="raitBar">
-            <div className="selectBox">
-            
-              <Select
-               
-                value={monthOptions.find((option) => option.value === selectedMonth)}
-                onChange={(option) => setSelectedMonth(option.value)}
-                options={monthOptions}
-                className='custom-select'
-                classNamePrefix="custom-select"
-          
-              />
-             
-              <Select
-                value={yearsOptions.find((option) => option.value === selectedYear)}
-                onChange={(option) => setSelectedYear(option.value)}
-                options={yearsOptions}
-               className='custom-select'
-               classNamePrefix="custom-select"           
-              />
-            </div>
+        <Chart statistics={statistics} />
+        </div>
 
-            <div className="selectorBlock">
+        <div className="raitBar">
+          <div className="selectBox">
+            <Select
+              value={monthOptions.find((option) => option.value === selectedMonth)}
+              onChange={(option) => setSelectedMonth(option.value)}
+              options={monthOptions}
+              className='custom-select'
+              classNamePrefix="custom-select"
+            />
 
-              <Select
-                isMulti
-                options={categoryOptions}
-                
-                classNamePrefix="category-select"
-                className="category-select"
-                components={{
-                  MultiValue: () => null, 
-                  Option: CustomOption,
-                }}
-                
-                value={[]} 
-                placeholder={
-                  <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-                    <span>Category</span>
-                    <span>Sum</span>
-                  </div>
-                }
-              />
+            <Select
+              value={yearsOptions.find((option) => option.value === selectedYear)}
+              onChange={(option) => setSelectedYear(option.value)}
+              options={yearsOptions}
+              className='custom-select'
+              classNamePrefix="custom-select"
+            />
+          </div>
 
-              {visibleCategories.map((cat) => (
-                <div key={cat.name} className="categoriWrapper">
-                 
-                    <div className="nameCategoriContainer">
-                       <div className="quad" style={{ backgroundColor: cat.color }} />
-                    <span>{cat.name}</span>
-                    </div>
-                   
-                  
-                  <span className="numberSpan">{cat.amount.toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
+          <div className="selectorBlock">
+            <Select
+              isMulti
+              options={categoryOptions}
+              classNamePrefix="category-select"
+              className="category-select"
+              components={{
+                MultiValue: () => null,
+                Option: CustomOption,
+              }}
+              value={[]}
+              placeholder={
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
+                  <span>Category</span>
+                  <span>Sum</span>
                 </div>
-              ))}
+              }
+            />
 
-
-            
-
+            {visibleCategories.map((cat) => { 
+                 const color = categoryColors[cat.category] || '#ccc';  
+              return (
+                  <div key={cat.category} className="categoriWrapper">
+                <div className="nameCategoriContainer">
+                  <div className="quad" style={{ backgroundColor: color }} />
+                  <span>{cat.category}</span>
+                </div>
+                <span className="numberSpan">{cat.summ?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || '0.00'}</span>
+              </div>
+               )
              
+            })}
+          </div>
+
+          <div className="expensesIncomeBlock">
+            <div className="expenses">
+              Expenses:
+              <span className="expensesNumber">
+                 {totalExpenses.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              </span>
             </div>
-
-            <div className="expensesIncomeBlock">
-
-              <div className="expenses">Expenses:
-                <span className="expensesNumber">10 000.00</span>
-              </div>
-              <div className="income">Income:
-                <span className="incomeNumber">34 000.00
-                </span>
-              </div>
+            <div className="income">
+              Income:
+              <span className="incomeNumber">
+                 {totalIncome.toLocaleString(undefined, { minimumFractionDigits: 2 })}
+              </span>
             </div>
           </div>
         </div>
       </div>
-    )
-  }
+    </div>
+  );
+};
+
+export default StatisticsMain;
 
 
-  export default StatisticsMain;
+
+
+
