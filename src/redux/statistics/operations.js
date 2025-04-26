@@ -1,26 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// export const fetchMonthlyStats = createAsyncThunk(
-//   'statistics/fetchMonthlyStats',
-//   async (_, thunkAPI) => {
-//     try {
-//       const res = await axios.get('/api/transactions/stats'); // путь к твоему API
-//       return res.data;
-//     } catch (e) {
-//       return thunkAPI.rejectWithValue(e.message);
-//     }
-//   }
-// );
+
 export const getTransactions = createAsyncThunk(
   "transactions/fetchAllTransaction",
-  async ({ month, year }, thunkAPI) => {
+  async ({ start, end }, thunkAPI) => {
     try {
-      const response = await axios.get(`https://code-guard-backend.onrender.com/transactions`, {
-        params: { month, year },
+      
+       const token = "5k7AmP3X2K5499RgSR/XiAOcmbVkhcQ71QFvx/eV";
+      const response = await axios.get(`http://localhost:3000/transactions/filter/by-date?`, {
+        params: { start, end },
+         headers: { Authorization: `Bearer ${token}` },
+        withCredentials: true, 
       });
-      console.log(response.data)
-      return response.data;
+      console.log(response.data.data)
+      return response.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
