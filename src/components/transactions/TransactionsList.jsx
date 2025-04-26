@@ -10,7 +10,7 @@ const TransactionsList = () => {
   const isMobile = useIsMobile();
   if (transactions.length === 0) {
     return (
-      <div>
+      <div className={css.noTransactionWrap}>
         <h3 className={css.noTransactions}>No transactions</h3>
         <ButtonAddTransactions />
       </div>

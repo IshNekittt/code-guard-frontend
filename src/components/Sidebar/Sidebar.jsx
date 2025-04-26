@@ -1,10 +1,10 @@
-import s from './SideBar.module.css';
-import Navigation from './Navigation/Navigation';
-import Balance from './Balance/Balance';
-import ExchangeRates from './ExchangeRates/ExchangeRates';
-import { Outlet, useLocation } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import StatisticsTest from './StatisticsTest';
+import s from "./SideBar.module.css";
+import Navigation from "./Navigation/Navigation";
+import Balance from "./Balance/Balance";
+import ExchangeRates from "./ExchangeRates/ExchangeRates";
+import { Outlet, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import StatisticsTest from "./StatisticsTest";
 
 const SideBar = () => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -12,29 +12,32 @@ const SideBar = () => {
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const isTablet = width >= 768 && width < 1280;
   const isDesktop = width >= 1280;
   const isMobile = width < 768;
-  const showStatistics = pathname.includes('statistics');
+  const showStatistics = pathname.includes("statistics");
+  const isBalancePage = pathname === "/home";
+  const isExchangeRatesPage = pathname === "/home/exchange-rates";
+  // const isExchangeRatesPage = pathname.includes("exchange-rates");
 
   return (
     <div className={s.sidebar_container}>
-
       <div className={s.sidebar}>
         <div className={s.balance_content}>
           <Navigation />
-          {(isTablet || isDesktop) && <Balance />}
+          {(isTablet || isDesktop) && isBalancePage && <Outlet />}
+          {/* {(isTablet || isDesktop) && <Balance />} */}
           {isMobile && <Outlet />}
         </div>
 
-        {(isTablet || isDesktop) && <ExchangeRates />}
+        {(isTablet || isDesktop) && !isExchangeRatesPage && <ExchangeRates />}
+        {/* {(isTablet || isDesktop) && <ExchangeRates />} */}
       </div>
 
- 
       {(isTablet || isDesktop) && showStatistics && (
         <div
           className={
