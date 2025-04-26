@@ -9,6 +9,7 @@ import Statistics from "./Sidebar/StatisticsTest";
 
 import Layout from "./Layout";
 import { Suspense } from "react";
+import DashboardPage from "../pages/DashboardPage/DashboardPage";
 
 export default function App() {
   return (
@@ -18,7 +19,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
 
           <Route path="/home" element={<HomePage />}>
-            <Route element={<Sidebar />}>
+            <Route element={<DashboardPage />}>
               <Route index element={<Balance />} />
               <Route path="exchange-rates" element={<ExchangeRates />} />
               <Route path="statistics" element={<Statistics />} />
