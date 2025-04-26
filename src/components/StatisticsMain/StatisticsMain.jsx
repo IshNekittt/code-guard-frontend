@@ -1,6 +1,5 @@
 
 import { useDispatch, useSelector } from 'react-redux';
-//import { fetchMonthlyStats } from '../../redux/statistics/operations';
 import { selectStatistics } from '../../redux/statistics/selectors';
 import React, { useState,useEffect } from 'react'
 import StatisticsDashboard from '../StatisticsDashboard';
@@ -37,10 +36,6 @@ const categoryColors = {
   'Income': '#69DB7C'
 };
 
-// const totalExpenses = categories.reduce((acc, cur) => acc + cur.amount, 0);
-// const totalIncome = 27350; // пока заглушка
-
-
 const getStartEndDates = (monthName, year) => {
   const monthIndex = months.indexOf(monthName);
   if (monthIndex === -1) throw new Error('Invalid month name');
@@ -63,10 +58,6 @@ const StatisticsMain = () => {
   const dispatch = useDispatch();
   const statistics = useSelector(selectStatistics);
 
-//   const totalExpenses = statistics.reduce((acc, transaction) => acc + transaction.amount, 0);
-  
-//   console.log(statistics)
-// const totalIncome = 27350; // пока заглушка
 
   const monthOptions = months.map((month) => ({
     value: month,
@@ -78,10 +69,7 @@ const StatisticsMain = () => {
     label: year
   }));
 
-  // const categoryOptions = categories.map(cat => ({
-  //   value: cat.name,
-  //   label: cat.name
-  // }));
+ 
 
   const categoryOptions = Array.from(
   new Set(statistics.map(statis => statis.category))
