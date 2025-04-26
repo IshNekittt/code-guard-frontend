@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { logIn, refresh, logOut } from "./operations";
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
+import { logIn, refresh, logOut, getUserInfo } from "./operations";
 
 const initialState = {
   user: {
@@ -17,9 +17,11 @@ const slice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(logIn.fulfilled, (state, action) => {
-        state.user = action.payload.data.user ?? {};
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+      })
+      .addCase(getUserInfo.fulfilled, (state, action)=> {
+        state.user = {name: action.payload.data.name, email: action.payload.data.email}
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = { name: null, email: null };
@@ -36,6 +38,9 @@ const slice = createSlice({
       })
       .addCase(refresh.rejected, (state) => {
         state.isRefreshing = false;
+      })
+      .addMatcher(isAnyOf(logIn.pending, logOut.pending, getUserInfo.pending, refresh.pending), (state) => {
+        state.isRefreshing = true;
       });
   },
 });

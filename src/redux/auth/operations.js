@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://code-guard-backend.onrender.com/";
+axios.defaults.baseURL = "https://code-guard-backend.onrender.com";
 axios.defaults.withCredentials = true;
 
 const setToken = (token) => {
@@ -13,8 +13,25 @@ const removeToken = () => {
 
 export const logIn = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   try {
-    const { data } = await axios.post("/users/login", user);
+    const { data } = await axios.post("/auth/login", user);
     setToken(data.data.accessToken);
+    return data;
+  } catch (e) {
+    return thunkAPI.rejectWithValue(e.message);
+  }
+});
+
+export const getUserInfo = createAsyncThunk("users/currentUser", async (_, thunkAPI) => {
+  const state = thunkAPI.getState();
+  const persistedToken = state.auth.token;
+
+  if (persistedToken === null) {
+    return thunkAPI.rejectWithValue("Not authorized");
+  }
+
+  try {
+    setToken(persistedToken);
+    const { data } = await axios.get("/users/currentUser");
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
@@ -40,7 +57,7 @@ export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
 
   try {
     setToken(persistedToken);
-    const { data } = await axios.get("/users/current");
+    const { data } = await axios.get("/users/currentUser");
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
