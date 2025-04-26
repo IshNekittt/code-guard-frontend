@@ -1,5 +1,9 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { deleteTransaction, getTransactions } from "./transactionsOp";
+import {
+  deleteTransaction,
+  getTransactions,
+  addTransaction,
+} from "./transactionsOp";
 
 const initialState = {
   items: [],
@@ -15,6 +19,10 @@ const slice = createSlice({
     builder
       .addCase(getTransactions.fulfilled, (state, action) => {
         state.items = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(addTransaction.fulfilled, (state, action) => {
+        state.items.unshift(action.payload);
         state.isLoading = false;
       })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
