@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from '../../redux/auth/operations';
-import { selectUser } from '../../redux/auth/selectors';
+import { getUserInfo, logOut } from '../../redux/auth/operations';
+import { selectToken, selectUser } from '../../redux/auth/selectors';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import './HeaderWithLogoutModal.css';
@@ -11,6 +11,13 @@ const HeaderWithLogoutModal = () => {
   const user = useSelector(selectUser);
   const navigate = useNavigate();
 
+  const token = useSelector(selectToken);
+  useEffect(()=> {
+    if (token) {
+      dispatch(getUserInfo());
+    }
+  }, [token]);
+
   const email = useSelector((state) => state.auth.user.email);
   const username = user?.email?.split('@')[0];
 
@@ -19,13 +26,13 @@ const HeaderWithLogoutModal = () => {
 
   const handleLogout = async () => {
   try {
-    await dispatch(logOut()).unwrap(); 
+    await dispatch(logOut()).unwrap();
     console.log('Logout successful');
-    localStorage.clear(); 
-    navigate('/login'); 
+    localStorage.clear();
+    navigate('/login');
   } catch (err) {
     console.error('Logout failed:', err);
-    localStorage.clear(); 
+    localStorage.clear();
     toast.error('Error exiting: ' + (err?.message || 'Try later'));
   } finally {
     setShowModal(false);
@@ -68,7 +75,7 @@ const HeaderWithLogoutModal = () => {
               </svg>
           <svg className="logo" width="18" height="18">
             <use href="#icon--Money-Guard-2"></use>
-          </svg> 
+          </svg>
           <span className="title">Money Guard</span>
         </div>
         <div className="header-right">
@@ -95,10 +102,10 @@ const HeaderWithLogoutModal = () => {
         <div className="modal-overlay">
           <div className="modal-content">
             <div className="modal-inner">
-              
+
               <svg className="logo2" width="36" height="36">
                 <use href="#icon--Money-Guard-2"></use>
-              </svg> 
+              </svg>
               <h2 className="modal-title">Money Guard</h2>
               <p className="modal-text">Are you sure you want to log out?</p>
               <button
@@ -123,5 +130,3 @@ const HeaderWithLogoutModal = () => {
 };
 
 export default HeaderWithLogoutModal;
-
-
