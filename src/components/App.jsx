@@ -6,7 +6,7 @@ import HomePage from "../pages/HomePage/HomePage";
 import Sidebar from "./Sidebar/Sidebar";
 import ExchangeRates from "./Sidebar/ExchangeRates/ExchangeRates";
 import Balance from "./Sidebar/Balance/Balance";
-//import Statistics from "./Sidebar/StatisticsTest";
+// import Statistics from "./Sidebar/StatisticsTest";
 import Statistics from "../pages/statisticsPage/StatisticsPage";
 
 import Layout from "./Layout";
