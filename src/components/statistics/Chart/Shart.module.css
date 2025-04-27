@@ -1,0 +1,20 @@
+
+.chartWrapper {
+    width: 100%;
+    /* padding: 10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .selectWrapper {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .selectWrapper {
+        padding: 6px;
+    }
+}

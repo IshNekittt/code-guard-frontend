@@ -65,4 +65,29 @@ export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
   }
+  
+
+
 });
+export const getTransactionsStatistics = createAsyncThunk(
+    "transactions/fetchAllTransaction",
+    async ({ start, end }, thunkAPI) => {
+    const state = thunkAPI.getState();
+        
+        const persistedToken = state.auth.token;
+     if (!persistedToken) {
+      return thunkAPI.rejectWithValue("Not authorized");
+    }
+
+    try {
+      setToken(persistedToken);
+      const { data } = await axios.get("/transactions/filter/by-date", {
+        params: { start, end },
+      });
+      console.log(data.data); // здесь data.data, как у тебя было
+      return data.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);

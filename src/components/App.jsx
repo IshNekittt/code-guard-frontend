@@ -5,11 +5,12 @@ import HomePage from "../pages/HomePage/HomePage";
 import Sidebar from "./Sidebar/Sidebar";
 import ExchangeRates from "./Sidebar/ExchangeRates/ExchangeRates";
 import Balance from "./Sidebar/Balance/Balance";
+//import Statistics from "./Sidebar/StatisticsTest";
+import Statistics from "../pages/statisticsPage/StatisticsPage";
 
 import Layout from "./Layout";
 import { Suspense } from "react";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
-import StatisticsPage from "../pages/StatisticsPage/StatisticsPage";
 
 export default function App() {
   return (
@@ -19,7 +20,7 @@ export default function App() {
           <Route path="/login" element={<LoginPage />} />
 
           <Route path="/home" element={<HomePage />}>
-            <Route element={<DashboardPage />}>
+            <Route path="dashboard" element={<DashboardPage />}>
               <Route index element={<Balance />} />
               <Route path="exchange-rates" element={<ExchangeRates />} />
               <Route path="statistics" element={<StatisticsPage />} />

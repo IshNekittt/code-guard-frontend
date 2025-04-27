@@ -31,6 +31,7 @@ export const store = configureStore({
     auth: persistedAuthReducer,
 
     finance: financeReducer,
+
     statistics: statisticsReducer,
   },
   middleware: (getDefaultMiddleware) =>
