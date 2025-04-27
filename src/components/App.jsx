@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/LoginPage/LoginPage";
+import RegistrationForm from '../components/registerForm/registerForm';
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import HomePage from "../pages/HomePage/HomePage";
 import Sidebar from "./Sidebar/Sidebar";
@@ -18,7 +19,7 @@ export default function App() {
       <Layout>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-
+<Route path="/register" element={<RegistrationForm />} />
           <Route path="/home" element={<HomePage />}>
             <Route path="dashboard" element={<DashboardPage />}>
               <Route index element={<Balance />} />

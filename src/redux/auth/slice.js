@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { logIn, refresh, logOut, getUserInfo } from "./operations";
+import { logIn, refresh, logOut, getUserInfo, register } from "./operations";
 
 const initialState = {
   user: {
@@ -47,7 +47,8 @@ const slice = createSlice({
           logIn.pending,
           logOut.pending,
           getUserInfo.pending,
-          refresh.pending
+          refresh.pending,
+          register.pending
         ),
         (state) => {
           state.isRefreshing = true;
