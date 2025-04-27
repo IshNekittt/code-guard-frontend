@@ -10,12 +10,14 @@ const TransactionsItem = ({ data }) => {
   const [isEditing, setIsEditing] = useState(false);
   const isMobile = useIsMobile();
   const cardClass = data.type === "+" ? ` ${css.positive}` : ` ${css.negative}`;
+  const date = new Date(data.date);
+  const formatted = date.toLocaleDateString("ru-RU");
 
   if (isMobile) {
     return (
       <div className={`${css.card} ${cardClass}`}>
         <div className={css.row}>
-          <span>Date</span> {data.date}
+          <span>Date</span> {formatted}
         </div>
         <div className={css.row}>
           <span>Type</span> {data.type}
@@ -28,7 +30,7 @@ const TransactionsItem = ({ data }) => {
         </div>
         <div className={css.row}>
           <span>Sum</span>{" "}
-          <strong className={`${css.sum}${cardClass}`}>{data.sum}</strong>
+          <strong className={`${css.sum}${cardClass}`}>{data.summ}</strong>
         </div>
         <div className={css.actions}>
           <button
@@ -49,12 +51,12 @@ const TransactionsItem = ({ data }) => {
     return (
       <>
         <div className={css.transactionRow}>
-          <div className={css.cell}>{data.date}</div>
+          <div className={css.cell}>{formatted}</div>
           <div className={css.cell}>{data.type}</div>
           <div className={css.cell}>{data.category}</div>
           <div className={css.cell}>{data.comment}</div>
           <div className={`${css.cell} ${css.sumCell} ${css.sum} ${cardClass}`}>
-            {data.sum}
+            {data.summ}
           </div>
           <div className={`${css.cell} ${css.actions}`}>
             <button className={css.editBtn} onClick={() => setIsEditing(true)}>

@@ -1,5 +1,8 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api/axios";
+import { useSelector } from "react-redux";
+
+const token = useSelector(selectToken);
 
 export const getTransactions = createAsyncThunk(
   "transactions/fetchAllTransaction",
@@ -17,7 +20,11 @@ export const addTransaction = createAsyncThunk(
   "transactions/addTransaction",
   async (newTx, thunkAPI) => {
     try {
-      const response = await api.post("/transactions", newTx);
+      const response = await api.post("/transactions", newTx, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

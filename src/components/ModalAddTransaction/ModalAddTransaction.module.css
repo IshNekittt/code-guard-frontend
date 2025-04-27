@@ -1,0 +1,268 @@
+.addModalWrapp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.modalContent {
+  position: relative;
+}
+
+.typeTransaction {
+  display: flex;
+  align-items: center;
+  height: 44px;
+  gap: 20px;
+}
+
+.addTransaction {
+  font-weight: 400;
+  font-size: 24px;
+  color: #fff;
+}
+.closeIconBtn {
+  display: none;
+}
+.closeIcon {
+  display: none;
+}
+
+.income {
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.btnTypeWrapp {
+  border-radius: 30px;
+  width: 80px;
+  height: 40px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.btnType {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background-color: yellow;
+  border-radius: 100%;
+}
+
+.expenseActive {
+  justify-content: flex-end;
+}
+
+.expense {
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+.active {
+  color: yellow;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+  gap: 40px;
+}
+.tabletWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.money {
+  width: 100%;
+  font-weight: 600;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  border-bottom: 2px solid gray;
+  padding-left: 20px;
+  padding-bottom: 8px;
+}
+.errMoney {
+  color: red;
+  margin: 0;
+  padding: 0;
+  padding-left: 10px;
+}
+.dateWrapp {
+  position: relative;
+  display: inline-block;
+  border-bottom: 2px solid gray;
+  width: 100%;
+}
+.date {
+  font-weight: 400;
+  font-size: 18px;
+  color: #fff;
+  padding-left: 20px;
+  width: 100%;
+  padding-bottom: 8px;
+  padding-right: 30px;
+}
+
+.calendarIcon {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.comment {
+  font-weight: 400;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.6);
+  border-bottom: 2px solid gray;
+  padding-left: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+.btnWrapp {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.btnAdd {
+  border-radius: 20px;
+  width: 280px;
+  height: 50px;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  background: linear-gradient(
+    167deg,
+    #ffc727 0%,
+    #9e40ba 61.46%,
+    #7000ff 90.54%
+  );
+}
+
+.btnCancel {
+  border-radius: 20px;
+  width: 280px;
+  height: 50px;
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
+  background: #fbfbfb;
+}
+
+.backdrop {
+  position: fixed;
+  top: 52px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(45, 12, 88, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow-y: auto;
+  padding-bottom: 50px;
+}
+
+.modalContent {
+  margin-top: 0;
+  width: 100%;
+  padding: 0;
+  background: radial-gradient(
+      600px at 100% 20%,
+      rgba(109, 84, 235, 0.6) 0%,
+      rgba(101, 35, 146, 0.4) 70%,
+      transparent 100%
+    ),
+    radial-gradient(
+      600px at 0% 80%,
+      rgba(52, 31, 160, 0.8) 0%,
+      rgba(37, 67, 165, 0.6) 60%,
+      transparent 100%
+    );
+  background-color: #1d1132;
+  border: none;
+  z-index: 1000;
+}
+
+@media screen and (min-width: 768px) {
+  .backdrop {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+  .selectWrapp {
+    width: 100%;
+  }
+  .modalContent {
+    margin: auto 0;
+    max-width: 480px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 20px;
+  }
+  .addModalWrapp {
+    align-items: start;
+    padding: 0 40px;
+  }
+  .closeIconBtn {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+  }
+  .closeIcon {
+    display: block;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+  }
+
+  .addTransaction {
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+  .dateWrapp {
+    max-height: 35px;
+  }
+  .typeTransaction {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .form {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .tabletWrap {
+    flex-direction: row;
+    gap: 32px;
+  }
+  .comment {
+    width: 100%;
+  }
+  .moneyWrapp {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
