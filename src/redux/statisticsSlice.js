@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getTransactions } from './operations';
+import { getTransactionsStatistics } from './auth/operations';
 
 const initialState = {
   transactions: [],
@@ -13,16 +13,16 @@ const statisticsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getTransactions.pending, (state) => {
+      .addCase(getTransactionsStatistics.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(getTransactions.fulfilled, (state, action) => {
+      .addCase(getTransactionsStatistics.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
         state.transactions = Array.isArray(action.payload) ? action.payload : [];
       })
-      .addCase(getTransactions.rejected, (state, action) => {
+      .addCase(getTransactionsStatistics.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload || 'Failed to fetch transactions';
       });

@@ -66,7 +66,7 @@ export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
 
 
 });
-export const getTransactions = createAsyncThunk(
+export const getTransactionsStatistics = createAsyncThunk(
     "transactions/fetchAllTransaction",
     async ({ start, end }, thunkAPI) => {
     const state = thunkAPI.getState();

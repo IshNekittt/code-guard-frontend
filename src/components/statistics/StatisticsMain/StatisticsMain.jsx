@@ -1,13 +1,12 @@
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectStatistics } from '../../redux/statistics/selectors';
-import React, { useState,useEffect } from 'react'
-import StatisticsDashboard from '../StatisticsDashboard';
-import StatisticsTable from '../StatisticsTable';
-import Chart from '../chart/Chart';
+import { selectStatistics } from '../../../redux/auth/selectors.js';
+import React, { useState, useEffect } from 'react';
+// import StatisticsDashboard from '../StatisticsDashboard';
+// import StatisticsTable from '../StatisticsTable';
+import Chart from "../Chart/Chart.jsx";
 import './StatisticsMain.css';
 import Select from 'react-select';
-import { getTransactions } from '../../redux/statistics/operations';
 
 
 

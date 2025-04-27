@@ -1,6 +1,6 @@
 
 import React from 'react';
-import css from './Chart.module.css';
+import css from './Shart.module.css';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 
 const COLORS = ['#FF6B6B', '#A18AFF', '#7BDFF2', '#5C7CFA', '#63E6BE', '#38D9A9', '#69DB7C'];
