@@ -23,10 +23,10 @@ const schema = yup.object().shape({
     .required("Confirm password is required"),
 });
 
-const dispatch = useDispatch();
-const navigate = useNavigate();
-
 const RegistrationForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
