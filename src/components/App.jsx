@@ -22,7 +22,7 @@ export default function App() {
             <Route element={<DashboardPage />}>
               <Route index element={<Balance />} />
               <Route path="exchange-rates" element={<ExchangeRates />} />
-              <Route path="statistics" element={<Statistics />} />
+              <Route path="statistics" element={<StatisticsPage />} />
             </Route>
           </Route>
           <Route path="*" element={<ErrorPage />} />
