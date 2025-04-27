@@ -1,6 +1,6 @@
 /* Базовые стили (мобильные устройства 320px+) */
 .formContainer {
-  background-image: url("/src/assets/background.jpg");
+  background-image: url("/src/assets/Rectangle.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -18,7 +18,7 @@
   .formContainer {
     backdrop-filter: blur(100px);
     box-shadow: 0 4px 60px rgba(0, 0, 0, 0.25);
-    background: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 .form {

@@ -5,6 +5,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import s from "./RegisterForm.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { registration } from "../../redux/auth/operations";
+import toast from "react-hot-toast";
 
 const schema = yup.object().shape({
   name: yup.string().required("Name is required"),
@@ -44,7 +46,7 @@ const RegistrationForm = () => {
       ...formData,
     };
     reset();
-    dispatch(register(data))
+    dispatch(registration(data))
       .unwrap()
       .then(() => {
         toast.success("Registered successfully");
