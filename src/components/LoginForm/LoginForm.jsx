@@ -5,10 +5,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useLocation, useNavigate } from "react-router";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 
 const LoginSchema = Yup.object().shape({
-    email: Yup.string().trim().required("Field requred"),
+    email: Yup.string().trim().required("Field required"),
     password: Yup.string().trim().required("Field required"),
 });
 
@@ -21,13 +22,13 @@ export default function LoginForm() {
     email: location.state?.email ?? "",
     password: location.state?.password ?? "",
     };
-    
+
 const handleSubmit = (values) => {
     dispatch(logIn(values))
       .unwrap()
       .then(() => {
         toast.success("Logged in");
-        navigate("/contacts", { replace: true });
+        navigate("/home", { replace: true });
       })
       .catch(() => {
         toast.error("Something went wrong! Check your email or password!");
@@ -39,10 +40,10 @@ const handleSubmit = (values) => {
       onSubmit={handleSubmit}
       validationSchema={LoginSchema}
     >
-    
+
           <Form className={s.loginForm}>
           <div className={s.loginLogo}>
-          <svg className={s.loginLogoIcon} viewBox="0 0 33 32" xmlns="http://www.w3.org/2000/svg" 
+          <svg className={s.loginLogoIcon} viewBox="0 0 33 32" xmlns="http://www.w3.org/2000/svg"
 >
   <path fill="#ffc727" d="M22.44 4.308c-2.219-0.555-4.438-1.664-6.102-3.328-1.664 1.664-3.883 2.774-6.102 3.328 0.555 4.993 2.219 8.321 6.102 11.095 3.883-2.774 6.102-6.102 6.102-11.095z"/>
   <path fill="#fbfbfb" d="M20.221 24.963l-15.533-18.307v8.876l12.204 13.869 3.329-4.438z"/>
@@ -64,6 +65,7 @@ const handleSubmit = (values) => {
 
               <Field type="text" name="email" className={s.loginField} placeholder="E-mail" />
               </label>
+              <ErrorMessage name="email" component="span" className={s.error} />
 
             <label className={s.loginLabel}>
             <svg className={s.loginIcon} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24">
@@ -75,17 +77,16 @@ const handleSubmit = (values) => {
 </svg>
 
           <Field type="password" name="password" className={s.loginField} placeholder="Password" />
-              </label>
-            
+          </label>
+          <ErrorMessage name="password" component="span" className={s.error} />
+
         <div className={s.buttonGroup}>
           <button type="submit" className={s.loginButton}>
             Log In
           </button>
-          <button type="submit" className={s.registerButton}>
-            Register
-          </button>
+          <Link to="/register" className={s.registerButton}>Register</Link>
         </div>
       </Form>
-        </Formik>
+      </Formik>
   );
 }
