@@ -20,7 +20,7 @@ const statisticsSlice = createSlice({
       .addCase(getTransactionsStatistics.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        state.transactions = Array.isArray(action.payload) ? action.payload : [];
+         state.transactions = Array.isArray(action.payload?.data) ? action.payload.data : [];
       })
       .addCase(getTransactionsStatistics.rejected, (state, action) => {
         state.isLoading = false;

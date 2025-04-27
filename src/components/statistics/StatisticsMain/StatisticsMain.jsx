@@ -7,7 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Chart from "../Chart/Chart.jsx";
 import './StatisticsMain.css';
 import Select from 'react-select';
-
+import { getTransactionsStatistics } from '../../../redux/auth/operations.js';
 
 
 
@@ -143,9 +143,9 @@ const visibleCategories = statistics.filter(stat =>
 
     console.log('📅 Start:', start, 'End:', end);
 
-    dispatch(getTransactions({ start, end }))
+    dispatch(getTransactionsStatistics({ start, end }))
       .then(res => {
-        console.log('👉 Transactions:', res.payload);
+        console.log('👉 Transactions:', res.payload?.data);
       });
   }, [selectedMonth, selectedYear, dispatch]);
 
@@ -200,7 +200,7 @@ const visibleCategories = statistics.filter(stat =>
                 </div>
               }
             />
-
+              
             {visibleCategories.map((cat) => { 
                  const color = categoryColors[cat.category] || '#ccc';  
               return (
