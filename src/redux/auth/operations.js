@@ -21,22 +21,25 @@ export const logIn = createAsyncThunk("auth/login", async (user, thunkAPI) => {
   }
 });
 
-export const getUserInfo = createAsyncThunk("users/currentUser", async (_, thunkAPI) => {
-  const state = thunkAPI.getState();
-  const persistedToken = state.auth.token;
+export const getUserInfo = createAsyncThunk(
+  "users/currentUser",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-  if (persistedToken === null) {
-    return thunkAPI.rejectWithValue("Not authorized");
-  }
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue("Not authorized");
+    }
 
-  try {
-    setToken(persistedToken);
-    const { data } = await axios.get("/users/currentUser");
-    return data;
-  } catch (e) {
-    return thunkAPI.rejectWithValue(e.message);
+    try {
+      setToken(persistedToken);
+      const { data } = await axios.get("/users/currentUser");
+      return data;
+    } catch (e) {
+      return thunkAPI.rejectWithValue(e.message);
+    }
   }
-});
+);
 
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
@@ -61,5 +64,36 @@ export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
     return data;
   } catch (e) {
     return thunkAPI.rejectWithValue(e.message);
+  }
+});
+export const getTransactionsStatistics = createAsyncThunk(
+  "transactions/fetchAllTransaction",
+  async ({ start, end }, thunkAPI) => {
+    const state = thunkAPI.getState();
+
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue("Not authorized");
+    }
+
+    try {
+      setToken(persistedToken);
+      const { data } = await axios.get("/transactions/filter/by-date", {
+        params: { start, end },
+      });
+      console.log(data.data); // здесь data.data, как у тебя было
+      return data.data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+export const registration = createAsyncThunk("auth/register", async (user) => {
+  try {
+    const { data } = await axios.post("/auth/register", user);
+    return data;
+  } catch (e) {
+    throw e;
   }
 });

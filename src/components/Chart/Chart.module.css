@@ -1,0 +1,27 @@
+/* .selectWrapper {
+    width: 100%;
+    min-width: 250px;
+    
+    margin: 0 auto;
+    margin-bottom: 2rem;
+   
+} */
+.chartWrapper {
+    width: 100%;
+    /* padding: 10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .selectWrapper {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .selectWrapper {
+        padding: 6px;
+    }
+}

@@ -1,5 +1,11 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
-import { logIn, refresh, logOut, getUserInfo } from "./operations";
+import {
+  logIn,
+  refresh,
+  logOut,
+  getUserInfo,
+  registration,
+} from "./operations";
 
 const initialState = {
   user: {
@@ -19,14 +25,20 @@ const slice = createSlice({
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
+        state.isRefreshing = false;
       })
-      .addCase(getUserInfo.fulfilled, (state, action)=> {
-        state.user = {name: action.payload.data.name, email: action.payload.data.email}
+      .addCase(getUserInfo.fulfilled, (state, action) => {
+        state.user = {
+          name: action.payload.data.name,
+          email: action.payload.data.email,
+        };
+        state.isRefreshing = false;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.isRefreshing = false;
       })
       .addCase(refresh.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
@@ -39,9 +51,18 @@ const slice = createSlice({
       .addCase(refresh.rejected, (state) => {
         state.isRefreshing = false;
       })
-      .addMatcher(isAnyOf(logIn.pending, logOut.pending, getUserInfo.pending, refresh.pending), (state) => {
-        state.isRefreshing = true;
-      });
+      .addMatcher(
+        isAnyOf(
+          logIn.pending,
+          logOut.pending,
+          getUserInfo.pending,
+          refresh.pending,
+          registration.pending
+        ),
+        (state) => {
+          state.isRefreshing = true;
+        }
+      );
   },
 });
 export default slice.reducer;

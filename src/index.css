@@ -1,4 +1,7 @@
 @import "react-datepicker/dist/react-datepicker.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -6,8 +9,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* color: rgba(255, 255, 255, 0.87);
+  background-color: #242424; */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -43,8 +46,6 @@ body {
   min-height: 100vh;
 }
 
-
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -69,8 +70,6 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-
-
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -82,9 +81,8 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-} */
-
-* {
+}
+*/ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -203,7 +201,7 @@ body {
   backdrop-filter: blur(15px);
   border: none;
   border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   padding: 8px;
 }
 .react-datepicker__header {
@@ -227,10 +225,10 @@ body {
   margin: 2px;
 }
 .react-datepicker__day:hover {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
 }
 .react-datepicker__day--selected {
-  background: #FFD54F;
+  background: #ffd54f;
   color: #000;
 }
 
