@@ -11,7 +11,6 @@ const initialState = {
   isRefreshing: false,
 };
 
-
 const slice = createSlice({
   name: "auth",
   initialState,
@@ -22,7 +21,7 @@ const slice = createSlice({
         state.token = action.payload.token;
         state.isLoggedIn = true;
       })
-        
+
       .addCase(refresh.fulfilled, (state, action) => {
         state.user.name = action.payload.name;
         state.isLoggedIn = true;
