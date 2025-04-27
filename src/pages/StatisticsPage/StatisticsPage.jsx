@@ -1,12 +1,14 @@
-import React from "react";
-import StatisticsMain from "../../components/StatisticsMain/StatisticsMain";
+import React from 'react';
 
-import styles from "./StatisticsPage.module.css";
+import StatisticsMain from '../../components/statistics/statisticsMain/statisticsMain.jsx';
+import styles from './StatisticsPage.module.css';
 
 const StatisticsPage = () => {
   return (
     <div className={styles.container}>
-      <StatisticsMain />
+      
+          <StatisticsMain />
+          
     </div>
   );
 };

@@ -5,7 +5,7 @@
 }
 
 @media (max-width: 768px) {
-    .container{
+    .container {
         padding: 8px;
         display: flex;
         flex-direction: column;
@@ -16,7 +16,7 @@
     .container {
         padding: 6px;
         display: flex;
-            flex-direction: column;
-            
+        flex-direction: column;
+
     }
 }
