@@ -34,7 +34,7 @@ export default function LoginForm() {
       .unwrap()
       .then(() => {
         toast.success("Logged in");
-        navigate("/home", { replace: true });
+        navigate("/dashboard", { replace: true });
       })
       .catch(() => {
         toast.error("Something went wrong! Check your email or password!");

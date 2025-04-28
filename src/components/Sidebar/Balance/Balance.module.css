@@ -3,9 +3,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-width: 280px;
-height: 80px;
-margin: 0 auto;
+  width: 280px;
+  height: 80px;
+  margin: 0 auto;
   padding: 8px 0 12px 32px;
   border-radius: 8px;
   backdrop-filter: blur(100px);
@@ -13,9 +13,8 @@ margin: 0 auto;
   background: rgba(82, 59, 126, 0.6);
 }
 
-
 .label {
-  font-family: "Poppins", sans-serif;;
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
   font-size: 12px;
   text-transform: uppercase;
@@ -29,7 +28,6 @@ margin: 0 auto;
   font-weight: normal;
 }
 
-
 .amount {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
@@ -39,21 +37,20 @@ margin: 0 auto;
   margin: 0;
 }
 
-
 @media screen and (min-width: 768px) {
   .balance {
-    width: 336px; 
-    padding: 8px 0 12px 40px; 
+    margin: 0;
+    width: 336px;
+    padding: 8px 0 12px 40px;
   }
 }
 
 @media screen and (min-width: 1280px) {
   .balance {
     width: 100%;
-    max-width: 1280px; 
+    max-width: 1280px;
     border: none;
     border-radius: 0;
-    padding: 8px 0 12px 56px; 
+    padding: 8px 0 12px 56px;
   }
-
 }

@@ -1,15 +1,23 @@
+import React from "react";
+import css from "./Shart.module.css";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
-import React from 'react';
-import css from './Shart.module.css';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+const COLORS = [
+  "#FF6B6B",
+  "#A18AFF",
+  "#7BDFF2",
+  "#5C7CFA",
+  "#63E6BE",
+  "#38D9A9",
+  "#69DB7C",
+];
 
-const COLORS = ['#FF6B6B', '#A18AFF', '#7BDFF2', '#5C7CFA', '#63E6BE', '#38D9A9', '#69DB7C'];
+const Chart = ({ statistics }) => {
+  console.log("что приходит", statistics);
+  const total = Array.isArray(statistics)
+    ? statistics.reduce((acc, item) => acc + (item.summ || 0), 0)
+    : 0;
 
-const Chart = ({statistics} ) => {
-  console.log("что приходит",statistics)
-  const total = statistics.reduce((acc, item) => acc + (item.summ || 0), 0);
-
-  
   const screenWidth = window.innerWidth;
   const outerRadius = screenWidth <= 480 ? 100 : screenWidth <= 768 ? 80 : 110;
   const innerRadius = outerRadius - 30;
@@ -31,6 +39,11 @@ const Chart = ({statistics} ) => {
     );
   };
 
+  if (!Array.isArray(statistics)) {
+    console.error("Statistics is not an array:", statistics);
+    return <p>No data available</p>;
+  }
+
   return (
     <div className={css.chartWrapper}>
       <ResponsiveContainer width="100%" height={screenWidth <= 480 ? 220 : 280}>
@@ -47,17 +60,20 @@ const Chart = ({statistics} ) => {
             isAnimationActive={true}
           >
             {statistics.map((entry, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
             {renderCenterLabel()}
           </Pie>
           <Tooltip
             contentStyle={{
-              backgroundColor: '#2e2e5c',
-              border: 'none',
-              color: 'white',
-              fontSize: '12px',
-              padding: '4px 8px',
+              backgroundColor: "#2e2e5c",
+              border: "none",
+              color: "white",
+              fontSize: "12px",
+              padding: "4px 8px",
             }}
           />
         </PieChart>

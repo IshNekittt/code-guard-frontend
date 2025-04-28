@@ -1,89 +1,81 @@
-import { Routes, Route } from "react-router-dom";
-import LoginPage from "../pages/LoginPage/LoginPage";
-import RegistrationForm from "../components/registerForm/registerForm";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
-import HomePage from "../pages/HomePage/HomePage";
-import Sidebar from "./Sidebar/Sidebar";
-import ExchangeRates from "./Sidebar/ExchangeRates/ExchangeRates";
-import Balance from "./Sidebar/Balance/Balance";
-//import Statistics from "./Sidebar/StatisticsTest";
-
-import StatisticsMain from "./statistics/StatisticsMain/StatisticsMain";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { Suspense } from "react";
 
 import Layout from "./Layout";
-import { Suspense } from "react";
+import RegistrationPage from "../components/registerForm/registerForm";
+import LoginPage from "../pages/LoginPage/LoginPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
+import HomeTab from "../components/transactions/TransactionsList";
+import StatisticsTab from "./statistics/StatisticsMain/StatisticsMain";
+import CurrencyTab from "./Sidebar/ExchangeRates/ExchangeRates";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Loader from "./Loader/Loader";
+
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
 
 export default function App() {
   return (
-    <Suspense fallback={null}>
-      <Layout>
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
+    <Suspense fallback={<Loader />}>
+      <Loader />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Navigate to="/login" />} />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute>
+                <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
 
-          {/* <Route path="/home" element={<HomePage />}>
-            <Route element={<DashboardPage />}>
-              <Route index element={<Balance />} />
-              <Route path="exchange-rates" element={<ExchangeRates />} />
-              <Route path="statistics-main" element={<StatisticsMain/>} />
-            </Route>
-
-          </Route> */}
-          <Route path="/home" element={<HomePage />}>
-            <Route index element={<DashboardPage />} />
-            <Route path="exchange-rates" element={<ExchangeRates />} />
-            <Route path="statistics-main" element={<StatisticsMain />} />{" "}
-            {/* Этот маршрут теперь на одном уровне */}
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          >
+            <Route index element={<Navigate to="home" />} />
+            <Route
+              path="home"
+              element={
+                <PrivateRoute>
+                  <HomeTab />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="statistics"
+              element={
+                <PrivateRoute>
+                  <StatisticsTab />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="currency"
+              element={
+                <PrivateRoute>
+                  <CurrencyTab />
+                </PrivateRoute>
+              }
+            />
           </Route>
 
           <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </Layout>
+        </Route>
+      </Routes>
     </Suspense>
   );
 }
-
-// import { useEffect, useState } from "react";
-// import { getTransactions, addTransaction } from "../redux/transactionsOp";
-// import TransactionsList from "./transactions/TransactionsList";
-// import { useDispatch } from "react-redux";
-// import ButtonAddTransactions from "./transactions/ButtonAddTransactions";
-// import ModalAddTransaction from "./transactions/ModalAddTransaction";
-// import { CATEGORIES } from "../constants/categories";
-
-// export default function App() {
-//   const dispatch = useDispatch();
-//   const [isModalOpen, setModalOpen] = useState(false);
-//   const [categories, setCategories] = useState([]);
-//   const API_URL = import.meta.env.VITE_API_URL;
-//   useEffect(() => {
-//     dispatch(getTransactions());
-//     setCategories(CATEGORIES);
-//     /*fetch(`${API_URL}/categories`)
-//       .then((r) => r.json())
-//       .then(setCategories);*/
-//   }, [dispatch]);
-//   const handleCreate = async (data) => {
-//     try {
-//       dispatch(addTransaction({ ...data, date: data.date.toISOString() }));
-//       setModalOpen(false);
-//     } catch (err) {}
-//   };
-
-//   return (
-//     <>
-//       <TransactionsList />
-
-//       <ButtonAddTransactions onClick={() => setModalOpen(true)} />
-
-//       <ModalAddTransaction
-//         isOpen={isModalOpen}
-//         onClose={() => setModalOpen(false)}
-//         categories={categories}
-//         onCreate={handleCreate}
-//       />
-//     </>
-
-//   );
-// }
