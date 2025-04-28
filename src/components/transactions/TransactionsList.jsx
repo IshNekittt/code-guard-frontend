@@ -6,11 +6,15 @@ import { useIsMobile } from "../hooks/isMobile";
 import ButtonAddTransactions from "./ButtonAddTransactions";
 import { useState } from "react";
 import ModalAddTransaction from "../ModalAddTransaction/ModalAddTransaction";
+// import EditTransactionForm from "../EditModal/EditTransactionForm";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransaction);
   const isMobile = useIsMobile();
   const [isModalAdd, setIsModalAdd] = useState(false);
+  const [editingTransactionId, setEditingTransactionId] = useState(null);
+  const openEditModal = (id) => setEditingTransactionId(id);
+  const closeEditModal = () => setEditingTransactionId(null);
 
   const openModal = () => {
     if (!isModalAdd) {
@@ -39,7 +43,13 @@ const TransactionsList = () => {
       )}
       {isMobile ? (
         transactions.map((transact, ind) => (
-          <TransactionsItem key={ind} data={transact.data} />
+          <TransactionsItem
+            key={ind}
+            data={transact.data}
+            openEditModal={(id) => openEditModal(transact.data._id)}
+            closeEditModal={closeEditModal}
+            editingTransactionId={editingTransactionId}
+          />
         ))
       ) : (
         <div className={css.transactionContainer}>
@@ -53,7 +63,13 @@ const TransactionsList = () => {
           </div>
 
           {transactions.map((transact, ind) => (
-            <TransactionsItem key={ind} data={transact.data} />
+            <TransactionsItem
+              key={ind}
+              data={transact.data}
+              openEditModal={(id) => openEditModal(transact.data._id)}
+              closeEditModal={closeEditModal}
+              editingTransactionId={editingTransactionId}
+            />
           ))}
         </div>
       )}
