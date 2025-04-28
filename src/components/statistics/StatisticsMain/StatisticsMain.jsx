@@ -99,6 +99,7 @@ const StatisticsMain = () => {
 
     const baseStyle = {
       padding: '10px 14px',
+     
       cursor: 'pointer',
       transition: 'transform 0.2s ease',
       transform: 'scale(1)',
@@ -113,7 +114,7 @@ const StatisticsMain = () => {
     }
 
     return (
-      <div
+     <div
         ref={innerRef}
         {...innerProps}
         style={baseStyle}
@@ -165,21 +166,26 @@ const visibleCategories = statistics.filter(stat =>
 
         <div className="raitBar">
           <div className="selectBox">
-            <Select
+            <div className="selectWrapper">
+               <Select
               value={monthOptions.find((option) => option.value === selectedMonth)}
               onChange={(option) => setSelectedMonth(option.value)}
               options={monthOptions}
               className='custom-select'
               classNamePrefix="custom-select"
             />
-
-            <Select
+            </div>
+           
+            <div className="selectWrapper">
+              <Select
               value={yearsOptions.find((option) => option.value === selectedYear)}
               onChange={(option) => setSelectedYear(option.value)}
               options={yearsOptions}
               className='custom-select'
               classNamePrefix="custom-select"
             />
+              </div>
+            
           </div>
 
           <div className="selectorBlock">
