@@ -11,28 +11,12 @@ import s from './Chart.module.css';
 
 const Chart = () => {
   const [data, setData] = useState([]);
-
-  // 🔹 Тимчасові дані (заглушка)
-  const testData = [
-    { currency: 'USD', value: 27.55 },
-    { currency: 'EUR', value: 30.00 },
-    { currency: 'PLN', value: 28.2 },
-    { currency: 'CHF', value: 29.1 },
-    { currency: 'GBP', value: 31.3 },
-  ];
-  
-
   useEffect(() => {
-    // 🔹 Використовуємо тестові дані
-    setData(testData);
-
-    // 🔸 Коли бекенд готовий — підключити:
-    /*
     axios
       .get('/sidebar/chart')
       .then(res => setData(res.data.points))
       .catch(err => console.error('Chart fetch error:', err));
-    */
+    
   }, []);
 
   return (
