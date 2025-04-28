@@ -71,8 +71,8 @@ export const getTransactionsStatistics = createAsyncThunk(
     async ({ start, end }, thunkAPI) => {
       const state = thunkAPI.getState();
         
-       const persistedToken = state.auth.token;
-      //const persistedToken = "Q2Zt5RBO/uppxr6bJDgl3nL5qtFjifxG7uLr+7zR"; 
+      const persistedToken = state.auth.token;
+     // const persistedToken = "ekwNHgXGZBB81X1SgbJ/1L57AeZJsWLLj/81l6s9"; 
 
      if (!persistedToken) {
       return thunkAPI.rejectWithValue("Not authorized");
