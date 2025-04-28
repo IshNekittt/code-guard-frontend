@@ -79,9 +79,12 @@ export const getTransactionsStatistics = createAsyncThunk(
     try {
       setToken(persistedToken);
       const { data } = await axios.get("/transactions/filter/by-date", {
+        headers: {
+          Authorization: `Bearer ${persistedToken}`, // передаем токен в заголовке
+        },
         params: { start, end },
       });
-      console.log(data.data); // здесь data.data, как у тебя было
+      console.log(data.data);
       return data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

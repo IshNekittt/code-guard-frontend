@@ -1,8 +1,8 @@
 
 
 .wrapper {
-    padding: 1.5rem;
-
+    padding: 20px;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     background: #6D1C77;
@@ -12,17 +12,17 @@
 
 .container {
     display: flex;
-    gap: 3rem;
-
+    /* gap: 3rem; */
+    height: 100%;
     max-width: 80rem;
     justify-content: space-between;
-    margin-top: 73px;
+    /* margin-top: 73px; */
 }
 
 .selectBox {
     display: flex;
     justify-content: space-between;
-    min-width: 336px;
+    width: 336px;
     margin-bottom: 15px;
 }
 
@@ -36,14 +36,15 @@
     .container {
         padding: 8px;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         margin: 0px;
 
     }
 
     .selectBox {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+       
         /* justify-content: space-between; */
         /* margin-bottom: 15px; */
     }
@@ -63,7 +64,11 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
         /* margin-bottom: 15px; */
+    }
+    .wrapper{
+        width: 100%;
     }
 }
 
@@ -85,7 +90,7 @@
     /* центр */
     transform: translateX(-100%);
     /* сдвигаем влево от центра */
-    top: calc(50% - 70px);
+    top: calc(50% - 65px);
 
 }
 
@@ -98,15 +103,19 @@
     align-items: center;
     width: 250px;
     height: 285px;
+    margin-top: 48px;
 
 }
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    
+}
 
 @media (max-width: 480px) {
     .chartSection {
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: 0px;
     }
 }
 
@@ -120,7 +129,8 @@
     display: flex;
     flex-direction: column;
     max-width: 395px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
+    margin-top: 77px;
 
 }
 
@@ -137,7 +147,14 @@
 
 
 }
-
+.selectorBlock{
+   max-height: 200px;
+    overflow-y: auto;
+}
+.selectorBlock::-webkit-scrollbar {
+    width: 6px;
+    /* тонкий скроллбар */
+}
 .quad {
     height: 24px;
     width: 24px;
@@ -262,6 +279,7 @@
 .custom-select__menu-list {
     overflow-y: auto !important;
     overflow-x: hidden !important;
+    
 }
 
 /* Убираем разделитель */
@@ -282,7 +300,15 @@
 }
 
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    .raitBar {
+    
+            max-width: 395px;
+            margin-right: 20px;
+            margin-top: 24px;
+    
+        }
+}
 
 @media (max-width: 480px) {
     .custom-select__control {
@@ -301,6 +327,7 @@
     .raitBar {
 
         margin-right: 0px;
+        margin-top: 0px;
 
     }
 }
@@ -332,7 +359,7 @@
     overflow: hidden !important;
     padding: 0 !important;
     border: none !important;
-    width: 394px !important;
+    width: 395px !important;
     max-height: 444px !important;
 }
 
