@@ -4,25 +4,42 @@ import { selectTransaction } from "../../redux/transactionsSlice";
 import css from "../transactions/TransactionsList.module.css";
 import { useIsMobile } from "../hooks/isMobile";
 import ButtonAddTransactions from "./ButtonAddTransactions";
+import { useState } from "react";
+import ModalAddTransaction from "../ModalAddTransaction/ModalAddTransaction";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransaction);
   const isMobile = useIsMobile();
+  const [isModalAdd, setIsModalAdd] = useState(false);
+
+  const openModal = () => {
+    if (!isModalAdd) {
+      setIsModalAdd(true);
+    }
+  };
+  const closeModal = () => setIsModalAdd(false);
+
   if (transactions.length === 0) {
     return (
       <div className={css.noTransactionWrap}>
         <h3 className={css.noTransactions}>No transactions</h3>
-        <ButtonAddTransactions />
+        <ButtonAddTransactions openModal={openModal} />
+        {isModalAdd && (
+          <ModalAddTransaction openModal={isModalAdd} closeModal={closeModal} />
+        )}
       </div>
     );
   }
 
   return (
     <div className={css.transactionList}>
-      <ButtonAddTransactions />
+      <ButtonAddTransactions openModal={openModal} />
+      {isModalAdd && (
+        <ModalAddTransaction openModal={isModalAdd} closeModal={closeModal} />
+      )}
       {isMobile ? (
-        transactions.map((transact) => (
-          <TransactionsItem key={transact.id} data={transact} />
+        transactions.map((transact, ind) => (
+          <TransactionsItem key={ind} data={transact.data} />
         ))
       ) : (
         <div className={css.transactionContainer}>
@@ -35,8 +52,8 @@ const TransactionsList = () => {
             <div className={css.headerCell}></div>
           </div>
 
-          {transactions.map((transact) => (
-            <TransactionsItem key={transact.id} data={transact} />
+          {transactions.map((transact, ind) => (
+            <TransactionsItem key={ind} data={transact.data} />
           ))}
         </div>
       )}

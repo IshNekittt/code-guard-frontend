@@ -18,7 +18,15 @@ export const addTransaction = createAsyncThunk(
   "transactions/addTransaction",
   async (newTx, thunkAPI) => {
     try {
-      const response = await api.post("/transactions", newTx);
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      const response = await api.post("/transactions", newTx, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
       return response.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

@@ -1,10 +1,10 @@
 import { IoAddOutline } from "react-icons/io5";
 import css from "./ButtonAddTransactions.module.css";
 
-const ButtonAddTransactions = ({ onClick }) => {
+const ButtonAddTransactions = ({ openModal }) => {
   return (
     <div className={css.btnAddWrapp}>
-      <button className={css.iconWrapp} type="button" onClick={onClick}>
+      <button className={css.iconWrapp} type="button" onClick={openModal}>
         <IoAddOutline className={css.iconAdd} />
       </button>
     </div>
