@@ -1,13 +1,20 @@
 import { useDispatch } from "react-redux";
 import { deleteTransaction } from "../../redux/transactionsOp";
-import { useState } from "react";
 import css from "../transactions/TransactionsItem.module.css";
 import { useIsMobile } from "../hooks/isMobile";
 import { MdOutlineEdit } from "react-icons/md";
+import EditTransactionForm from "../EditModal/EditTransactionForm";
 
-const TransactionsItem = ({ data }) => {
+const TransactionsItem = ({
+  data,
+  openEditModal,
+  closeEditModal,
+  editingTransactionId,
+}) => {
   const dispatch = useDispatch();
-  const [isEditing, setIsEditing] = useState(false);
+
+  const isEditing = editingTransactionId === data._id;
+
   const isMobile = useIsMobile();
   const cardClass = data.type === "+" ? ` ${css.positive}` : ` ${css.negative}`;
   const date = new Date(data.date);
@@ -35,14 +42,21 @@ const TransactionsItem = ({ data }) => {
         <div className={css.actions}>
           <button
             className={`${css.delete} ${css.btnCard}`}
-            onClick={() => dispatch(deleteTransaction(data.id))}
+            onClick={() => dispatch(deleteTransaction(data._id))}
           >
             Delete
           </button>
           <div>
             <MdOutlineEdit />
 
-            <button>Edit</button>
+            <button onClick={() => openEditModal(data._id)}>Edit</button>
+            {isEditing && (
+              <EditTransactionForm
+                openModal={true}
+                closeModal={closeEditModal}
+                data={data}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -59,22 +73,27 @@ const TransactionsItem = ({ data }) => {
             {data.summ}
           </div>
           <div className={`${css.cell} ${css.actions}`}>
-            <button className={css.editBtn} onClick={() => setIsEditing(true)}>
+            <button
+              className={css.editBtn}
+              onClick={() => openEditModal(data._id)}
+            >
               <MdOutlineEdit className={css.editIcon} />
             </button>
             <button
               className={css.deleteBtn}
-              onClick={() => dispatch(deleteTransaction(data.id))}
+              onClick={() => dispatch(deleteTransaction(data._id))}
             >
               Delete
             </button>
           </div>
+          {isEditing && (
+            <EditTransactionForm
+              openModal={true}
+              closeModal={closeEditModal}
+              data={data}
+            />
+          )}
         </div>
-
-        {isEditing && (
-          <p>Должен быть компонент модалки Эдит</p>
-          //   <EditTransaction data={data} onClose={() => setIsEditing(false)} />
-        )}
       </>
     );
   }
