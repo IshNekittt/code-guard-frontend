@@ -8,7 +8,7 @@ import { selectIsRefreshing } from "../../redux/auth/selectors";
 const Loader = () => {
   const isLoading = useSelector(selectIsLoading);
   const isRefreshing = useSelector(selectIsRefreshing);
-  console.log(isLoading, isRefreshing);
+  // console.log(isLoading, isRefreshing);
 
   let showLoader = false;
 

@@ -35,12 +35,23 @@
   }
   .wrapper {
     width: 100%;
-    max-width: 768px;
+    /* max-width: 768px; */
     margin: 0 auto;
   }
+  /* .sideBarAndTransaction {
+    display: flex;
+    justify-content: space-between;
+  } */
 }
 
 @media screen and (min-width: 1280px) {
+  .content {
+  }
+  .sideBarAndTransaction {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .layout {
     /* flex-direction: row в; */
     width: 100%;

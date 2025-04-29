@@ -4,12 +4,15 @@ import { selectTransaction } from "../../redux/transactionsSlice";
 import css from "../transactions/TransactionsList.module.css";
 import { useIsMobile } from "../hooks/isMobile";
 import ButtonAddTransactions from "./ButtonAddTransactions";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ModalAddTransaction from "../ModalAddTransaction/ModalAddTransaction";
+import { getTransactions } from "../../redux/transactionsOp";
 // import EditTransactionForm from "../EditModal/EditTransactionForm";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransaction);
+  console.log(transactions);
+
   const isMobile = useIsMobile();
   const [isModalAdd, setIsModalAdd] = useState(false);
   const [editingTransactionId, setEditingTransactionId] = useState(null);

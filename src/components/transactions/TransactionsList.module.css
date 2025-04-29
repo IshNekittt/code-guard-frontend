@@ -22,7 +22,7 @@
   width: 280px;
   margin: 0 auto;
   font-family: "PoppinsMedium", sans-serif;
-  background: radial-gradient(
+  /* background: radial-gradient(
       600px at 100% 20%,
       rgba(109, 84, 235, 0.6) 0%,
       rgba(101, 35, 146, 0.4) 70%,
@@ -34,7 +34,7 @@
       rgba(37, 67, 165, 0.6) 60%,
       transparent 100%
     );
-  background-color: #1d1132;
+  background-color: #1d1132; */
 }
 
 @media screen and (min-width: 768px) {
@@ -47,6 +47,7 @@
     width: 100%;
     max-width: 704px;
     margin: 0 auto;
+    color: white;
   }
 
   .headerRow {
@@ -68,38 +69,58 @@
     align-items: center;
     font-family: "PoppinsMedium", sans-serif;
   }
-
-  .headerCell:nth-child(1) {
+  .headerCell:nth-child(1),
+  .cell:nth-child(1) {
     flex: 0 0 15%;
+    max-width: 15%;
+    /* padding: 0; */
   }
 
-  .headerCell:nth-child(2) {
+  .headerCell:nth-child(2),
+  .cell:nth-child(2) {
     flex: 0 0 10%;
+    max-width: 10%;
   }
 
-  .headerCell:nth-child(3) {
-    flex: 0 0 20%;
-  }
-
-  .headerCell:nth-child(4) {
-    flex: 0 0 20%;
-  }
-
-  .headerCell:nth-child(5) {
+  .headerCell:nth-child(3),
+  .cell:nth-child(3) {
     flex: 0 0 15%;
+    max-width: 15%;
   }
 
-  .headerCell:nth-child(6) {
-    flex: 0 0 5%;
+  .headerCell:nth-child(4),
+  .cell:nth-child(4) {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .headerCell:nth-child(5),
+  .cell:nth-child(5) {
+    flex: 0 0 15%;
+    max-width: 15%;
+  }
+
+  .headerCell:nth-child(6),
+  .cell:nth-child(6) {
+    flex: 0 0 20%;
+    max-width: 20%;
   }
 }
 
 @media screen and (min-width: 1280px) {
+  .transactionContainer {
+    margin: 0;
+  }
   .noTransactions {
     display: flex;
     justify-content: center;
   }
+
+  .noTransactionWrap {
+    width: 715px;
+  }
   .transactionList {
+    margin-top: 46px;
     width: 715px;
   }
 }
