@@ -1,0 +1,126 @@
+.noTransactionWrap {
+  margin: 0;
+  background: transparent;
+  background-color: transparent;
+  flex: 1;
+  height: 100vh;
+}
+
+.noTransactions {
+  padding-top: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  color: aliceblue;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(153, 102, 255, 0.5);
+  animation: fadeIn 1.2s ease-out;
+  margin: 0;
+  text-align: center;
+}
+
+.transactionList {
+  width: 280px;
+  margin: 0 auto;
+  font-family: "PoppinsMedium", sans-serif;
+  /* background: radial-gradient(
+      600px at 100% 20%,
+      rgba(109, 84, 235, 0.6) 0%,
+      rgba(101, 35, 146, 0.4) 70%,
+      transparent 100%
+    ),
+    radial-gradient(
+      600px at 0% 80%,
+      rgba(52, 31, 160, 0.8) 0%,
+      rgba(37, 67, 165, 0.6) 60%,
+      transparent 100%
+    );
+  background-color: #1d1132; */
+}
+
+@media screen and (min-width: 768px) {
+  .transactionList {
+    width: 704px;
+  }
+  .transactionContainer {
+    border-radius: 12px;
+    padding: 1px;
+    width: 100%;
+    max-width: 704px;
+    margin: 0 auto;
+    color: white;
+  }
+
+  .headerRow {
+    backdrop-filter: blur(100px);
+    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+    background: rgba(82, 59, 126, 0.6);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    padding: 16px 0;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .headerCell {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    font-family: "PoppinsMedium", sans-serif;
+  }
+  .headerCell:nth-child(1),
+  .cell:nth-child(1) {
+    flex: 0 0 15%;
+    max-width: 15%;
+    /* padding: 0; */
+  }
+
+  .headerCell:nth-child(2),
+  .cell:nth-child(2) {
+    flex: 0 0 10%;
+    max-width: 10%;
+  }
+
+  .headerCell:nth-child(3),
+  .cell:nth-child(3) {
+    flex: 0 0 15%;
+    max-width: 15%;
+  }
+
+  .headerCell:nth-child(4),
+  .cell:nth-child(4) {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .headerCell:nth-child(5),
+  .cell:nth-child(5) {
+    flex: 0 0 15%;
+    max-width: 15%;
+  }
+
+  .headerCell:nth-child(6),
+  .cell:nth-child(6) {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .transactionContainer {
+    margin: 0;
+  }
+  .noTransactions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .noTransactionWrap {
+    width: 715px;
+  }
+  .transactionList {
+    margin-top: 46px;
+    width: 715px;
+  }
+}
