@@ -102,13 +102,14 @@ const StatisticsMain = () => {
     const isSelected = selected.some((sel) => sel.value === data.value);
 
     const baseStyle = {
-      padding: "10px 14px",
-      cursor: "pointer",
-      transition: "transform 0.2s ease",
-      transform: "scale(1)",
-      color: isSelected ? "#FF868D" : "#fff",
-      fontWeight: isSelected ? "bold" : "normal",
-      border: "none",
+      padding: '10px 14px',
+     
+      cursor: 'pointer',
+      transition: 'transform 0.2s ease',
+      transform: 'scale(1)',
+      color: isSelected ? '#FF868D' : '#fff',
+      fontWeight: isSelected ? 'bold' : 'normal',
+      border: 'none',
     };
 
     if (isFocused) {
@@ -117,7 +118,7 @@ const StatisticsMain = () => {
     }
 
     return (
-      <div
+     <div
         ref={innerRef}
         {...innerProps}
         style={baseStyle}
@@ -174,25 +175,26 @@ const StatisticsMain = () => {
 
         <div className="raitBar">
           <div className="selectBox">
-            <Select
-              value={monthOptions.find(
-                (option) => option.value === selectedMonth
-              )}
+            <div className="selectWrapper">
+               <Select
+              value={monthOptions.find((option) => option.value === selectedMonth)}
               onChange={(option) => setSelectedMonth(option.value)}
               options={monthOptions}
               className="custom-select"
               classNamePrefix="custom-select"
             />
-
-            <Select
-              value={yearsOptions.find(
-                (option) => option.value === selectedYear
-              )}
+            </div>
+           
+            <div className="selectWrapper">
+              <Select
+              value={yearsOptions.find((option) => option.value === selectedYear)}
               onChange={(option) => setSelectedYear(option.value)}
               options={yearsOptions}
               className="custom-select"
               classNamePrefix="custom-select"
             />
+              </div>
+            
           </div>
 
           <div className="selectorBlock">
@@ -223,18 +225,15 @@ const StatisticsMain = () => {
             {visibleCategories.map((cat) => {
               const color = categoryColors[cat.category] || "#ccc";
               return (
-                <div key={cat.category} className="categoriWrapper">
-                  <div className="nameCategoriContainer">
-                    <div className="quad" style={{ backgroundColor: color }} />
-                    <span>{cat.category}</span>
-                  </div>
-                  <span className="numberSpan">
-                    {cat.summ?.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                    }) || "0.00"}
-                  </span>
+                  <div key={cat.category} className="categoriWrapper">
+                <div className="nameCategoriContainer">
+                  <div className="quad" />
+                  <span className="quadStyle">{cat.category}</span>
+                      </div>
+                     <span className="numberSpan">{cat.summ?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || '0.00'}</span>
                 </div>
-              );
+              )
+                  
             })}
           </div>
 

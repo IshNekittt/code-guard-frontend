@@ -1,20 +1,52 @@
 
 .chartWrapper {
     width: 100%;
-    /* padding: 10px; */
+    max-width: 288px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
+     /* margin-right: auto;
+     margin-left: auto; */
+   
 }
-
+.chartStyle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    pointer-events: none;
+}
+ .chartSize {
+     width: 100%;
+    max-width: 288px;
+     height: 288px;
+     position: relative;
+    max-width: 288px;
+ }
 @media (max-width: 768px) {
     .selectWrapper {
         padding: 8px;
     }
+        .chartSize {
+          
+            height: 336px;
+            width: 100%;
+        max-width: 336px;
+        }
 }
 
 @media (max-width: 480px) {
     .selectWrapper {
         padding: 6px;
     }
+         .chartSize {
+    
+             height: 336px;
+            width: 100%;
+             max-width: 280px;
+         }
 }
