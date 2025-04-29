@@ -9,7 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IoCloseOutline } from "react-icons/io5";
-import { addTransaction } from "../../redux/transactionsOp";
+import { addTransaction, patchTransaction } from "../../redux/transactionsOp";
 import Select from "react-select";
 import customSelectStyles from "../ModalAddTransaction/customSelectStyles.js";
 import "izitoast/dist/css/iziToast.min.css";
@@ -18,7 +18,7 @@ import iziToast from "izitoast";
 const EditTransactionForm = ({
   openModal,
   closeModal,
-  data: { category, comment, date, summ, type },
+  data: { category, comment, date, summ, type, _id },
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [transactionType, setTransactionType] = useState("income");
@@ -89,7 +89,7 @@ const EditTransactionForm = ({
     };
 
     try {
-      await dispatch(addTransaction(payload)).unwrap();
+      await dispatch(patchTransaction({ id: _id, payload })).unwrap();
       reset();
       closeModal();
     } catch (err) {

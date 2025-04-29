@@ -47,9 +47,13 @@ const TransactionsItem = ({
             Delete
           </button>
           <div>
-            <MdOutlineEdit />
-
-            <button onClick={() => openEditModal(data._id)}>Edit</button>
+            <button
+              onClick={() => openEditModal(data._id)}
+              className={css.btnEditMob}
+            >
+              <MdOutlineEdit style={{ margingRight: "10px" }} />
+              Edit
+            </button>
             {isEditing && (
               <EditTransactionForm
                 openModal={true}

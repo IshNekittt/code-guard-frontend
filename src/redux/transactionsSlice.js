@@ -3,6 +3,7 @@ import {
   deleteTransaction,
   getTransactions,
   addTransaction,
+  patchTransaction,
 } from "./transactionsOp";
 
 const initialState = {
@@ -25,19 +26,41 @@ const slice = createSlice({
         state.items.unshift(action.payload);
         state.isLoading = false;
       })
+      .addCase(patchTransaction.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        const updated = action.payload.data;
+        const index = state.items.findIndex(
+          (item) => item.data._id === updated._id
+        );
+        if (index !== -1) {
+          state.items[index].data = updated;
+        }
+      })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
-        state.items = state.items.filter((item) => action.payload !== item.id);
+        state.items = state.items.filter(
+          (item) => item.data._id !== action.payload
+        );
+
         state.isLoading = false;
       })
       .addMatcher(
-        isAnyOf(getTransactions.pending, deleteTransaction.pending),
+        isAnyOf(
+          getTransactions.pending,
+          deleteTransaction.pending,
+          patchTransaction.pending
+        ),
         (state) => {
           state.isLoading = true;
           state.error = null;
         }
       )
       .addMatcher(
-        isAnyOf(getTransactions.rejected, deleteTransaction.rejected),
+        isAnyOf(
+          getTransactions.rejected,
+          deleteTransaction.rejected,
+          patchTransaction.rejected
+        ),
         (state, action) => {
           state.error = action.payload;
           state.isLoading = false;

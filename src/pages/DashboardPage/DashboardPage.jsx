@@ -10,11 +10,13 @@ const DashboardPage = () => {
         <div>
           <HeaderWithLogoutModal />
         </div>
-        <div className={css.sideBar}>
-          <SideBar />
-        </div>
-        <div className={css.content}>
-          <Outlet />
+        <div className={css.sideBarAndTransaction}>
+          <div className={css.sideBar}>
+            <SideBar />
+          </div>
+          <div className={css.content}>
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
