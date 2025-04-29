@@ -33,6 +33,7 @@ const slice = createSlice({
           email: action.payload.data.email,
         };
         state.isRefreshing = false;
+        state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = { name: null, email: null };
