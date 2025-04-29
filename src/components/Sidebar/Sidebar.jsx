@@ -20,8 +20,8 @@ const SideBar = () => {
   const isDesktop = width >= 1280;
   const isMobile = width < 768;
   const showStatistics = pathname.includes("statistics");
-  const isBalancePage = pathname === "/home";
-  const isExchangeRatesPage = pathname === "/home/exchange-rates";
+  const isBalancePage = pathname === "/dashboard/home";
+  const isExchangeRatesPage = pathname === "/dashboard/currency";
   // const isExchangeRatesPage = pathname.includes("exchange-rates");
 
   return (
@@ -29,13 +29,10 @@ const SideBar = () => {
       <div className={s.sidebar}>
         <div className={s.balance_content}>
           <Navigation />
-          {(isTablet || isDesktop) && isBalancePage && <Outlet />}
-          {/* {(isTablet || isDesktop) && <Balance />} */}
-          {isMobile && <Outlet />}
+          {isBalancePage && <Balance />}
         </div>
 
         {(isTablet || isDesktop) && !isExchangeRatesPage && <ExchangeRates />}
-        {/* {(isTablet || isDesktop) && <ExchangeRates />} */}
       </div>
 
       {(isTablet || isDesktop) && showStatistics && (
@@ -47,9 +44,7 @@ const SideBar = () => {
               ? s.statistics_desktop
               : s.statistics_hidden
           }
-        >
-          <StatisticsTest />
-        </div>
+        ></div>
       )}
     </div>
   );

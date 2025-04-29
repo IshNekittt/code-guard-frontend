@@ -1,4 +1,4 @@
-.loyat {
+.layout {
   display: flex;
   flex-direction: column;
   background: radial-gradient(
@@ -14,7 +14,7 @@
       transparent 100%
     );
   background-color: #1d1132;
-  min-height: 100dvh;
+  min-height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
@@ -25,18 +25,41 @@
   height: 100%;
 }
 
+.sideBar {
+  width: 100%;
+}
+
 @media screen and (min-width: 768px) {
-  .loyat {
+  .layout {
     height: 558px;
   }
+  .wrapper {
+    width: 100%;
+    /* max-width: 768px; */
+    margin: 0 auto;
+  }
+  /* .sideBarAndTransaction {
+    display: flex;
+    justify-content: space-between;
+  } */
 }
 
 @media screen and (min-width: 1280px) {
-  .loyat {
-    flex-direction: row;
+  .content {
+  }
+  .sideBarAndTransaction {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .layout {
+    /* flex-direction: row в; */
     width: 100%;
   }
   .sideBar {
-    max-width: 480px;
+    width: 480px;
+  }
+  .wrapper {
+    max-width: 1280px;
   }
 }

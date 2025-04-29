@@ -1,25 +1,23 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import SideBar from "../../components/Sidebar/Sidebar";
-import TransactionsList from "../../components/transactions/TransactionsList";
 import css from "./DashboardPage.module.css";
+import HeaderWithLogoutModal from "../../components/HeaderWithLogoutModal/HeaderWithLogoutModal";
 
 const DashboardPage = () => {
-  const { pathname } = useLocation();
-  const isBalancePage = pathname === "/home";
-  const isExchangeRatesPage = pathname === "/home/exchange-rates";
-  const isStatisticsPage = pathname === "/home/statistics";
   return (
-    <div className={css.loyat}>
-      <div className={css.sideBar}>
-        <SideBar />
-      </div>
-      <div className={css.transactionsContainer}>
-        {!(isBalancePage || isExchangeRatesPage || isStatisticsPage) && (
-          <Outlet />
-        )}
-        {/* {!isBalancePage && <Outlet />} */}
-        {/* <Outlet /> */}
-        <TransactionsList />
+    <div className={css.layout}>
+      <div className={css.wrapper}>
+        <div>
+          <HeaderWithLogoutModal />
+        </div>
+        <div className={css.sideBarAndTransaction}>
+          <div className={css.sideBar}>
+            <SideBar />
+          </div>
+          <div className={css.content}>
+            <Outlet />
+          </div>
+        </div>
       </div>
     </div>
   );

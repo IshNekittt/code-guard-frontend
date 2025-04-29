@@ -6,7 +6,7 @@ import Chart from '../Chart/Chart';
 const STORAGE_KEY = 'monobank_rates';
 
 // 🔹 Тимчасові фейкові дані (поки бек не готовий)
-const USE_FAKE_DATA = true;
+const USE_FAKE_DATA = false;
 
 const ExchangeRates = () => {
   const [rates, setRates] = useState(null);
