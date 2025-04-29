@@ -1,5 +1,5 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { Suspense } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Suspense, useEffect } from "react";
 
 import Layout from "./Layout";
 import RegistrationPage from "../components/registerForm/registerForm";
@@ -13,8 +13,30 @@ import Loader from "./Loader/Loader";
 
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserInfo } from "../redux/auth/operations";
+import { selectToken } from "../redux/auth/selectors";
+import toast from "react-hot-toast";
 
 export default function App() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const token = useSelector(selectToken);
+  useEffect(() => {
+    if (token) {
+      dispatch(getUserInfo())
+        .unwrap()
+        .then(() => {
+          navigate("/dashboard");
+        })
+        .catch(() => {
+          toast.error("Time is out!");
+          navigate("/login");
+        });
+    }
+  }, [token, dispatch, navigate]);
+
   return (
     <Suspense fallback={<Loader />}>
       <Loader />

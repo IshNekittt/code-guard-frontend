@@ -33,6 +33,7 @@ const slice = createSlice({
           email: action.payload.data.email,
         };
         state.isRefreshing = false;
+        state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, (state) => {
         state.user = { name: null, email: null };
@@ -48,9 +49,17 @@ const slice = createSlice({
       .addCase(refresh.pending, (state) => {
         state.isRefreshing = true;
       })
-      .addCase(refresh.rejected, (state) => {
-        state.isRefreshing = false;
-      })
+      .addMatcher(
+        isAnyOf(
+          refresh.rejected,
+          logIn.rejected,
+          logOut.rejected,
+          getUserInfo.rejected
+        ),
+        (state) => {
+          state.isRefreshing = false;
+        }
+      )
       .addMatcher(
         isAnyOf(
           logIn.pending,
