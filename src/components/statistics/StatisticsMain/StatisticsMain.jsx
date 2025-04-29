@@ -213,7 +213,7 @@ const visibleCategories = statistics.filter(stat =>
                   <div key={cat.category} className="categoriWrapper">
                 <div className="nameCategoriContainer">
                   <div className="quad" style={{ backgroundColor: color }} />
-                  <span>{cat.category}</span>
+                  <span className="quadStyle">{cat.category}</span>
                 </div>
                 <span className="numberSpan">{cat.summ?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || '0.00'}</span>
               </div>

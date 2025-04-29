@@ -116,6 +116,7 @@ width: 100%;
     vertical-align: middle;
     position: absolute;
     left: 50%;
+    color: #FBFBFB;
     /* центр */
     transform: translateX(-100%);
     /* сдвигаем влево от центра */
@@ -204,14 +205,23 @@ width: 100%;
     /* тонкий скроллбар */
 }
 .quad {
-    max-height: 24px;
-    max-width: 24px;
+    
+    height: 24px;
+    width: 24px;
     border-radius: 2px;
     margin-right: 10px;
     margin-left: 15px;
 
 }
+.quadStyle{
+font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color:#FBFBFB;
 
+}
 .nameCategoriContainer {
 
     display: flex;
@@ -229,6 +239,7 @@ width: 100%;
     font-family: Poppins;
     font-weight: 400;
     font-size: 14px;
+    color: #FBFBFB;
 
 }
 
@@ -248,6 +259,7 @@ width: 100%;
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
+    color: #FBFBFB;
 }
 
 .income {
@@ -260,6 +272,7 @@ width: 100%;
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
+    color: #FBFBFB;
 }
 
 .expensesNumber {
@@ -503,6 +516,7 @@ margin-left: auto!important;
     }
 
     .expensesIncomeBlock {
+        
         width: 100%;
         max-width: 280px;
         margin-left: auto;
