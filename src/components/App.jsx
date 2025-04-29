@@ -24,21 +24,18 @@ export default function App() {
 
   const token = useSelector(selectToken);
   useEffect(() => {
-    console.log(token);
-
     if (token) {
       dispatch(getUserInfo())
         .unwrap()
         .then(() => {
-          console.log("Дошло");
-
           navigate("/dashboard");
         })
         .catch(() => {
-          toast.error("Something went wrong!");
+          toast.error("Time is out!");
+          navigate("/login");
         });
     }
-  }, [token]);
+  }, [token, dispatch, navigate]);
 
   return (
     <Suspense fallback={<Loader />}>

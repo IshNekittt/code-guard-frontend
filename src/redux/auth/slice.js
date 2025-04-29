@@ -49,9 +49,15 @@ const slice = createSlice({
       .addCase(refresh.pending, (state) => {
         state.isRefreshing = true;
       })
-      .addCase(refresh.rejected, (state) => {
-        state.isRefreshing = false;
-      })
+      .addMatcher(
+        refresh.rejected,
+        logIn.rejected,
+        logOut.rejected,
+        getUserInfo.rejected,
+        (state) => {
+          state.isRefreshing = false;
+        }
+      )
       .addMatcher(
         isAnyOf(
           logIn.pending,
