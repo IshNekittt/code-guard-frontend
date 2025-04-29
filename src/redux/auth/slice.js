@@ -50,10 +50,12 @@ const slice = createSlice({
         state.isRefreshing = true;
       })
       .addMatcher(
-        refresh.rejected,
-        logIn.rejected,
-        logOut.rejected,
-        getUserInfo.rejected,
+        isAnyOf(
+          refresh.rejected,
+          logIn.rejected,
+          logOut.rejected,
+          getUserInfo.rejected
+        ),
         (state) => {
           state.isRefreshing = false;
         }
