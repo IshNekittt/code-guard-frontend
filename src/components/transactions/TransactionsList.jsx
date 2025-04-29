@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import TransactionsItem from "./TransactionsItem";
 import { selectTransaction } from "../../redux/transactionsSlice";
 import css from "../transactions/TransactionsList.module.css";
@@ -11,7 +11,7 @@ import { getTransactions } from "../../redux/transactionsOp";
 
 const TransactionsList = () => {
   const transactions = useSelector(selectTransaction);
-  console.log(transactions);
+  const dispatch = useDispatch();
 
   const isMobile = useIsMobile();
   const [isModalAdd, setIsModalAdd] = useState(false);
@@ -25,6 +25,9 @@ const TransactionsList = () => {
     }
   };
   const closeModal = () => setIsModalAdd(false);
+  useEffect(() => {
+    dispatch(getTransactions());
+  }, [dispatch]);
 
   if (transactions.length === 0) {
     return (
@@ -48,8 +51,8 @@ const TransactionsList = () => {
         transactions.map((transact, ind) => (
           <TransactionsItem
             key={ind}
-            data={transact.data}
-            openEditModal={(id) => openEditModal(transact.data._id)}
+            data={transact}
+            openEditModal={(id) => openEditModal(transact._id)}
             closeEditModal={closeEditModal}
             editingTransactionId={editingTransactionId}
           />
@@ -68,8 +71,8 @@ const TransactionsList = () => {
           {transactions.map((transact, ind) => (
             <TransactionsItem
               key={ind}
-              data={transact.data}
-              openEditModal={(id) => openEditModal(transact.data._id)}
+              data={transact}
+              openEditModal={(id) => openEditModal(transact._id)}
               closeEditModal={closeEditModal}
               editingTransactionId={editingTransactionId}
             />
