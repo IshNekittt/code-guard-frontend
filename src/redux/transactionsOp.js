@@ -4,9 +4,16 @@ import api from "../api/axios";
 export const getTransactions = createAsyncThunk(
   "transactions/fetchAllTransaction",
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
     try {
-      const response = await api.get("/transactions");
-      return response.data;
+      const response = await api.get("/transactions", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      return response.data.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
@@ -26,7 +33,7 @@ export const addTransaction = createAsyncThunk(
         },
       });
 
-      return response.data;
+      return response.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
@@ -45,9 +52,11 @@ export const patchTransaction = createAsyncThunk(
         },
       });
 
-      return response.data;
+      return response.data.data;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      return thunkAPI.rejectWithValue(
+        err.response?.data?.data?.message || err.message || "Unknown error"
+      );
     }
   }
 );
