@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const Navigation = () => {
   return (
     <nav className={s.nav}>
-      <NavLink to="" end className={s.link}>
+      <NavLink to="home" end className={s.link}>
         {({ isActive }) => (
           <div className={isActive ? s.active : ""}>
             <div className={s.iconBox}>
