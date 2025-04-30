@@ -1,8 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectStatistics } from "../../../redux/auth/selectors.js";
 import React, { useState, useEffect } from "react";
-// import StatisticsDashboard from '../StatisticsDashboard';
-// import StatisticsTable from '../StatisticsTable';
+
 import Chart from "../Chart/Chart.jsx";
 import "./StatisticsMain.css";
 import Select from "react-select";
@@ -155,7 +154,7 @@ const StatisticsMain = () => {
     console.log("📅 Start:", start, "End:", end);
 
     dispatch(getTransactionsStatistics({ start, end })).then((res) => {
-      console.log("👉 Transactions:", res.payload?.data);
+      console.log("👉 Transactions:", res.payload);
     });
   }, [selectedMonth, selectedYear, dispatch]);
 

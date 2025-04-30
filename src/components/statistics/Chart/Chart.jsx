@@ -14,6 +14,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 const COLORS = ['#FF6B6B', '#A18AFF', '#7BDFF2', '#5C7CFA', '#63E6BE', '#38D9A9', '#69DB7C'];
 
 const Chart = ({ statistics }) => {
+  console.log('что приходит в чарт',statistics)
   const total = statistics.reduce((acc, item) => acc + (item.summ || 0), 0);
 
   const data = {

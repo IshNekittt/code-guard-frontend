@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StatisticsMain from '../../components/statistics/StatisticsMain/StatisticsMain';
+import StatisticsMain from '../../components/StatisticsMain/StatisticsMain';
 import styles from './StatisticsPage.module.css';
 
 const StatisticsPage = () => {

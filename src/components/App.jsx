@@ -6,7 +6,8 @@ import RegistrationPage from "../components/registerForm/registerForm";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
 import HomeTab from "../components/transactions/TransactionsList";
-import StatisticsTab from "./statistics/StatisticsMain/StatisticsMain";
+
+import StatisticsMain from "./statistics/StatisticsMain/StatisticsMain";
 import CurrencyTab from "./Sidebar/ExchangeRates/ExchangeRates";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Loader from "./Loader/Loader";
@@ -81,7 +82,7 @@ export default function App() {
               path="statistics"
               element={
                 <PrivateRoute>
-                  <StatisticsTab />
+                  <StatisticsMain />
                 </PrivateRoute>
               }
             />

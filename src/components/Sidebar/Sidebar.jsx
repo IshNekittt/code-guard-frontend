@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import styles from './Sidebar.module.css';
 import { FaHome, FaChartPie } from 'react-icons/fa';
 //import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
@@ -22,6 +23,7 @@ import {
 
 
 const Sidebar = () => {
+   const navigate = useNavigate();
   return (
     <div className={styles.sidebar}>
       <div className={styles.menu}>
@@ -29,7 +31,9 @@ const Sidebar = () => {
           <FaHome className={styles.icon} />
           <span>Home</span>
         </div>
-        <div className={styles.menuItem}>
+        <div className={styles.menuItem}
+          onClick={() => navigate("/dashboard/statistics")}
+        >
           <FaChartPie className={styles.icon} />
           <span>Statistics</span>
         </div>
