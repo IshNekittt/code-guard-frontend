@@ -29,18 +29,16 @@ const slice = createSlice({
       .addCase(patchTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const updated = action.payload.data;
-        const index = state.items.findIndex(
-          (item) => item.data._id === updated._id
-        );
+        const updated = action.payload;
+        const index = state.items.findIndex((item) => item._id === updated._id);
         if (index !== -1) {
-          state.items[index].data = updated;
+          state.items[index] = updated;
         }
       })
       .addCase(deleteTransaction.fulfilled, (state, action) => {
-        state.items = state.items.filter(
-          (item) => item.data._id !== action.payload
-        );
+        state.items = state.items.filter((item) => {
+          return item._id !== action.payload;
+        });
 
         state.isLoading = false;
       })

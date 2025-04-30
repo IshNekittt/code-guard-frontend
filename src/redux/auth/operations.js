@@ -67,12 +67,14 @@ export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
   }
 });
 export const getTransactionsStatistics = createAsyncThunk(
-  "transactions/fetchAllTransaction",
-  async ({ start, end }, thunkAPI) => {
-    const state = thunkAPI.getState();
+    "transactions/fetchAllTransaction",
+    async ({ start, end }, thunkAPI) => {
+      const state = thunkAPI.getState();
+        
+      const persistedToken = state.auth.token;
+       
 
-    const persistedToken = state.auth.token;
-    if (!persistedToken) {
+     if (!persistedToken) {
       return thunkAPI.rejectWithValue("Not authorized");
     }
 

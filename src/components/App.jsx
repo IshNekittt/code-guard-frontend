@@ -35,7 +35,7 @@ export default function App() {
           navigate("/login");
         });
     }
-  }, [token, dispatch, navigate]);
+  }, [token, dispatch]);
 
   return (
     <Suspense fallback={<Loader />}>

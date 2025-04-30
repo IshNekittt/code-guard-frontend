@@ -14,18 +14,25 @@
     display: flex;
     /* gap: 3rem; */
     height: 100%;
+    width: 100%;
     max-width: 80rem;
-    justify-content: space-between;
+    
     /* margin-top: 73px; */
 }
 
 .selectBox {
     display: flex;
+    /* justify-content: center;
+        gap: 20px; */
     justify-content: space-between;
-    width: 336px;
+    width: 100%;
+    max-width: 395px;
     margin-bottom: 15px;
 }
-
+.selectWrapper{
+max-width: 181px;
+width: 100%;
+}
 @media (max-width: 768px) {
     .wrapper {
         padding: 8px;
@@ -43,11 +50,17 @@
 
     .selectBox {
         display: flex;
-        flex-direction: row;
-       
-        /* justify-content: space-between; */
+        justify-content: space-between;
+        width: 100%;
+            max-width: 336px;
+            margin-bottom: 15px;
+
         /* margin-bottom: 15px; */
     }
+        .selectWrapper {
+            max-width: 160px;
+            width: 100%;
+        }
 }
 
 
@@ -58,22 +71,38 @@
         display: flex;
         flex-direction: column;
         width: 100%;
+       
+        align-items: center;
     }
 
     .selectBox {
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: center;
         width: 100%;
+        max-width: 336px;
+       
+        
         /* margin-bottom: 15px; */
     }
     .wrapper{
         width: 100%;
     }
+        .selectWrapper {
+            max-width: 336px;
+            width: 100%;
+            /* margin-right: auto; */
+            /* margin-left: 30px; */
+           /* display: flex; */
+           margin-left: auto;
+           /* margin-right: auto; */
+           
+           justify-content: center;
+        }
 }
 
 .chartNameBox {
-    /* margin-right: auto; */
     position: relative;
 }
 
@@ -87,49 +116,68 @@
     vertical-align: middle;
     position: absolute;
     left: 50%;
+    color: #FBFBFB;
     /* центр */
     transform: translateX(-100%);
     /* сдвигаем влево от центра */
-    top: calc(50% - 65px);
+    top: calc(50% - 85px);
 
 }
 
 .chartSection {
-
-    /* min-height: 300px; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 250px;
-    height: 285px;
-    margin-top: 48px;
+    width: 100%;
+    max-width: 288px;
+    max-height: 288px;
+    margin-top: 80px;
+    margin-right: 40px;
 
 }
+
+
+
+
 
 @media (max-width: 768px) {
-    
-}
-
-@media (max-width: 480px) {
     .chartSection {
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 0px;
+        width: 100%;
+    max-width: 336px;
+        margin-right: 30px;
+        margin-top: 97px;
+
+    }
+        .chartName {
+           
+            top: calc(50% - 85px);
+    
+        }
+}
+@media (max-width: 480px) {
+
+    .chartSection {
+        max-height: 280px;
+        width: 100%;
+        max-width: 280px;
+        margin-right: 0px;
+        margin-bottom: 30px;
+
     }
 }
-
-
 .text-style {
-    width: 51px;
+    width: 100%;
+    max-width: 51px;
     height: 24px;
 }
 
 .raitBar {
     display: flex;
     flex-direction: column;
+    width: 100%;
     max-width: 395px;
-    /* margin-right: 20px; */
+    
     margin-top: 77px;
 
 }
@@ -140,6 +188,7 @@
     align-items: center;
     border-bottom: 1px solid;
     border-color: #FFFFFF69;
+    width: 100%;
     max-width: 395px;
     height: 54px;
 
@@ -156,6 +205,7 @@
     /* тонкий скроллбар */
 }
 .quad {
+    
     height: 24px;
     width: 24px;
     border-radius: 2px;
@@ -163,7 +213,15 @@
     margin-left: 15px;
 
 }
+.quadStyle{
+font-family: Poppins;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color:#FBFBFB;
 
+}
 .nameCategoriContainer {
 
     display: flex;
@@ -172,9 +230,6 @@
     font-family: Poppins;
     font-weight: 400;
     font-size: 14px;
-
-
-
 }
 
 .numberSpan {
@@ -184,6 +239,7 @@
     font-family: Poppins;
     font-weight: 400;
     font-size: 14px;
+    color: #FBFBFB;
 
 }
 
@@ -203,6 +259,7 @@
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
+    color: #FBFBFB;
 }
 
 .income {
@@ -215,6 +272,7 @@
     font-size: 14px;
     line-height: 100%;
     letter-spacing: 0%;
+    color: #FBFBFB;
 }
 
 .expensesNumber {
@@ -238,27 +296,24 @@
     color: #FFB627;
 }
 
-
-/* Обёртка селекта */
 .custom-select__control {
     background-color: rgba(74, 86, 226, 0.1) !important;
     border: 1px solid rgba(255, 255, 255, 0.6) !important;
     border-radius: 8px !important;
     padding: 4px !important;
-    width: 160px !important;
+    width: 100%!important;
+    max-width: 181px !important;
     height: 50px !important;
     font-family: 'Poppins', sans-serif !important;
     font-size: 16px !important;
     box-shadow: none !important;
 }
 
-/* Выбранное значение */
 .custom-select__single-value {
     color: white !important;
     font-family: 'Poppins', sans-serif !important;
 }
 
-/* Элементы списка */
 .custom-select__option {
     font-family: 'Poppins' !important;
     font-weight: 400 !important;
@@ -302,21 +357,31 @@
 
 @media (max-width: 768px) {
     .raitBar {
-    
+    width: 100%;
             max-width: 395px;
             margin-right: 20px;
             margin-top: 24px;
     
         }
+                .custom-select__control {
+        
+                  
+        width: 100%!important;
+        max-width: 160px !important;
+                       
+                }
+                
 }
 
 @media (max-width: 480px) {
     .custom-select__control {
 
+margin-right: auto!important;
+margin-left: auto!important;
         background-color: rgba(74, 86, 226, 0.1) !important;
         border: 1px solid rgba(255, 255, 255, 0.6) !important;
-
-        width: 280px !important;
+        width: 100%!important;
+        max-width: 280px !important;
         margin-bottom: 20px !important;
 
 
@@ -325,11 +390,15 @@
     }
 
     .raitBar {
-
+        display: flex;
+        align-items: center;
         margin-right: 0px;
         margin-top: 0px;
+        width: 100%;
+            max-width: 280px;
 
     }
+          
 }
 
 /* Основной контрол */
@@ -346,6 +415,8 @@
     border-radius: 8px !important;
     padding: 4px !important;
     border: none !important;
+    width: 100%!important;
+    max-width: 395px!important;
 }
 
 .category-select__control--is-focused {
@@ -359,7 +430,8 @@
     overflow: hidden !important;
     padding: 0 !important;
     border: none !important;
-    width: 395px !important;
+    width: 100%;
+    max-width: 395px !important;
     max-height: 444px !important;
 }
 
@@ -404,24 +476,37 @@
     font-weight: normal !important;
 }
 
-@media (max-width: 768px) {}
+@media (max-width: 768px) {
+    .category-select__control {
+    max-width: 336px !important;
+    width: 100%!important;
+    
+        }
+                 .expensesIncomeBlock {
+                     max-width: 336px;
+                    width: 100%;
+                 }
+}
 
 @media (max-width: 480px) {
     .category-select__control {
-        width: 280px !important;
-        height: 50px;
+        width: 100%!important;
+        max-width: 280px !important;
+        
 
     }
 
     .category-select__menu {
-        width: 280px !important;
+        width: 100%!important;
+        max-width: 280px !important;
     }
 
     .selectorBlock {
-        display: flex !important;
-        flex-direction: column !important;
+        /* display: flex !important;
+        flex-direction: column !important; */
         align-items: center !important;
-        width: 280px;
+        max-width: 280px;
+        width: 100%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -431,7 +516,9 @@
     }
 
     .expensesIncomeBlock {
-        width: 280px;
+        
+        width: 100%;
+        max-width: 280px;
         margin-left: auto;
         margin-right: auto;
     }
