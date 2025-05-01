@@ -1,18 +1,18 @@
-
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const updateBalanceAsync = createAsyncThunk(
-  'finance/updateBalance',
+  "finance/updateBalance",
   async (amount, thunkAPI) => {
     const res = await axios.patch(
-      'https://code-guard-backend.onrender.com/sidebar/balance');
+      "https://code-guard-backend.onrender.com/sidebar/balance"
+    );
     return res.data.balance;
   }
 );
 
 const financeSlice = createSlice({
-  name: 'finance',
+  name: "finance",
   initialState: {
     totalBalance: 0,
   },
@@ -21,7 +21,7 @@ const financeSlice = createSlice({
       state.totalBalance = action.payload;
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder.addCase(updateBalanceAsync.fulfilled, (state, action) => {
       state.totalBalance = action.payload;
     });
