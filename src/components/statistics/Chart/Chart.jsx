@@ -35,11 +35,12 @@ const Chart = ({ statistics }) => {
   cutout: '75%',
   plugins: {
     tooltip: {
-      backgroundColor: '#2e2e5c',
-      titleColor: '#fff',
-      bodyColor: '#fff',
-      bodyFont: { size: 12 },
-      padding: 8,
+       enabled: false,
+      // backgroundColor: '#2e2e5c',
+      // titleColor: '#fff',
+      // bodyColor: '#fff',
+      // bodyFont: { size: 12 },
+      // padding: 8,
     },
     legend: {
       display: false,
