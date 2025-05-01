@@ -1,3 +1,6 @@
+
+
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectStatistics } from "../../../redux/auth/selectors.js";
 import React, { useState, useEffect } from "react";
@@ -70,20 +73,13 @@ const StatisticsMain = () => {
     label: year,
   }));
 
-  const categoryOptions = Array.isArray(statistics)
-    ? Array.from(new Set(statistics.map((statis) => statis.category))).map(
-        (category) => ({
-          value: category,
-          label: category,
-        })
-      )
-    : [];
+ 
 
   const [selected, setSelected] = useState(() => {
     const saved = localStorage.getItem("selectedCategories");
     return saved ? JSON.parse(saved) : [];
   });
-
+  console.log('что приходит в мелектед',selected)
   const toggleCategory = (option) => {
     setSelected((prevSelected) => {
       const isAlreadySelected = prevSelected.some(
@@ -131,6 +127,28 @@ const StatisticsMain = () => {
       </div>
     );
   };
+ const categoryOptions = Array.isArray(statistics)
+    ? Array.from(new Set(statistics.map((statis) => statis.category))).map(
+        (category) => ({
+          value: category,
+          label: category,
+        })
+      )
+    : [];
+  
+    
+
+// const categoryOptions = Array.isArray(statistics)
+//   ? Array.from(new Set(statistics.map((statis) => statis.category)))
+//       .map((category) => ({
+//         value: category,
+//         label: category,
+//       }))
+//       .filter(
+//         (option) => !selected.some((sel) => sel.value === option.value)
+//       )
+//   : [];
+
 
   const totalIncome = Array.isArray(statistics)
     ? statistics
@@ -149,6 +167,7 @@ const StatisticsMain = () => {
         selected.some((sel) => sel.value === stat.category)
       )
     : [];
+  console.log('видимые категории', visibleCategories);
   useEffect(() => {
     const { start, end } = getStartEndDates(selectedMonth, selectedYear);
 
@@ -196,6 +215,8 @@ const StatisticsMain = () => {
               </div>
             
           </div>
+           
+           
 
           <div className="selectorBlock">
             <Select
@@ -225,19 +246,22 @@ const StatisticsMain = () => {
             {visibleCategories.map((cat) => {
               const color = categoryColors[cat.category] || "#ccc";
               return (
+                <div>
                   <div key={cat.category} className="categoriWrapper">
                 <div className="nameCategoriContainer">
                   <div className="quad" style={{ backgroundColor: color }} />
                   <span className="quadStyle">{cat.category}</span>
                       </div>
                      <span className="numberSpan">{cat.summ?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || '0.00'}</span>
+                  </div>
+                  
                 </div>
+                  
               )
                   
             })}
-          </div>
-
-          <div className="expensesIncomeBlock">
+          </div> 
+                        {/* <div className="expensesIncomeBlock">
             <div className="expenses">
               Expenses:
               <span className="expensesNumber">
@@ -254,10 +278,73 @@ const StatisticsMain = () => {
                 })}
               </span>
             </div>
-          </div>
-        </div>
-      </div>
+          </div> */}
+{selected.length > 0 && (
+  <div className="expensesIncomeBlock">
+    <div className="expenses">
+      Expenses:
+      <span className="expensesNumber">
+        {totalExpenses.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+        })}
+      </span>
     </div>
+    <div className="income">
+      Income:
+      <span className="incomeNumber">
+        {totalIncome.toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+        })}
+      </span>
+    </div>
+  </div>
+)}
+
+
+
+    
+{/* <div className="selectorBlock">
+  <Select
+    isMulti
+    options={categoryOptions}
+    classNamePrefix="category-select"
+    className="category-select"
+    components={{
+      MultiValue: () => null,
+      Option: CustomOption,
+    }}
+    value={[]} // оставляем пустым
+    placeholder={
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <span>Category</span>
+        <span>Sum</span>
+      </div>
+    }
+  />
+  
+</div> */}
+
+{/* 👉 Отдельный блок для рендера выбранных категорий */}
+
+
+
+
+
+
+
+
+         
+         
+
+      </div>
+      </div>
+      </div>
   );
 };
 

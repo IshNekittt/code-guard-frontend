@@ -212,10 +212,20 @@
 }
 
 .selectorBlock {
-    max-height: 250px;
+    min-height: 100px;
+    
     overflow-y: auto;
+height: 250px;
+        max-height: none;
+      
 }
+.selectedCategoryRenderBlock{
+max-height: 200px;
 
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 .selectorBlock::-webkit-scrollbar {
     width: 6px;
     /* тонкий скроллбар */
@@ -440,6 +450,8 @@
     border: none !important;
     width: 100% !important;
     max-width: 395px !important;
+    overflow: hidden !important;
+    
 }
 
 .category-select__control--is-focused {
@@ -456,6 +468,7 @@
     width: 100%;
     max-width: 395px !important;
     max-height: 444px !important;
+    scrollbar-color: #888 transparent
 }
 
 .category-select__menu-list {
@@ -464,6 +477,10 @@
     overflow-y: auto !important;
     overflow-x: hidden !important;
     scrollbar-width: thin !important;
+    max-height: 350px !important;
+    overflow: hidden !important;
+    /* maxHeight: 300, */
+       
     /* Firefox */
     scrollbar-color: #888 transparent !important;
 }
@@ -536,6 +553,7 @@
         width: 100%;
         margin-left: auto;
         margin-right: auto;
+        /* height: 200px; */
     }
 
     .categoriWrapper {
