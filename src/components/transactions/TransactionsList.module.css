@@ -1,0 +1,137 @@
+.noTransactionWrap {
+  margin: 0;
+  background: transparent;
+  background-color: transparent;
+  flex: 1;
+  height: 100vh;
+}
+
+.noTransactions {
+  padding-top: 30px;
+  font-size: 24px;
+  font-weight: 600;
+  color: aliceblue;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(153, 102, 255, 0.5);
+  animation: fadeIn 1.2s ease-out;
+  margin: 0;
+  text-align: center;
+}
+
+.transactionList {
+  width: 280px;
+  margin: 0 auto;
+  font-family: "PoppinsMedium", sans-serif;
+}
+
+@media screen and (min-width: 768px) {
+  .transactionList {
+    width: 704px;
+    max-height: 312px;
+    overflow: auto;
+  }
+  .transactionContainer {
+    border-radius: 12px;
+    padding: 1px;
+    width: 100%;
+    max-width: 704px;
+    margin: 0 auto;
+    color: white;
+  }
+
+  .headerRow {
+    backdrop-filter: blur(100px);
+    box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+    background: rgba(82, 59, 126, 0.6);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    padding: 16px 0;
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .headerCell {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    font-family: "PoppinsMedium", sans-serif;
+  }
+  .headerCell:nth-child(1),
+  .cell:nth-child(1) {
+    flex: 0 0 15%;
+    max-width: 15%;
+  }
+
+  .headerCell:nth-child(2),
+  .cell:nth-child(2) {
+    flex: 0 0 10%;
+    max-width: 10%;
+  }
+
+  .headerCell:nth-child(3),
+  .cell:nth-child(3) {
+    flex: 0 0 15%;
+    max-width: 15%;
+  }
+
+  .headerCell:nth-child(4),
+  .cell:nth-child(4) {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .headerCell:nth-child(5),
+  .cell:nth-child(5) {
+    flex: 0 0 15%;
+    max-width: 15%;
+  }
+
+  .headerCell:nth-child(6),
+  .cell:nth-child(6) {
+    flex: 0 0 20%;
+    max-width: 20%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .transactionContainer {
+    margin: 0;
+  }
+  .noTransactions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .noTransactionWrap {
+    width: 715px;
+  }
+  .transactionList {
+    margin-top: 46px;
+    width: 715px;
+  }
+}
+
+.transactionList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.transactionList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.transactionList::-webkit-scrollbar-thumb {
+  background: rgba(153, 102, 255, 0.5);
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+.transactionList::-webkit-scrollbar-thumb:hover {
+  background: rgba(153, 102, 255, 0.8);
+}
+
+.transactionList {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(153, 102, 255, 0.5) transparent;
+}

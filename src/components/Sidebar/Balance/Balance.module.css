@@ -1,0 +1,56 @@
+.balance {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 280px;
+  /* height: 80px; */
+  margin: 0 auto;
+  padding: 8px 0 12px 32px;
+  border-radius: 8px;
+  backdrop-filter: blur(100px);
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  background: rgba(82, 59, 126, 0.6);
+}
+
+.label {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+
+  color: white;
+  margin: 0;
+  opacity: 0.5;
+}
+
+.amount_symbol {
+  font-weight: normal;
+}
+
+.amount {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  color: white;
+
+  margin: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .balance {
+    margin: 0;
+    width: 336px;
+    padding: 8px 0 12px 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .balance {
+    width: 100%;
+    max-width: 1280px;
+    border: none;
+    border-radius: 0;
+    padding: 8px 0 12px 56px;
+  }
+}
