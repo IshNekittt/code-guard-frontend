@@ -217,7 +217,10 @@
     overflow-y: auto;
 height: 250px;
         max-height: none;
-      
+       border-bottom: 8px;
+       border-top: 8px;
+    border-right: 8px;
+    border-left: 8px;
 }
 .selectedCategoryRenderBlock{
 max-height: 200px;

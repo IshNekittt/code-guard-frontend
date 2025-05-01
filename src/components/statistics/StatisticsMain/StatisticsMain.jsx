@@ -4,6 +4,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectStatistics } from "../../../redux/auth/selectors.js";
 import React, { useState, useEffect } from "react";
+import { useRef } from "react";
 // import StatisticsDashboard from '../StatisticsDashboard';
 // import StatisticsTable from '../StatisticsTable';
 import Chart from "../Chart/Chart.jsx";
@@ -60,6 +61,9 @@ const getStartEndDates = (monthName, year) => {
 const StatisticsMain = () => {
   const [selectedMonth, setSelectedMonth] = useState("April");
   const [selectedYear, setSelectedYear] = useState("2024");
+
+  const isFirstLoad = React.useRef(true);
+
   const dispatch = useDispatch();
   const statistics = useSelector(selectStatistics);
 
@@ -168,15 +172,36 @@ const StatisticsMain = () => {
       )
     : [];
   console.log('видимые категории', visibleCategories);
-  useEffect(() => {
-    const { start, end } = getStartEndDates(selectedMonth, selectedYear);
 
-    console.log("📅 Start:", start, "End:", end);
+  
+  // useEffect(() => {
+  //   const { start, end } = getStartEndDates(selectedMonth, selectedYear);
 
-    dispatch(getTransactionsStatistics({ start, end })).then((res) => {
-      console.log("👉 Transactions:", res.payload?.data);
-    });
-  }, [selectedMonth, selectedYear, dispatch]);
+  //   console.log("📅 Start:", start, "End:", end);
+
+  //   dispatch(getTransactionsStatistics({ start, end })).then((res) => {
+  //     console.log("👉 Transactions:", res.payload?.data);
+  //   });
+  // }, [selectedMonth, selectedYear, dispatch]);
+useEffect(() => {
+  const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+
+  dispatch(getTransactionsStatistics({ start, end })).then((res) => {
+    const stats = res.payload?.data;
+    console.log("👉 Transactions:", stats);
+
+    if (isFirstLoad.current && Array.isArray(stats)) {
+      const allCategories = Array.from(
+        new Set(stats.map((s) => s.category))
+      ).map((category) => ({
+        value: category,
+        label: category,
+      }));
+      setSelected(allCategories);
+      isFirstLoad.current = false;
+    }
+  });
+}, [selectedMonth, selectedYear, dispatch]);
 
   useEffect(() => {
     localStorage.setItem("selectedCategories", JSON.stringify(selected));
@@ -261,7 +286,7 @@ const StatisticsMain = () => {
                   
             })}
           </div> 
-                        {/* <div className="expensesIncomeBlock">
+                        <div className="expensesIncomeBlock">
             <div className="expenses">
               Expenses:
               <span className="expensesNumber">
@@ -278,27 +303,7 @@ const StatisticsMain = () => {
                 })}
               </span>
             </div>
-          </div> */}
-{selected.length > 0 && (
-  <div className="expensesIncomeBlock">
-    <div className="expenses">
-      Expenses:
-      <span className="expensesNumber">
-        {totalExpenses.toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-        })}
-      </span>
-    </div>
-    <div className="income">
-      Income:
-      <span className="incomeNumber">
-        {totalIncome.toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-        })}
-      </span>
-    </div>
-  </div>
-)}
+          </div>
 
 
 
