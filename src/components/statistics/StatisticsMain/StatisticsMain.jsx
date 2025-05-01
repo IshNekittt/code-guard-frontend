@@ -27,16 +27,16 @@ const years = ["2020", "2021", "2022", "2023", "2024", "2025"];
 
 const categoryColors = {
   "Main expenses": "#FF6B6B",
-  Products: "#FF6B6B",
-  Car: "#FF6B6B",
+  "Products": "#FF6B6B",
+  "Car": "#FF6B6B",
   "Self care": "#A18AFF",
   "Child care": "#7BDFF2",
   "Household products": "#5C7CFA",
-  Education: "#63E6BE",
-  Leisure: "#38D9A9",
+  "Education": "#63E6BE",
+  "Leisure": "#38D9A9",
   "Other expenses": "#69DB7C",
-  Entertainment: "#69DB7C",
-  Income: "#69DB7C",
+  "Entertainment": "#69DB7C",
+  "Income": "#69DB7C",
 };
 
 const getStartEndDates = (monthName, year) => {
@@ -227,7 +227,7 @@ const StatisticsMain = () => {
               return (
                   <div key={cat.category} className="categoriWrapper">
                 <div className="nameCategoriContainer">
-                  <div className="quad" />
+                  <div className="quad" style={{ backgroundColor: color }} />
                   <span className="quadStyle">{cat.category}</span>
                       </div>
                      <span className="numberSpan">{cat.summ?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || '0.00'}</span>
