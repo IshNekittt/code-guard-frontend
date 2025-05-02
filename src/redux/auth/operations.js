@@ -67,14 +67,13 @@ export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
   }
 });
 export const getTransactionsStatistics = createAsyncThunk(
-    "transactions/fetchAllTransaction",
-    async ({ start, end }, thunkAPI) => {
-      const state = thunkAPI.getState();
-        
-      const persistedToken = state.auth.token;
-       
+  "transactions/fetchAllTransaction",
+  async ({ start, end }, thunkAPI) => {
+    const state = thunkAPI.getState();
 
-     if (!persistedToken) {
+    const persistedToken = state.auth.token;
+
+    if (!persistedToken) {
       return thunkAPI.rejectWithValue("Not authorized");
     }
 
@@ -94,11 +93,17 @@ export const getTransactionsStatistics = createAsyncThunk(
   }
 );
 
-export const registration = createAsyncThunk("auth/register", async (user) => {
-  try {
-    const { data } = await axios.post("/auth/register", user);
-    return data;
-  } catch (e) {
-    throw e;
+export const registration = createAsyncThunk(
+  "auth/register",
+  async (user, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/auth/register", user);
+      return data;
+    } catch (error) {
+      if (error.response?.status === 409) {
+        return thunkAPI.rejectWithValue("Пользователь уже существует.");
+      }
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);

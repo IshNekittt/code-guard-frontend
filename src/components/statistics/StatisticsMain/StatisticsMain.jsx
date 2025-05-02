@@ -1,17 +1,13 @@
-
-
-
 import { useDispatch, useSelector } from "react-redux";
-import { selectStatistics } from "../../../redux/auth/selectors.js";
 import React, { useState, useEffect } from "react";
-import { useRef } from "react";
 import Chart from "../Chart/Chart.jsx";
 import "./StatisticsMain.css";
 import Select from "react-select";
-import { getTransactionsStatistics } from "../../../redux/auth/operations.js";
-import { motion, AnimatePresence } from 'framer-motion';
-import { components } from 'react-select';
-import { FaChevronDown } from 'react-icons/fa';
+import { motion, AnimatePresence } from "framer-motion";
+import { components } from "react-select";
+import { FaChevronDown } from "react-icons/fa";
+import { selectStatistics } from "../../../redux/statistics/selectors.js";
+import { getTransactions } from "../../../redux/transactionsOp.js";
 const months = [
   "January",
   "February",
@@ -31,16 +27,16 @@ const years = ["2020", "2021", "2022", "2023", "2024", "2025"];
 
 const categoryColors = {
   "Main expenses": "#FF6B6B",
-  "Products": "#FF6B6B",
-  "Car": "#FF6B6B",
+  Products: "#FF6B6B",
+  Car: "#FF6B6B",
   "Self care": "#A18AFF",
   "Child care": "#7BDFF2",
   "Household products": "#5C7CFA",
-  "Education": "#63E6BE",
-  "Leisure": "#38D9A9",
+  Education: "#63E6BE",
+  Leisure: "#38D9A9",
   "Other expenses": "#69DB7C",
-  "Entertainment": "#69DB7C",
-  "Income": "#69DB7C",
+  Entertainment: "#69DB7C",
+  Income: "#69DB7C",
 };
 
 const getStartEndDates = (monthName, year) => {
@@ -59,14 +55,17 @@ const getStartEndDates = (monthName, year) => {
 };
 
 const StatisticsMain = () => {
-  const [selectedMonth, setSelectedMonth] = useState("April");
-  const [selectedYear, setSelectedYear] = useState("2024");
-
+  const [filteredStatistics, setFilteredStatistics] = useState([]);
+  const now = new Date();
+  const [selectedMonth, setSelectedMonth] = useState(months[now.getMonth()]);
+  const [selectedYear, setSelectedYear] = useState(String(now.getFullYear()));
+  // const [selectedMonth, setSelectedMonth] = useState("April");
+  // const [selectedYear, setSelectedYear] = useState("2024");
 
   const dispatch = useDispatch();
 
   const statistics = useSelector(selectStatistics);
-  //console.log("приходит в статистикс", statistics);
+  // console.log(statistics);
 
   const monthOptions = months.map((month) => ({
     value: month,
@@ -78,17 +77,13 @@ const StatisticsMain = () => {
     label: year,
   }));
 
- 
-
   const [selected, setSelected] = useState(() => {
-    const saved = localStorage.getItem("selectedCategories");   
+    const saved = localStorage.getItem("selectedCategories");
     return saved ? JSON.parse(saved) : [];
-     
   });
 
-
   //console.log(' cелектед лог ', selected)
-  
+
   const toggleCategory = (option) => {
     setSelected((prevSelected) => {
       const isAlreadySelected = prevSelected.some(
@@ -97,9 +92,8 @@ const StatisticsMain = () => {
       if (isAlreadySelected) {
         // console.log(' возвращфет  превСел если СелЕктВыбран', prevSelected)
         return prevSelected.filter((sel) => sel.value !== option.value);
-       
       } else {
-         //console.log(' возвращфет  превСел если СелЕктНеВыбран', option)
+        //console.log(' возвращфет  превСел если СелЕктНеВыбран', option)
         return [...prevSelected, option];
       }
     });
@@ -110,14 +104,14 @@ const StatisticsMain = () => {
     const isSelected = selected.some((sel) => sel.value === data.value);
 
     const baseStyle = {
-      padding: '10px 14px',
-     
-      cursor: 'pointer',
-      transition: 'transform 0.2s ease',
-      transform: 'scale(1)',
-      color: isSelected ? '#FF868D' : '#fff',
-      fontWeight: isSelected ? 'bold' : 'normal',
-      border: 'none',
+      padding: "10px 14px",
+
+      cursor: "pointer",
+      transition: "transform 0.2s ease",
+      transform: "scale(1)",
+      color: isSelected ? "#FF868D" : "#fff",
+      fontWeight: isSelected ? "bold" : "normal",
+      border: "none",
     };
 
     if (isFocused) {
@@ -126,7 +120,7 @@ const StatisticsMain = () => {
     }
 
     return (
-     <div
+      <div
         ref={innerRef}
         {...innerProps}
         style={baseStyle}
@@ -140,104 +134,124 @@ const StatisticsMain = () => {
     );
   };
 
+  const CustomMenu = (props) => {
+    const { menuIsOpen } = props.selectProps;
 
+    return (
+      <AnimatePresence>
+        {menuIsOpen && (
+          <motion.div
+            key="menu"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            // style={{ position: 'absolute', width: '100%', zIndex: 999 }}
+          >
+            <components.Menu {...props} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    );
+  };
+  const CustomDropdownIndicator = (props) => {
+    const isOpen = props.selectProps.menuIsOpen;
 
-const CustomMenu = (props) => {
-  const { menuIsOpen } = props.selectProps;
+    return (
+      <components.DropdownIndicator {...props}>
+        <FaChevronDown
+          style={{
+            transition: "transform 0.2s ease",
+            transform: isOpen ? "rotate(0deg)" : "rotate(180deg)",
+            color: "#ccc",
+          }}
+        />
+      </components.DropdownIndicator>
+    );
+  };
+  const CustomDropdownIndicatorSecond = (props) => {
+    const isOpen = props.selectProps.menuIsOpen;
 
-  return (
-    <AnimatePresence>
-      {menuIsOpen && (
-        <motion.div
-          key="menu"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.2 }}
-          // style={{ position: 'absolute', width: '100%', zIndex: 999 }}
-        >
-          <components.Menu {...props} />
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-};
-const CustomDropdownIndicator = (props) => {
-  const isOpen = props.selectProps.menuIsOpen;
+    return (
+      <components.DropdownIndicator {...props}>
+        <FaChevronDown
+          style={{
+            transition: "transform 0.2s ease",
+            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+            color: "#ccc",
+          }}
+        />
+      </components.DropdownIndicator>
+    );
+  };
 
-  return (
-    <components.DropdownIndicator {...props}>
-      <FaChevronDown
-        style={{
-          transition: 'transform 0.2s ease',
-          transform: isOpen ? 'rotate(0deg)' : 'rotate(180deg)',
-          color: '#ccc',
-        }}
-      />
-    </components.DropdownIndicator>
-  );
-};
-const CustomDropdownIndicatorSecond = (props) => {
-  const isOpen = props.selectProps.menuIsOpen;
-
-  return (
-    <components.DropdownIndicator {...props}>
-      <FaChevronDown
-        style={{
-          transition: 'transform 0.2s ease',
-          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-          color: '#ccc',
-        }}
-      />
-    </components.DropdownIndicator>
-  );
-};
-
- const categoryOptions = Array.isArray(statistics)
-    ? Array.from(new Set(statistics.map((statis) => statis.category))).map(
-        (category) => ({
-          value: category,
-          label: category,
-        })
-      )
+  const categoryOptions = Array.isArray(filteredStatistics)
+    ? Array.from(
+        new Set(filteredStatistics.map((statis) => statis.category))
+      ).map((category) => ({
+        value: category,
+        label: category,
+      }))
     : [];
   // console.log("Что выбрано в категориОпц", categoryOptions);
-    
 
-  const totalIncome = Array.isArray(statistics)
-    ? statistics
+  const totalIncome = Array.isArray(filteredStatistics)
+    ? filteredStatistics
         .filter((stat) => stat.category === "Income")
         .reduce((acc, stat) => acc + (stat.summ || 0), 0)
     : 0;
 
-  const totalExpenses = Array.isArray(statistics)
-    ? statistics
+  const totalExpenses = Array.isArray(filteredStatistics)
+    ? filteredStatistics
         .filter((stat) => stat.category !== "Income")
         .reduce((acc, stat) => acc + (stat.summ || 0), 0)
     : 0;
-  
-  
 
-  
- const visibleCategories = Array.isArray(statistics)
-    ? statistics.filter((stat) =>
+  const visibleCategories = Array.isArray(filteredStatistics)
+    ? filteredStatistics.filter((stat) =>
         selected.some((sel) => sel.value === stat.category)
       )
     : [];
-  
-  
- // console.log('видимые категории', visibleCategories);
 
+  // console.log('видимые категории', visibleCategories);
 
+  // useEffect(() => {
+  //   const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+
+  //   dispatch(getTransactions({ start, end })).then((res) => {
+  //     const stats = res.payload?.data;
+
+  //     if (Array.isArray(stats)) {
+  //       const allCategories = Array.from(
+  //         new Set(stats.map((s) => s.category))
+  //       ).map((category) => ({
+  //         value: category,
+  //         label: category,
+  //       }));
+
+  //       setSelected(allCategories);
+  //       localStorage.setItem(
+  //         "selectedCategories",
+  //         JSON.stringify(allCategories)
+  //       );
+  //     }
+  //   });
+  // }, [selectedMonth, selectedYear, dispatch]);
   useEffect(() => {
-  const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+    const { start, end } = getStartEndDates(selectedMonth, selectedYear);
 
-  dispatch(getTransactionsStatistics({ start, end })).then((res) => {
-    const stats = res.payload?.data;
+    dispatch(getTransactions()).then((res) => {
+      const allTransactions = res.payload;
 
-    if (Array.isArray(stats)) {
+      const filtered = allTransactions.filter((tx) => {
+        const date = new Date(tx.date);
+        return date >= new Date(start) && date <= new Date(end);
+      });
+
+      setFilteredStatistics(filtered);
+
       const allCategories = Array.from(
-        new Set(stats.map((s) => s.category))
+        new Set(filtered.map((s) => s.category))
       ).map((category) => ({
         value: category,
         label: category,
@@ -245,12 +259,8 @@ const CustomDropdownIndicatorSecond = (props) => {
 
       setSelected(allCategories);
       localStorage.setItem("selectedCategories", JSON.stringify(allCategories));
-    }
-  });
-}, [selectedMonth, selectedYear, dispatch]);
-
-  
- 
+    });
+  }, [selectedMonth, selectedYear, dispatch]);
 
   useEffect(() => {
     localStorage.setItem("selectedCategories", JSON.stringify(selected));
@@ -269,104 +279,106 @@ const CustomDropdownIndicatorSecond = (props) => {
         <div className="raitBar">
           <div className="selectBox">
             <div className="selectWrapper">
-               <Select
-              value={monthOptions.find((option) => option.value === selectedMonth)}
-              onChange={(option) => setSelectedMonth(option.value)}
-              options={monthOptions}
-              className="custom-select"
+              <Select
+                value={monthOptions.find(
+                  (option) => option.value === selectedMonth
+                )}
+                onChange={(option) => setSelectedMonth(option.value)}
+                options={monthOptions}
+                className="custom-select"
                 classNamePrefix="custom-select"
                 components={{
-                  DropdownIndicator: CustomDropdownIndicator, 
-              }}
-            />
+                  DropdownIndicator: CustomDropdownIndicator,
+                }}
+              />
             </div>
-           
+
             <div className="selectWrapper">
               <Select
-              value={yearsOptions.find((option) => option.value === selectedYear)}
-              onChange={(option) => setSelectedYear(option.value)}
-              options={yearsOptions}
-              className="custom-select"
+                value={yearsOptions.find(
+                  (option) => option.value === selectedYear
+                )}
+                onChange={(option) => setSelectedYear(option.value)}
+                options={yearsOptions}
+                className="custom-select"
                 classNamePrefix="custom-select"
                 components={{
-               DropdownIndicator: CustomDropdownIndicatorSecond, 
-              }}
-            />
-              </div>
-            
+                  DropdownIndicator: CustomDropdownIndicatorSecond,
+                }}
+              />
+            </div>
           </div>
-           
-          
-            <Select
-              isMulti
-              options={categoryOptions}
-              classNamePrefix="category-select"
-              className="category-select"
-              components={{
-                MultiValue: () => null,
-                Option: CustomOption,
-                 Menu: CustomMenu, 
-              }}
-              value={[]}
-              placeholder={
-                <div
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <span>Category</span>
-                  <span>Sum</span>
-                </div>
-              }
-            />
+
+          <Select
+            isMulti
+            options={categoryOptions}
+            classNamePrefix="category-select"
+            className="category-select"
+            components={{
+              MultiValue: () => null,
+              Option: CustomOption,
+              Menu: CustomMenu,
+            }}
+            value={[]}
+            placeholder={
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span>Category</span>
+                <span>Sum</span>
+              </div>
+            }
+          />
           <div className="qwe">
-               {visibleCategories.map((cat) => {
+            {visibleCategories.map((cat) => {
               const color = categoryColors[cat.category] || "#ccc";
               return (
-              
-                  <div key={cat._id} className="categoriWrapper">
-                <div className="nameCategoriContainer">
-                  <div className="quad" style={{ backgroundColor: color }} />
-                  <span className="quadStyle">{cat.category}</span>
-                      </div>
-                     <span className="numberSpan">{cat.summ?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || '0.00'}</span>
+                <div key={cat._id} className="categoriWrapper">
+                  <div className="nameCategoriContainer">
+                    <div className="quad" style={{ backgroundColor: color }} />
+                    <span className="quadStyle">{cat.category}</span>
                   </div>
-               
-              )              
+                  <span className="numberSpan">
+                    {cat.summ?.toLocaleString(undefined, {
+                      minimumFractionDigits: 2,
+                    }) || "0.00"}
+                  </span>
+                </div>
+              );
             })}
           </div>
-           
-                      
-                      {visibleCategories.length > 0 ? (
-              <div className="expensesIncomeBlock">
-                <div className="expenses">
-                  Expenses:
-                  <span className="expensesNumber">
-                    {totalExpenses.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                    })}
-                  </span>
-                </div>
-                <div className="income">
-                  Income:
-                  <span className="incomeNumber">
-                    {totalIncome.toLocaleString(undefined, {
-                      minimumFractionDigits: 2,
-                    })}
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <div className="selectExpensesIncomeBlock">
-                Sorry, there are no transactions in the selected period.
-              </div>
-            )}
 
+          {visibleCategories.length > 0 ? (
+            <div className="expensesIncomeBlock">
+              <div className="expenses">
+                Expenses:
+                <span className="expensesNumber">
+                  {totalExpenses.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                  })}
+                </span>
+              </div>
+              <div className="income">
+                Income:
+                <span className="incomeNumber">
+                  {totalIncome.toLocaleString(undefined, {
+                    minimumFractionDigits: 2,
+                  })}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="selectExpensesIncomeBlock">
+              Sorry, there are no transactions in the selected period.
+            </div>
+          )}
+        </div>
       </div>
-      </div>
-      </div>
+    </div>
   );
 };
 
