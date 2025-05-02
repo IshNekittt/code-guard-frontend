@@ -331,6 +331,18 @@ max-height: 200px;
     color: #FFB627;
 }
 
+
+@keyframes fadeInMenu {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 .custom-select__control {
     background-color: rgba(74, 86, 226, 0.1) !important;
     border: 1px solid rgba(255, 255, 255, 0.6) !important;
@@ -363,6 +375,7 @@ max-height: 200px;
     border-radius: 8px !important;
     background-color: #50309A !important;
     overflow: hidden !important;
+    animation: fadeInMenu 0.2s ease-out !important;
 }
 
 /* Прокрутка */
@@ -453,7 +466,35 @@ max-height: 200px;
     max-height: 200px;
 overflow: auto;
 }
+
+
 /* Основной контрол */
+
+@keyframes fadeInOption {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes fadeInMenu {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* .category-select__option {
+    animation: fadeInOption 0.2s ease-in-out !important;
+} */
 .category-select__control {
     background-color: #523B7E99 !important;
     backdrop-filter: blur(100px) !important;
@@ -489,6 +530,7 @@ overflow: auto;
     max-width: 395px !important;
     max-height: 250px !important;
     scrollbar-color: #888 transparent !important;
+    /* animation: fadeInMenu 0.2s ease-out !important; */
 }
 
 .category-select__menu-list {
@@ -538,6 +580,11 @@ overflow: auto;
     color: inherit !important;
     font-weight: normal !important;
 }
+.selectExpensesIncomeBlock{
+    color: rgb(204, 204, 204);
+        text-align: center;
+        margin-top: 20px;
+}
 
 @media (max-width: 1280px) {
     .category-select__control {
@@ -569,6 +616,11 @@ overflow: auto;
         max-width: 336px;
             width: 100%;
         }
+                .selectExpensesIncomeBlock {
+                  max-width: 336px;
+                  width: 100%;
+
+                }
 }
 
 @media (max-width: 768px) {
