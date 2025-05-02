@@ -177,57 +177,42 @@ const StatisticsMain = () => {
   console.log('видимые категории', visibleCategories);
 
 
-  
   // useEffect(() => {
   //   const { start, end } = getStartEndDates(selectedMonth, selectedYear);
 
-  //   console.log("📅 Start:", start, "End:", end);
-
   //   dispatch(getTransactionsStatistics({ start, end })).then((res) => {
-  //     console.log("👉 Transactions:", res.payload?.data);
+  //     const stats = res.payload?.data;
+  //     if (Array.isArray(stats) && selected.length === 0) {
+  //       const allCategories = Array.from(new Set(stats.map((s) => s.category))).map(
+  //         (category) => ({
+  //           value: category,
+  //           label: category,
+  //         })
+  //       );
+  //       setSelected(allCategories);
+  //     }
   //   });
   // }, [selectedMonth, selectedYear, dispatch]);
-
-  
-// useEffect(() => {
-//   const { start, end } = getStartEndDates(selectedMonth, selectedYear);
-
-//   dispatch(getTransactionsStatistics({ start, end })).then((res) => {
-//     const stats = res.payload?.data;
-//     console.log("👉 Transactions:", stats);
-
-//     if (isFirstLoad.current && Array.isArray(stats)) {
-//       const allCategories = Array.from(
-//         new Set(stats.map((s) => s.category))
-//       ).map((category) => ({
-//         value: category,
-//         label: category,
-//       }));
-//       setSelected(allCategories);
-//       isFirstLoad.current = false;
-//     }
-//   });
-// }, [selectedMonth, selectedYear, dispatch]);
   useEffect(() => {
-    const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+  const { start, end } = getStartEndDates(selectedMonth, selectedYear);
 
-    dispatch(getTransactionsStatistics({ start, end })).then((res) => {
-      const stats = res.payload?.data;
+  dispatch(getTransactionsStatistics({ start, end })).then((res) => {
+    const stats = res.payload?.data;
 
+    if (Array.isArray(stats)) {
+      const allCategories = Array.from(
+        new Set(stats.map((s) => s.category))
+      ).map((category) => ({
+        value: category,
+        label: category,
+      }));
 
+      setSelected(allCategories);
+      localStorage.setItem("selectedCategories", JSON.stringify(allCategories));
+    }
+  });
+}, [selectedMonth, selectedYear, dispatch]);
 
-
-      if (Array.isArray(stats) && selected.length === 0) {
-        const allCategories = Array.from(new Set(stats.map((s) => s.category))).map(
-          (category) => ({
-            value: category,
-            label: category,
-          })
-        );
-        setSelected(allCategories);
-      }
-    });
-  }, [selectedMonth, selectedYear, dispatch]);
   
  
 
