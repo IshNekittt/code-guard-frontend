@@ -54,7 +54,8 @@ const slice = createSlice({
           refresh.rejected,
           logIn.rejected,
           logOut.rejected,
-          getUserInfo.rejected
+          getUserInfo.rejected,
+          registration.rejected
         ),
         (state) => {
           state.isRefreshing = false;
