@@ -6,7 +6,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import StatisticsTest from "./StatisticsTest";
 
-const SideBar = () => {
+const SideBar = ({ balance, setBalance }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const { pathname } = useLocation();
 
@@ -20,7 +20,8 @@ const SideBar = () => {
   const isDesktop = width >= 1280;
   const isMobile = width < 768;
   const showStatistics = pathname.includes("statistics");
-  const isBalancePage = pathname === "/dashboard/home";
+  const isBalancePage =
+    pathname === "/dashboard/home" || pathname === "/dashboard/transactions";
   const isExchangeRatesPage = pathname === "/dashboard/currency";
   // const isExchangeRatesPage = pathname.includes("exchange-rates");
 
@@ -29,7 +30,9 @@ const SideBar = () => {
       <div className={s.sidebar}>
         <div className={s.balance_content}>
           <Navigation />
-          {isBalancePage && <Balance />}
+          {isBalancePage && (
+            <Balance balance={balance} setBalance={setBalance} />
+          )}
         </div>
 
         {(isTablet || isDesktop) && !isExchangeRatesPage && <ExchangeRates />}

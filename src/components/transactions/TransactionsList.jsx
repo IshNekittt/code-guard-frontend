@@ -7,9 +7,11 @@ import ButtonAddTransactions from "./ButtonAddTransactions";
 import { useEffect, useState } from "react";
 import ModalAddTransaction from "../ModalAddTransaction/ModalAddTransaction";
 import { getTransactions } from "../../redux/transactionsOp";
+import { useOutletContext } from "react-router-dom";
 // import EditTransactionForm from "../EditModal/EditTransactionForm";
 
 const TransactionsList = () => {
+  const { balance, setBalance } = useOutletContext();
   const transactions = useSelector(selectTransaction);
   const dispatch = useDispatch();
 
@@ -35,17 +37,29 @@ const TransactionsList = () => {
         <h3 className={css.noTransactions}>No transactions</h3>
         <ButtonAddTransactions openModal={openModal} />
         {isModalAdd && (
-          <ModalAddTransaction openModal={isModalAdd} closeModal={closeModal} />
+          <ModalAddTransaction
+            openModal={isModalAdd}
+            closeModal={closeModal}
+            setBalance={setBalance}
+          />
         )}
       </div>
     );
+  }
+  if (!Array.isArray(transactions)) {
+    console.error("transactions is not an array", transactions);
+    return null;
   }
 
   return (
     <div className={css.transactionList}>
       <ButtonAddTransactions openModal={openModal} />
       {isModalAdd && (
-        <ModalAddTransaction openModal={isModalAdd} closeModal={closeModal} />
+        <ModalAddTransaction
+          openModal={isModalAdd}
+          closeModal={closeModal}
+          setBalance={setBalance}
+        />
       )}
       {isMobile ? (
         transactions.map((transact, ind) => (
@@ -75,6 +89,7 @@ const TransactionsList = () => {
               openEditModal={(id) => openEditModal(transact._id)}
               closeEditModal={closeEditModal}
               editingTransactionId={editingTransactionId}
+              setBalance={setBalance}
             />
           ))}
         </div>

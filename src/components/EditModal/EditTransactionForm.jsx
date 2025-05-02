@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import css from "./EditTransactionForm.module.css";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -14,14 +14,17 @@ import Select from "react-select";
 import customSelectStyles from "../ModalAddTransaction/customSelectStyles.js";
 import "izitoast/dist/css/iziToast.min.css";
 import iziToast from "izitoast";
+import axios from "../../api/axios.js";
 
 const EditTransactionForm = ({
   openModal,
   closeModal,
   data: { category, comment, date, summ, type, _id },
+  setBalance,
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [transactionType, setTransactionType] = useState("income");
+  const token = useSelector((state) => state.auth.token);
 
   const expenseOptions = [
     { value: "Main expenses", label: "Main expenses" },
@@ -90,6 +93,12 @@ const EditTransactionForm = ({
 
     try {
       await dispatch(patchTransaction({ id: _id, payload })).unwrap();
+      const res = await axios.get("/sidebar/balance", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBalance(res.data.balance || 0);
       reset();
       closeModal();
     } catch (err) {

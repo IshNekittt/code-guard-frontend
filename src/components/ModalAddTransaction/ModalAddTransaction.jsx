@@ -6,7 +6,7 @@ import { IoAddOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -16,10 +16,12 @@ import Select from "react-select";
 import customSelectStyles from "./customSelectStyles";
 import "izitoast/dist/css/iziToast.min.css";
 import iziToast from "izitoast";
+import axios from "../../api/axios";
 
-const ModalAddTransaction = ({ openModal, closeModal }) => {
+const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [transactionType, setTransactionType] = useState("income");
+  const token = useSelector((state) => state.auth.token);
 
   const expenseOptions = [
     { value: "Main expenses", label: "Main expenses" },
@@ -88,6 +90,12 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
 
     try {
       await dispatch(addTransaction(payload)).unwrap();
+      const res = await axios.get("/sidebar/balance", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBalance(res.data.balance || 0);
       reset();
       closeModal();
     } catch (err) {
