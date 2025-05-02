@@ -18,7 +18,7 @@
     height: 100%;
 
     width: 100%;
-    max-width: 80rem;
+    /* max-width: 80rem; */
 
     /* margin-top: 73px; */
 }
@@ -42,7 +42,7 @@
     .wrapper {
         padding: 8px;
         width: 100%;
-        height: 900px;
+        height: 502px;
     }
 
 
@@ -96,8 +96,11 @@
 
     .wrapper {
         height: 100%;
+        
         min-width: 100px;
         width: 100%;
+        margin-bottom: 0px;
+        padding-bottom: 20px;
     }
 
     .selectWrapper {
@@ -156,7 +159,7 @@
     .chartSection {
         width: 100%;
         max-width: 336px;
-        margin-right: 30px;
+        margin-right: 0px;
         margin-top: 97px;
 
     }
@@ -191,7 +194,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 395px;
-
+height: 400px;
     margin-top: 77px;
 
 }
@@ -212,10 +215,23 @@
 }
 
 .selectorBlock {
-    max-height: 250px;
+    min-height: 100px;
+    
     overflow-y: auto;
+height: 250px;
+        max-height: none;
+       border-bottom: 8px;
+       border-top: 8px;
+    border-right: 8px;
+    border-left: 8px;
 }
+.selectedCategoryRenderBlock{
+max-height: 200px;
 
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 .selectorBlock::-webkit-scrollbar {
     width: 6px;
     /* тонкий скроллбар */
@@ -375,7 +391,14 @@
     color: #FF868D !important;
     font-weight: normal !important;
 }
+  /* .raitBar {
+      width: 100%;
+      max-width: 395px;
+      margin-right: 20px;
+      margin-top: 24px;
+    height: 400px;
 
+  } */
 
 @media (max-width: 1280px) {
     .raitBar {
@@ -383,6 +406,7 @@
         max-width: 395px;
         margin-right: 20px;
         margin-top: 24px;
+        height: 400px;
 
     }
 
@@ -419,11 +443,16 @@
         margin-top: 0px;
         width: 100%;
         max-width: 280px;
+    height: 600px;
+        
 
     }
 
 }
-
+.qwe {
+    max-height: 200px;
+overflow: auto;
+}
 /* Основной контрол */
 .category-select__control {
     background-color: #523B7E99 !important;
@@ -440,6 +469,8 @@
     border: none !important;
     width: 100% !important;
     max-width: 395px !important;
+    overflow: hidden !important;
+    
 }
 
 .category-select__control--is-focused {
@@ -450,20 +481,26 @@
     background: #50309A !important;
     margin-top: 4px !important;
     border-radius: 8px !important;
-    overflow: hidden !important;
+    /* overflow: hidden !important; */
+    overflow: auto !important;
     padding: 0 !important;
     border: none !important;
     width: 100%;
     max-width: 395px !important;
-    max-height: 444px !important;
+    max-height: 250px !important;
+    scrollbar-color: #888 transparent !important;
 }
 
 .category-select__menu-list {
     padding: 0 !important;
     max-height: 240px !important;
-    overflow-y: auto !important;
+    overflow: auto !important;
     overflow-x: hidden !important;
     scrollbar-width: thin !important;
+    max-height: 350px !important;
+    /* overflow: hidden !important; */
+    /* maxHeight: 300, */
+       
     /* Firefox */
     scrollbar-color: #888 transparent !important;
 }
@@ -508,17 +545,36 @@
         width: 100% !important;
 
     }
+        .category-select__menu {
+          
+           
+            width: 336px!important;
+            max-width: 395px !important;
+            max-height: 444px !important;
+            scrollbar-color: #888 transparent !important;
+        }
+        .category-select__menu-list {
+            padding: 0 !important;
+            max-height: 240px !important;
+          width: 336px!important;        
+        }
 
     .expensesIncomeBlock {
         max-width: 336px;
         width: 100%;
     }
+        .qwe {
+            
+            overflow: auto;
+        max-width: 336px;
+            width: 100%;
+        }
 }
 
 @media (max-width: 768px) {
     .category-select__control {
         width: 100% !important;
-        max-width: 280px !important;
+        width: 280px !important;
 
 
     }
@@ -536,6 +592,7 @@
         width: 100%;
         margin-left: auto;
         margin-right: auto;
+        /* height: 200px; */
     }
 
     .categoriWrapper {
@@ -548,5 +605,12 @@
         max-width: 280px;
         margin-left: auto;
         margin-right: auto;
+        
     }
+        .qwe {
+            max-height: 500px;
+            overflow: auto;
+            max-width: 280px;
+                width: 100%;
+        }
 }

@@ -1,8 +1,10 @@
+
+
+
 import { useDispatch, useSelector } from "react-redux";
 import { selectStatistics } from "../../../redux/auth/selectors.js";
 import React, { useState, useEffect } from "react";
-// import StatisticsDashboard from '../StatisticsDashboard';
-// import StatisticsTable from '../StatisticsTable';
+import { useRef } from "react";
 import Chart from "../Chart/Chart.jsx";
 import "./StatisticsMain.css";
 import Select from "react-select";
@@ -57,8 +59,13 @@ const getStartEndDates = (monthName, year) => {
 const StatisticsMain = () => {
   const [selectedMonth, setSelectedMonth] = useState("April");
   const [selectedYear, setSelectedYear] = useState("2024");
+
+  //const isFirstLoad = React.useRef(true);
+
   const dispatch = useDispatch();
+
   const statistics = useSelector(selectStatistics);
+  console.log("приходит в статистикс", statistics);
 
   const monthOptions = months.map((month) => ({
     value: month,
@@ -70,28 +77,29 @@ const StatisticsMain = () => {
     label: year,
   }));
 
-  const categoryOptions = Array.isArray(statistics)
-    ? Array.from(new Set(statistics.map((statis) => statis.category))).map(
-        (category) => ({
-          value: category,
-          label: category,
-        })
-      )
-    : [];
+ 
 
   const [selected, setSelected] = useState(() => {
     const saved = localStorage.getItem("selectedCategories");
+    
     return saved ? JSON.parse(saved) : [];
+     
   });
 
+
+  console.log(' cелектед лог стоит за блоком', selected)
+  
   const toggleCategory = (option) => {
     setSelected((prevSelected) => {
       const isAlreadySelected = prevSelected.some(
         (sel) => sel.value === option.value
       );
       if (isAlreadySelected) {
+         console.log(' возвращфет  превСел если СелЕктВыбран', prevSelected)
         return prevSelected.filter((sel) => sel.value !== option.value);
+       
       } else {
+         console.log(' возвращфет  превСел если СелЕктНеВыбран', option)
         return [...prevSelected, option];
       }
     });
@@ -132,6 +140,18 @@ const StatisticsMain = () => {
     );
   };
 
+
+ const categoryOptions = Array.isArray(statistics)
+    ? Array.from(new Set(statistics.map((statis) => statis.category))).map(
+        (category) => ({
+          value: category,
+          label: category,
+        })
+      )
+    : [];
+   console.log("Что выбрано в категориОпц", categoryOptions);
+    
+
   const totalIncome = Array.isArray(statistics)
     ? statistics
         .filter((stat) => stat.category === "Income")
@@ -143,21 +163,73 @@ const StatisticsMain = () => {
         .filter((stat) => stat.category !== "Income")
         .reduce((acc, stat) => acc + (stat.summ || 0), 0)
     : 0;
+  
+  
 
-  const visibleCategories = Array.isArray(statistics)
+  
+ const visibleCategories = Array.isArray(statistics)
     ? statistics.filter((stat) =>
         selected.some((sel) => sel.value === stat.category)
       )
     : [];
+  
+  
+  console.log('видимые категории', visibleCategories);
+
+
+  
+  // useEffect(() => {
+  //   const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+
+  //   console.log("📅 Start:", start, "End:", end);
+
+  //   dispatch(getTransactionsStatistics({ start, end })).then((res) => {
+  //     console.log("👉 Transactions:", res.payload?.data);
+  //   });
+  // }, [selectedMonth, selectedYear, dispatch]);
+
+  
+// useEffect(() => {
+//   const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+
+//   dispatch(getTransactionsStatistics({ start, end })).then((res) => {
+//     const stats = res.payload?.data;
+//     console.log("👉 Transactions:", stats);
+
+//     if (isFirstLoad.current && Array.isArray(stats)) {
+//       const allCategories = Array.from(
+//         new Set(stats.map((s) => s.category))
+//       ).map((category) => ({
+//         value: category,
+//         label: category,
+//       }));
+//       setSelected(allCategories);
+//       isFirstLoad.current = false;
+//     }
+//   });
+// }, [selectedMonth, selectedYear, dispatch]);
   useEffect(() => {
     const { start, end } = getStartEndDates(selectedMonth, selectedYear);
 
-    console.log("📅 Start:", start, "End:", end);
-
     dispatch(getTransactionsStatistics({ start, end })).then((res) => {
-      console.log("👉 Transactions:", res.payload?.data);
+      const stats = res.payload?.data;
+
+
+
+
+      if (Array.isArray(stats) && selected.length === 0) {
+        const allCategories = Array.from(new Set(stats.map((s) => s.category))).map(
+          (category) => ({
+            value: category,
+            label: category,
+          })
+        );
+        setSelected(allCategories);
+      }
     });
   }, [selectedMonth, selectedYear, dispatch]);
+  
+ 
 
   useEffect(() => {
     localStorage.setItem("selectedCategories", JSON.stringify(selected));
@@ -196,8 +268,8 @@ const StatisticsMain = () => {
               </div>
             
           </div>
-
-          <div className="selectorBlock">
+           
+          {/* <div className="selectorBlock"> */}
             <Select
               isMulti
               options={categoryOptions}
@@ -221,23 +293,27 @@ const StatisticsMain = () => {
                 </div>
               }
             />
-
-            {visibleCategories.map((cat) => {
+          <div className="qwe">
+               {visibleCategories.map((cat) => {
               const color = categoryColors[cat.category] || "#ccc";
               return (
-                  <div key={cat.category} className="categoriWrapper">
+              
+                  <div key={cat._id} className="categoriWrapper">
                 <div className="nameCategoriContainer">
                   <div className="quad" style={{ backgroundColor: color }} />
                   <span className="quadStyle">{cat.category}</span>
                       </div>
                      <span className="numberSpan">{cat.summ?.toLocaleString(undefined, { minimumFractionDigits: 2 }) || '0.00'}</span>
-                </div>
-              )
-                  
+                  </div>
+               
+              )              
             })}
           </div>
+           
+          
 
-          <div className="expensesIncomeBlock">
+          {/* </div>  */}
+                        <div className="expensesIncomeBlock">
             <div className="expenses">
               Expenses:
               <span className="expensesNumber">
@@ -255,9 +331,10 @@ const StatisticsMain = () => {
               </span>
             </div>
           </div>
-        </div>
+
       </div>
-    </div>
+      </div>
+      </div>
   );
 };
 

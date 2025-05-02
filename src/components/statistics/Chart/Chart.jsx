@@ -10,14 +10,15 @@ import {
 import { useSelector } from 'react-redux';
 import { selectBalanсe } from '../../../redux/auth/selectors';
 ChartJS.register(ArcElement, Tooltip, Legend);
-
+import { useEffect, useState } from "react";
+import axios from "axios";
 const COLORS = ['#FF6B6B', '#A18AFF', '#7BDFF2', '#5C7CFA', '#63E6BE', '#38D9A9', '#69DB7C'];
 
 const Chart = ({ statistics }) => {
-  const balance = useSelector(selectBalanсe);
-  console.log('баланс',balance)
-  const total = statistics.reduce((acc, item) => acc + (item.summ || 0), 0);
-
+  // const balance = useSelector(selectBalanсe);
+  // console.log('баланс',balance)
+  // const total = statistics.reduce((acc, item) => acc + (item.summ || 0), 0);
+ const [balance, setBalance] = useState(0);
   const data = {
     labels: statistics.map(item => item.name || ''), 
     datasets: [
@@ -46,15 +47,28 @@ const Chart = ({ statistics }) => {
       display: false,
     },
   },
-};
+  };
+  
+ useEffect(() => {
+    const fetchBalance = async () => {
+      try {
+        const res = await axios.get("/sidebar/balance"); 
+        setBalance(res.data.balance || 0);
+      } catch (error) {
+        console.error("Error fetching balance:", error);
+        setBalance(0);
+      }
+    };
 
+    fetchBalance();
+  }, []);
 
   return (
     <div className={css.chartWrapper}>
       <div className={css.chartSize}>
         <Pie data={data} options={options} />
         
-        {total > 0 && (
+        {balance > 0 && (
           <div className={css.chartStyle}>
             ₴ {balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
           </div>
