@@ -19,6 +19,7 @@
     "chart.js": "^4.4.9",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",
+    "framer-motion": "^12.9.4",
     "izitoast": "^1.4.0",
     "lucide-react": "^0.501.0",
     "modern-normalize": "^3.0.1",
