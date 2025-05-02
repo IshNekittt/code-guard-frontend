@@ -11,7 +11,7 @@ import Select from "react-select";
 import { getTransactionsStatistics } from "../../../redux/auth/operations.js";
 import { motion, AnimatePresence } from 'framer-motion';
 import { components } from 'react-select';
-
+import { FaChevronDown } from 'react-icons/fa';
 const months = [
   "January",
   "February",
@@ -162,8 +162,36 @@ const CustomMenu = (props) => {
     </AnimatePresence>
   );
 };
+const CustomDropdownIndicator = (props) => {
+  const isOpen = props.selectProps.menuIsOpen;
 
+  return (
+    <components.DropdownIndicator {...props}>
+      <FaChevronDown
+        style={{
+          transition: 'transform 0.2s ease',
+          transform: isOpen ? 'rotate(0deg)' : 'rotate(180deg)',
+          color: '#ccc',
+        }}
+      />
+    </components.DropdownIndicator>
+  );
+};
+const CustomDropdownIndicatorSecond = (props) => {
+  const isOpen = props.selectProps.menuIsOpen;
 
+  return (
+    <components.DropdownIndicator {...props}>
+      <FaChevronDown
+        style={{
+          transition: 'transform 0.2s ease',
+          transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+          color: '#ccc',
+        }}
+      />
+    </components.DropdownIndicator>
+  );
+};
 
  const categoryOptions = Array.isArray(statistics)
     ? Array.from(new Set(statistics.map((statis) => statis.category))).map(
@@ -247,9 +275,9 @@ const CustomMenu = (props) => {
               options={monthOptions}
               className="custom-select"
                 classNamePrefix="custom-select"
-              //   components={{
-              //    Menu: CustomMenu, 
-              // }}
+                components={{
+                  DropdownIndicator: CustomDropdownIndicator, 
+              }}
             />
             </div>
            
@@ -260,9 +288,9 @@ const CustomMenu = (props) => {
               options={yearsOptions}
               className="custom-select"
                 classNamePrefix="custom-select"
-              //   components={{
-              //    Menu: CustomMenu, 
-              // }}
+                components={{
+               DropdownIndicator: CustomDropdownIndicatorSecond, 
+              }}
             />
               </div>
             
