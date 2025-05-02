@@ -45,6 +45,7 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/auth/logout");
     removeToken();
+    localStorage.clear(); // Очистка локального хранилища
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -67,14 +68,13 @@ export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
   }
 });
 export const getTransactionsStatistics = createAsyncThunk(
-    "transactions/fetchAllTransaction",
-    async ({ start, end }, thunkAPI) => {
-      const state = thunkAPI.getState();
-        
-      const persistedToken = state.auth.token;
-       
+  "transactions/fetchAllTransaction",
+  async ({ start, end }, thunkAPI) => {
+    const state = thunkAPI.getState();
 
-     if (!persistedToken) {
+    const persistedToken = state.auth.token;
+
+    if (!persistedToken) {
       return thunkAPI.rejectWithValue("Not authorized");
     }
 
