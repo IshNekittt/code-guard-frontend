@@ -30,9 +30,6 @@
 }
 
 @media screen and (min-width: 768px) {
-  .layout {
-    /* height: 558px; */
-  }
   .wrapper {
     /* width: 100%; */
     max-width: 768px;
@@ -50,9 +47,6 @@
   .sideBarAndTransaction {
     display: flex;
     justify-content: space-between;
-  }
-  .wrapper {
-    margin: 0;
   }
   .layout {
     /* flex-direction: row в; */

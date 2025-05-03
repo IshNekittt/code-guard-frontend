@@ -105,11 +105,10 @@
   .sidebar {
     flex-direction: row;
     justify-content: space-between;
-    padding-top: 0px;
+    padding: 0px;
     width: 768px;
     margin: 0 auto;
-    padding: 0 32px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 }
 
@@ -117,5 +116,16 @@
   .sidebar {
     width: auto;
     flex-direction: column;
+    margin: 0;
+    position: relative;
+  }
+  .sidebar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1px;
+    width: 1px;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.6);
   }
 }
