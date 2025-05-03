@@ -21,7 +21,7 @@ const SideBar = ({ balance, setBalance }) => {
   const isMobile = width < 768;
   const showStatistics = pathname.includes("statistics");
   const isBalancePage =
-    pathname === "/dashboard/home" || pathname === "/dashboard/transactions";
+    pathname === "/dashboard/home" || pathname === "/dashboard/statistics";
   const isExchangeRatesPage = pathname === "/dashboard/currency";
   // const isExchangeRatesPage = pathname.includes("exchange-rates");
 
@@ -30,7 +30,7 @@ const SideBar = ({ balance, setBalance }) => {
       <div className={s.sidebar}>
         <div className={s.balance_content}>
           <Navigation />
-          {isBalancePage && (
+          {isBalancePage && (isTablet || isDesktop) && (
             <Balance balance={balance} setBalance={setBalance} />
           )}
         </div>

@@ -105,7 +105,7 @@
   .sidebar {
     flex-direction: row;
     justify-content: space-between;
-    padding: 0px;
+    padding: 0px 32px;
     width: 768px;
     margin: 0 auto;
     margin-bottom: 24px;
