@@ -1,5 +1,5 @@
 .card {
-  background: linear-gradient(135deg, #2e1959, #391652);
+  background: rgba(255, 255, 255, 0.03);
   width: 280px;
   border-radius: 10px;
   margin-bottom: 12px;
@@ -14,7 +14,7 @@
   gap: 30px;
   justify-content: space-between;
   padding: 12px 20px;
-  font-weight: 400;
+  font-weight: 700;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -54,7 +54,7 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin: 12px;
+  margin: 12px 20px;
 }
 
 .delete.btnCard {
@@ -71,9 +71,12 @@
   );
 }
 .btnEditMob {
-  width: 100px;
+  width: 48px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .btnCard {
@@ -86,7 +89,7 @@
 @media screen and (min-width: 768px) {
   .transactionRow {
     padding-bottom: 10px;
-    margin-bottom: 10px;
+    margin-top: 10px;
     display: flex;
     transition: background-color 0.2s;
     border-bottom: 1px solid gray;
@@ -112,6 +115,7 @@
   .cell:nth-child(2) {
     flex: 0 0 10%;
     max-width: 10%;
+    justify-content: center;
   }
 
   .headerCell:nth-child(3),
@@ -197,7 +201,6 @@
   .editBtn {
     background: transparent;
     border: none;
-    color: white;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -218,6 +221,6 @@
   .editIcon {
     width: 18px;
     height: 18px;
-    color: white;
+    color: rgba(255, 255, 255, 0.5);
   }
 }

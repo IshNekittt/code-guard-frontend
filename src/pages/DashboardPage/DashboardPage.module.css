@@ -29,15 +29,21 @@
   width: 100%;
 }
 
+.content {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 768px) {
-  .layout {
-    /* height: 558px; */
-  }
   .wrapper {
     /* width: 100%; */
     max-width: 768px;
     margin: 0 auto;
   }
+  .content {
+    max-width: 100%;
+  }
+
   /* .sideBarAndTransaction {
     display: flex;
     justify-content: space-between;
@@ -45,14 +51,9 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .content {
-  }
   .sideBarAndTransaction {
     display: flex;
     justify-content: space-between;
-  }
-  .wrapper {
-    margin: 0;
   }
   .layout {
     /* flex-direction: row в; */

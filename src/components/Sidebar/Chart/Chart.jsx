@@ -15,16 +15,50 @@ const Chart = () => {
     axios
       .get("/sidebar/chart")
       .then((res) => {
-        console.log(res);
+        const points = res.data.points;
 
-        return setData(res.data.points);
+        if (points.length !== 0) {
+          const newData = points.map((point, index) => {
+            if (index === 0) {
+              return [
+                {
+                  value: point.value * 0.75,
+                  label: "Helper 1 Start",
+                },
+                {
+                  value: point.value,
+                  label: point.currency || `Point ${index + 1}`,
+                },
+                {
+                  value: point.value * 0.6,
+                  label: "Helper 1 End",
+                },
+              ];
+            } else if (index === 1) {
+              return [
+                {
+                  value: point.value,
+                  label: point.currency || `Point ${index + 1}`,
+                },
+                {
+                  value: point.value * 0.75,
+                  label: "Helper 2 Start",
+                },
+              ];
+            } else {
+              return [];
+            }
+          });
+
+          setData(newData.flat());
+        }
       })
       .catch((err) => console.error("Chart fetch error:", err));
   }, []);
 
   return (
     <div className={s.chart}>
-      <ResponsiveContainer width="100%" height={150}>
+      <ResponsiveContainer width="100%" height="100%">
         <AreaChart
           data={data}
           margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
@@ -42,20 +76,28 @@ const Chart = () => {
           <CartesianGrid stroke="none" />
 
           <Area
-            type="basis"
+            type="monotone"
             dataKey="value"
             stroke="#ff868d"
             strokeWidth={1}
             fill="url(#colorValue)"
-            dot={{ r: 4, fill: "#ff868d" }}
-            activeDot={{ r: 6 }}
+            dot={(props) =>
+              props.index === 1 || props.index === 3 ? (
+                <circle
+                  key={props.index}
+                  cx={props.cx}
+                  cy={props.cy}
+                  r={4}
+                  fill="#ff868d"
+                />
+              ) : null
+            }
+            activeDot={false}
             isAnimationActive={true}
           />
           <Tooltip
             contentStyle={{
-              background: "transparent",
-              border: "none",
-              color: "#fff",
+              display: "none",
             }}
             cursor={false}
           />

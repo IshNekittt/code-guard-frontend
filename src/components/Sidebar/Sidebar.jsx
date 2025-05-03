@@ -2,13 +2,12 @@ import s from "./SideBar.module.css";
 import Navigation from "./Navigation/Navigation";
 import Balance from "./Balance/Balance";
 import ExchangeRates from "./ExchangeRates/ExchangeRates";
-import { Outlet, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import StatisticsTest from "./StatisticsTest";
-
 const SideBar = ({ balance, setBalance }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const { pathname } = useLocation();
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -21,7 +20,7 @@ const SideBar = ({ balance, setBalance }) => {
   const isMobile = width < 768;
   const showStatistics = pathname.includes("statistics");
   const isBalancePage =
-    pathname === "/dashboard/home" || pathname === "/dashboard/transactions";
+    pathname === "/dashboard/home" || pathname === "/dashboard/statistics";
   const isExchangeRatesPage = pathname === "/dashboard/currency";
   // const isExchangeRatesPage = pathname.includes("exchange-rates");
 
@@ -30,7 +29,7 @@ const SideBar = ({ balance, setBalance }) => {
       <div className={s.sidebar}>
         <div className={s.balance_content}>
           <Navigation />
-          {isBalancePage && (
+          {isBalancePage && (isTablet || isDesktop) && (
             <Balance balance={balance} setBalance={setBalance} />
           )}
         </div>
@@ -38,7 +37,7 @@ const SideBar = ({ balance, setBalance }) => {
         {(isTablet || isDesktop) && !isExchangeRatesPage && <ExchangeRates />}
       </div>
 
-      {(isTablet || isDesktop) && showStatistics && (
+      {/* {(isTablet || isDesktop) && showStatistics && (
         <div
           className={
             isTablet
@@ -48,7 +47,7 @@ const SideBar = ({ balance, setBalance }) => {
               : s.statistics_hidden
           }
         ></div>
-      )}
+      )} */}
     </div>
   );
 };

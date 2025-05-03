@@ -1,6 +1,12 @@
 .chart {
   width: 100%;
-  height: auto;
+  height: 100px;
   background: transparent;
-  margin-top: 8px;
+}
+
+@media (min-width: 1280px) {
+  .chart {
+    width: 100%;
+    height: 100%;
+  }
 }
