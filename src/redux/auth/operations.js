@@ -94,11 +94,17 @@ export const getTransactionsStatistics = createAsyncThunk(
   }
 );
 
-export const registration = createAsyncThunk("auth/register", async (user) => {
-  try {
-    const { data } = await axios.post("/auth/register", user);
-    return data;
-  } catch (e) {
-    throw e;
+export const registration = createAsyncThunk(
+  "auth/register",
+  async (user, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/auth/register", user);
+      return data;
+    } catch (error) {
+      if (error.response?.status === 409) {
+        return thunkAPI.rejectWithValue("Пользователь уже существует.");
+      }
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);

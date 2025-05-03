@@ -20,7 +20,7 @@ import axios from "../../api/axios";
 
 const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [transactionType, setTransactionType] = useState("income");
+  const [transactionType, setTransactionType] = useState("expense");
   const token = useSelector((state) => state.auth.token);
 
   const expenseOptions = [
@@ -138,6 +138,7 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
           <p className={css.addTransaction}>Add transaction</p>
           <div className={css.typeTransaction}>
             <p
+              onClick={() => setTransactionType((prev) => "income")}
               className={clsx(
                 css.income,
                 transactionType === "income" && css.active
@@ -169,6 +170,7 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
               </button>
             </div>
             <p
+              onClick={() => setTransactionType((prev) => "expense")}
               className={clsx(
                 css.expense,
                 transactionType === "expense" && css.active

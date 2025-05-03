@@ -53,8 +53,9 @@
   width: 44px;
   height: 44px;
   padding: 0;
-  background-color: yellow;
+  background-color: #ffb627;
   border-radius: 100%;
+  box-shadow: 0 6px 15px 0 rgba(255, 199, 39, 0.5);
 }
 
 .expenseActive {

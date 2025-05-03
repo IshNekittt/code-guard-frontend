@@ -1,2 +1,1 @@
- export const selectStatistics = state => state.statistics.transactions.data || [];
- 
+export const selectStatistics = (state) => state.transactions.items;
