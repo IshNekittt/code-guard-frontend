@@ -11,7 +11,7 @@ const customSelectStyles = {
     borderRadius: "0px",
     fontSize: "16px",
     fontWeight: "500",
-    padding: "2px 10px",
+    // padding: "2px 10px",
     cursor: "pointer",
     transition: "all 0.3s ease",
   }),

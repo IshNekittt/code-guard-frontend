@@ -161,7 +161,12 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
                 transactionType === "expense" && css.expenseActive
               )}
             >
-              <button className={clsx(css.btnType)}>
+              <button
+                className={clsx(
+                  css.btnType,
+                  transactionType === "expense" && css.btnTypeExpense
+                )}
+              >
                 {transactionType === "income" ? (
                   <IoAddOutline className={css.btnIconType} />
                 ) : (
@@ -173,7 +178,7 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
               onClick={() => setTransactionType((prev) => "expense")}
               className={clsx(
                 css.expense,
-                transactionType === "expense" && css.active
+                transactionType === "expense" && css.activeExpense
               )}
             >
               Expense

@@ -60,6 +60,9 @@
 .expenseActive {
   justify-content: flex-end;
 }
+.btnTypeExpense {
+  background-color: #ff868d;
+}
 
 .expense {
   font-weight: 600;
@@ -68,7 +71,11 @@
   transition: color 0.3s ease;
 }
 .active {
-  color: yellow;
+  color: #ffb627;
+}
+
+.activeExpense {
+  color: #ff868d;
 }
 
 .form {
@@ -117,8 +124,9 @@
 .calendarIcon {
   position: absolute;
   right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 0;
+  /* transform: translateY(-50%); */
+  fill: rgba(255, 255, 255, 0.4);
 }
 
 .comment {
@@ -129,6 +137,7 @@
   padding-left: 20px;
   padding-bottom: 20px;
   width: 100%;
+  resize: none;
 }
 
 .btnWrapp {
@@ -148,9 +157,11 @@
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
+  color: #fbfbfb;
 }
 
 .btnCancel {
+  color: #623f8b;
   border-radius: 20px;
   width: 280px;
   height: 50px;
@@ -219,14 +230,19 @@
   }
   .modalContent {
     margin: auto 0;
-    max-width: 480px;
+    max-width: 540px;
     width: 100%;
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 8px;
   }
   .addModalWrapp {
     align-items: start;
     padding: 0 30px;
+  }
+  .money {
+    padding-left: 0;
+    text-align: center;
+    /* transform: translate(-50%); */
   }
   .closeIconBtn {
     display: block;
@@ -234,20 +250,21 @@
     top: 20px;
     right: 20px;
     border: none;
+    padding: 0;
   }
   .date {
-    padding-left: 0;
+    padding-left: 20px;
   }
   .closeIcon {
     display: block;
     color: #fff;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
 
   .addTransaction {
     margin: 0 auto;
-    margin-top: 40px;
+    /* margin-top: 40px; */
   }
   .dateWrapp {
     max-height: 35px;
@@ -268,6 +285,7 @@
   }
   .comment {
     width: 100%;
+    padding-bottom: 0;
   }
   .moneyWrapp {
     width: 100%;

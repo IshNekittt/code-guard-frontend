@@ -147,29 +147,42 @@ const EditTransactionForm = ({
         <div className={css.addModalWrapp}>
           <p className={css.addTransaction}>Edit transaction</p>
           <div className={css.typeTransaction}>
-            <button
-              onClick={() => setTransactionType("income")}
-              className={clsx(
-                css.income,
-                transactionType === "income" && css.active
-              )}
-            >
-              Income
-            </button>
+            {transactionType === "income" ? (
+              <p
+                // onClick={() => setTransactionType("income")}
+                className={clsx(
+                  css.income,
+                  transactionType === "income" && css.active
+                )}
+              >
+                Income
+              </p>
+            ) : (
+              <p
+                // onClick={() => setTransactionType("expense")}
+                className={clsx(
+                  css.expense,
+                  transactionType === "expense" && css.activeExpense
+                )}
+              >
+                Expense
+              </p>
+            )}
             <button className={css.closeIconBtn} onClick={closeModal}>
               <IoCloseOutline className={css.closeIcon} />
             </button>
-            <p>/</p>
 
-            <button
-              onClick={() => setTransactionType("expense")}
-              className={clsx(
-                css.expense,
-                transactionType === "expense" && css.active
-              )}
-            >
-              Expense
-            </button>
+            {/* {transactionType === "expense" && (
+              <p
+                // onClick={() => setTransactionType("expense")}
+                className={clsx(
+                  css.expense,
+                  transactionType === "expense" && css.active
+                )}
+              >
+                Expense
+              </p>
+            )} */}
           </div>
           <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
             {transactionType === "expense" && (
@@ -230,7 +243,7 @@ const EditTransactionForm = ({
             </div>
             <div className={css.btnWrapp}>
               <button type="submit" className={css.btnAdd}>
-                ADD
+                SAVE
               </button>
               <button
                 type="button"
