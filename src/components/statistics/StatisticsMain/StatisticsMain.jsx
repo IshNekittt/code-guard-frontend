@@ -24,7 +24,10 @@ const months = [
   "December",
 ];
 
-const years = ["2020", "2021", "2022", "2023", "2024", "2025"];
+const currentYear = new Date().getFullYear();
+const years = Array.from({ length: 5 }, (_, i) =>
+  String(currentYear - i)
+).reverse();
 
 const categoryColors = {
   "Main expenses": "#FED057",
