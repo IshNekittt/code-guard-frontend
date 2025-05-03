@@ -115,6 +115,7 @@
   .cell:nth-child(2) {
     flex: 0 0 10%;
     max-width: 10%;
+    justify-content: center;
   }
 
   .headerCell:nth-child(3),

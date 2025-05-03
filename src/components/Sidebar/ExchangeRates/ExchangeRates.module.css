@@ -1,5 +1,5 @@
 .rates {
-  backdrop-filter: blur(100px);
+  backdrop-filter: blur(50px);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   width: 100%;
   border-radius: 0 0 8px 8px;
@@ -28,7 +28,10 @@
   flex-direction: row;
   gap: 12px;
   justify-content: space-between;
-  padding: 13px 20px;
+  padding: 0 20px 12px 20px;
+}
+.row:nth-child(3) {
+  padding-bottom: 0;
 }
 
 .row span {
@@ -49,17 +52,20 @@
     height: 214px;
     overflow: hidden;
   }
+  .row {
+    padding: 0px 20px 12px 20px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .rates {
     margin-top: 32px;
     width: 100%;
-    height: auto;
+    height: 380px;
     max-width: 1280px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     border-radius: 0;
   }
   .header {
@@ -70,5 +76,6 @@
   .row {
     justify-content: center;
     gap: 88px;
+    padding: 12px 0;
   }
 }

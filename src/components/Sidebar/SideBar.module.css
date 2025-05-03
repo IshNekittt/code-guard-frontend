@@ -118,6 +118,7 @@
     flex-direction: column;
     margin: 0;
     position: relative;
+    padding: 0;
   }
   .sidebar::after {
     content: "";
