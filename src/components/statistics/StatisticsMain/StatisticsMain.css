@@ -1,5 +1,5 @@
 .wrapper {
-    padding: 20px;
+    padding: 24px;
     /* min-height: 100vh; */
     min-width: 715px;
     height: 502px;
@@ -40,16 +40,17 @@
 
 @media (max-width: 1280px) {
     .wrapper {
-        padding: 8px;
+        /* padding: 8px; */
         width: 100%;
         height: 502px;
     }
 
 
     .container {
-        padding: 8px;
+        /* padding: 8px; */
         display: flex;
         flex-direction: row;
+        justify-content: space-between;
         margin: 0px;
 
     }
@@ -157,6 +158,7 @@
 
 @media (max-width: 1280px) {
     .chartSection {
+        display: flex;
         width: 100%;
         max-width: 336px;
         margin-right: 0px;
@@ -404,22 +406,16 @@ max-height: 200px;
     color: #FF868D !important;
     font-weight: normal !important;
 }
-  /* .raitBar {
-      width: 100%;
-      max-width: 395px;
-      margin-right: 20px;
-      margin-top: 24px;
-    height: 400px;
-
-  } */
+  
 
 @media (max-width: 1280px) {
     .raitBar {
         width: 100%;
-        max-width: 395px;
-        margin-right: 20px;
+        max-width: 338px;
+        margin-left: auto;
         margin-top: 24px;
         height: 400px;
+        
 
     }
 
@@ -443,8 +439,6 @@ max-height: 200px;
         width: 100% !important;
         max-width: 280px !important;
         margin-bottom: 20px !important;
-
-
         font-size: 16px !important;
 
     }
@@ -457,6 +451,7 @@ max-height: 200px;
         width: 100%;
         max-width: 280px;
     height: 600px;
+    margin-left: auto;
         
 
     }
