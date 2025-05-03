@@ -1,45 +1,25 @@
+/* ========================= */
+/* Base styles (default)    */
+/* ========================= */
+
 .wrapper {
   padding: 0 20px;
-  /* min-width: 715px;
-  height: 502px; */
-
   display: flex;
   justify-content: center;
-
-  margin-bottom: 22px;
+  margin-bottom: 45px;
 }
 
 .category-select {
   margin-top: 20px;
 }
-@media (min-width: 768px) {
-  .category-select {
-    width: 100%;
-  }
-}
-@media (min-width: 1280px) {
-  .category-select {
-    margin-top: 0;
-  }
-}
 
 .container {
   max-width: 280px;
   margin: 0 auto;
-}
-@media (min-width: 768px) {
-  .wrapper {
-    padding: 0 32px;
-  }
-}
-
-.container {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  max-width: 280px;
+  height: fit-content;
   width: 100%;
-  /* margin-top: 40px; */
 }
 
 .selectBox {
@@ -48,101 +28,16 @@
   flex-direction: column;
   width: 100%;
   gap: 20px;
-  /* justify-content: space-between;
-  width: 100%;
-  max-width: 395px;
-  margin-bottom: 15px; */
 }
 
 .selectWrapper {
-  /* max-width: 181px; */
-  /* min-height: 100vh; */
   flex: 1;
   min-width: 0;
 }
-@media (min-width: 768px) {
-  .container {
-    /* padding: 6px; */
-    max-width: 100%;
-    gap: 32px;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: baseline;
-    margin-top: 40px;
-  }
-
-  .selectBox {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    max-width: 336px;
-    gap: 16px;
-
-    /* margin-bottom: 15px; */
-  }
-
-  .wrapper {
-    height: 100%;
-
-    /* min-width: 100px; */
-    width: 100%;
-    margin-bottom: 0px;
-    padding-bottom: 20px;
-  }
-
-  .selectWrapper {
-    max-width: 336px;
-    width: 100%;
-    max-height: 50px;
-    /* margin-right: auto; */
-    /* margin-left: 30px; */
-    /* display: flex; */
-    margin-left: auto;
-    /* margin-right: auto; */
-
-    justify-content: center;
-  }
-}
-
-@media (min-width: 1280px) {
-  .wrapper {
-    padding: 0;
-    min-width: 715px;
-    /* padding: 8px; */
-    width: 100%;
-    height: 502px;
-  }
-
-  .container {
-    /* padding: 8px; */
-    gap: 0;
-    display: flex;
-    flex-direction: row;
-    margin: 0px;
-  }
-
-  .selectBox {
-    display: flex;
-    gap: 32px;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 395px;
-    margin-bottom: 20px;
-
-    /* margin-bottom: 15px; */
-  }
-
-  .selectWrapper {
-    /* max-width: 160px; */
-    width: 100%;
-  }
-}
 
 .chartNameBox {
-  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .chartName {
@@ -150,16 +45,8 @@
   font-weight: 400;
   font-size: 30px;
   line-height: 100%;
-  letter-spacing: 0%;
-  text-align: center;
-  vertical-align: middle;
-  position: absolute;
-  left: 50%;
   color: #fbfbfb;
-  /* центр */
-  transform: translateX(-100%);
-  /* сдвигаем влево от центра */
-  top: calc(50% - 40px);
+  margin: 0;
 }
 
 .chartSection {
@@ -169,43 +56,6 @@
   align-items: center;
   width: 100%;
   max-width: 280px;
-  max-height: 333px;
-  margin-top: 40px;
-  margin-right: 40px;
-  /* margin-bottom: 32px; */
-}
-
-@media (min-width: 1280px) {
-  /* .chartSection {
-    width: 100%;
-    max-width: 288px;
-    margin-right: 0px;
-    margin-top: 97px;
-  } */
-
-  .chartName {
-    top: calc(50% - 85px);
-  }
-}
-
-@media (min-width: 768px) {
-  .chartSection {
-    max-height: 336px;
-    width: 100%;
-    /* max-width: 280px; */
-    max-width: 336px;
-    margin-right: 0px;
-    margin-bottom: 30px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .chartSection {
-    width: 100%;
-    max-width: 288px;
-    margin-right: 0px;
-    margin-top: 97px;
-  }
 }
 
 .text-style {
@@ -218,75 +68,51 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  /* max-width: 395px;
-  height: 400px;
-  margin-top: 77px; */
 }
 
 .categoriWrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid;
-  border-color: #ffffff69;
+  border-bottom: 1px solid #ffffff69;
   width: 100%;
   max-width: 395px;
   height: 54px;
+  padding: 0 15px;
 }
 
 .selectorBlock {
   min-height: 100px;
-
   overflow-y: auto;
   height: 250px;
-  max-height: none;
-  border-bottom: 8px;
-  border-top: 8px;
-  border-right: 8px;
-  border-left: 8px;
+  border: 8px solid transparent;
 }
+
 .selectedCategoryRenderBlock {
   max-height: 200px;
-
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-.selectorBlock::-webkit-scrollbar {
-  width: 6px;
-  /* тонкий скроллбар */
 }
 
 .quad {
   height: 24px;
   width: 24px;
   border-radius: 2px;
-  margin-right: 10px;
-  margin-left: 15px;
+  margin: 0 10px 0 0;
 }
 
 .quadStyle {
   font-family: Poppins;
   font-weight: 400;
   font-size: 14px;
-  line-height: 100%;
-  letter-spacing: 0%;
   color: #fbfbfb;
 }
 
-.nameCategoriContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 14px;
-}
-
+.nameCategoriContainer,
 .numberSpan {
   display: flex;
   align-items: center;
-  margin-right: 15px;
   font-family: Poppins;
   font-weight: 400;
   font-size: 14px;
@@ -294,54 +120,32 @@
 }
 
 .expensesIncomeBlock {
-  margin-top: 15px;
+  margin: 15px auto 0;
+  max-width: 247px;
+  width: 100%;
 }
 
-.expenses {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  margin-left: 15px;
-  margin-right: 15px;
-  font-family: Poppins;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 100%;
-  letter-spacing: 0%;
-  color: #fbfbfb;
-}
-
+.expenses,
 .income {
   display: flex;
   justify-content: space-between;
-  margin-left: 15px;
-  margin-right: 15px;
   font-family: Poppins;
   font-weight: 600;
   font-size: 14px;
-  line-height: 100%;
-  letter-spacing: 0%;
   color: #fbfbfb;
 }
 
+.expenses {
+  margin-bottom: 16px;
+}
+
 .expensesNumber {
-  font-family: Poppins;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 100%;
-  letter-spacing: 0%;
   text-align: right;
   color: #ff868d;
 }
 
 .incomeNumber {
-  font-family: Poppins;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 100%;
-  letter-spacing: 0%;
   text-align: right;
-  color: #ff868d;
   color: #ffb627;
 }
 
@@ -350,19 +154,33 @@
     opacity: 0;
     transform: translateY(-10px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+@keyframes fadeInOption {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================= */
+/* Custom-select section (keep !important) */
+/* ========================= */
+
 .custom-select__control {
   background-color: rgba(74, 86, 226, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.6) !important;
   border-radius: 8px !important;
   padding: 4px !important;
   width: 100% !important;
-  /* max-width: 181px !important; */
   height: 50px !important;
   font-family: "Poppins", sans-serif !important;
   font-size: 16px !important;
@@ -380,11 +198,9 @@
   font-weight: 400 !important;
   font-size: 16px !important;
   line-height: 100% !important;
-  letter-spacing: 0% !important;
   color: #fbfbfb !important;
 }
 
-/* Список */
 .custom-select__menu {
   border-radius: 8px !important;
   background-color: #50309a !important;
@@ -405,89 +221,17 @@
 
 .custom-select__option:hover {
   background-color: #ffffff1a !important;
-  color: inherit !important;
 }
 
 .custom-select__option--is-selected {
   background-color: transparent !important;
   color: #ff868d !important;
-  font-weight: normal !important;
 }
 
-@media (min-width: 1280px) {
-  .raitBar {
-    /* width: 100%; */
-    width: 395px;
-    /* margin-right: 20px; */
-    margin-top: 24px;
-    height: 400px;
-  }
+/* ========================= */
+/* Category-select section (keep !important) */
+/* ========================= */
 
-  .custom-select__control {
-    width: 100% !important;
-    /* max-width: 160px !important; */
-  }
-}
-
-@media (min-width: 768px) {
-  .custom-select__control {
-    margin-right: auto !important;
-    margin-left: auto !important;
-    background-color: rgba(74, 86, 226, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.6) !important;
-    width: 100% !important;
-    /* max-width: 280px !important; */
-    margin-bottom: 20px !important;
-
-    font-size: 16px !important;
-  }
-
-  .raitBar {
-    display: flex;
-    align-items: center;
-    margin-right: 0px;
-    margin-top: 0px;
-    width: 100%;
-    width: 336px;
-    height: 600px;
-  }
-}
-.qwe {
-  max-height: 200px;
-  overflow: auto;
-}
-
-/* Основной контрол */
-
-@keyframes fadeInOption {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-@keyframes fadeInMenu {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (min-width: 1280px) {
-  .raitBar {
-    /* width: 100%; */
-    width: 395px;
-  }
-}
 .category-select__control {
   background-color: #523b7e99 !important;
   backdrop-filter: blur(100px) !important;
@@ -517,7 +261,7 @@
   overflow: auto !important;
   padding: 0 !important;
   border: none !important;
-  width: 100%;
+  width: 100% !important;
   max-width: 395px !important;
   max-height: 250px !important;
   scrollbar-color: #888 transparent !important;
@@ -525,12 +269,10 @@
 
 .category-select__menu-list {
   padding: 0 !important;
-  max-height: 240px !important;
+  max-height: 350px !important;
   overflow: auto !important;
   overflow-x: hidden !important;
   scrollbar-width: thin !important;
-  max-height: 350px !important;
-
   scrollbar-color: #888 transparent !important;
 }
 
@@ -558,86 +300,132 @@
 
 .category-select__option:hover {
   background-color: transparent !important;
-  color: inherit !important;
 }
 
 .category-select__option--is-selected {
   background-color: transparent !important;
   color: inherit !important;
-  font-weight: normal !important;
-}
-.selectExpensesIncomeBlock {
-  color: rgb(204, 204, 204);
-  text-align: center;
-  margin-top: 20px;
 }
 
-@media (min-width: 1280px) {
-  .category-select__control {
-    /* max-width: 336px !important; */
-    width: 100% !important;
-  }
-  .category-select__menu {
-    width: 336px !important;
-    max-width: 395px !important;
-    max-height: 444px !important;
-    scrollbar-color: #888 transparent !important;
-  }
-  .category-select__menu-list {
-    padding: 0 !important;
-    max-height: 240px !important;
-    width: 336px !important;
-  }
-
-  .expensesIncomeBlock {
-    max-width: 336px;
-    width: 100%;
-  }
-  .qwe {
-    overflow: auto;
-    /* max-width: 336px; */
-    width: 100%;
-  }
-  .selectExpensesIncomeBlock {
-    max-width: 336px;
-    width: 100%;
-  }
+.qwe {
+  width: 100%;
 }
+
+/* ========================= */
+/* Media query: min-width 768px */
+/* ========================= */
 
 @media (min-width: 768px) {
-  .category-select__control {
-    width: 100% !important;
-    height: 56px;
-    /* width: 336px !important; */
-  }
-
-  .category-select__menu {
-    width: 100% !important;
-    max-width: 280px !important;
-  }
-
-  .selectorBlock {
-    align-items: center !important;
-    max-width: 280px;
+  .category-select {
     width: 100%;
+  }
+  .wrapper {
+    padding: 0 32px;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 100%;
+    margin-top: 0;
+    gap: 32px;
+  }
+  .selectBox {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 336px;
+    gap: 16px;
+  }
+  .wrapper {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+  }
+  .selectWrapper {
+    max-width: 336px;
+    width: 100%;
+    max-height: 50px;
     margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
   }
-
-  .categoriWrapper {
-    width: 100%;
+  .chartSection {
+    max-width: 336px;
   }
-
-  .expensesIncomeBlock {
-    width: 100%;
-    max-width: 280px;
-    margin-left: auto;
-    margin-right: auto;
+  .raitBar {
+    align-items: center;
+    width: 336px;
+    height: 600px;
+    margin-top: 20px;
+  }
+  .custom-select__control {
+    margin: 0 auto 20px auto !important;
+    height: 56px !important;
   }
   .qwe {
-    /* max-height: 500px;  */
-    overflow: auto;
-    /* max-width: 280px; */
+    margin-top: 14px;
+    overflow: scroll;
+  }
+  .expensesIncomeBlock {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  .chartNameBox {
+    margin-bottom: 20px;
+  }
+}
+
+/* ========================= */
+/* Media query: min-width 1280px */
+/* ========================= */
+
+@media (min-width: 1280px) {
+  .wrapper {
+    padding: 0;
+    min-width: 715px;
     width: 100%;
+  }
+  .container {
+    flex-direction: row;
+    gap: 0;
+    margin: 0;
+  }
+  .selectBox {
+    gap: 32px;
+    justify-content: space-between;
+    max-width: 395px;
+  }
+  .selectWrapper {
+    width: 100%;
+  }
+  .chartName {
+    top: calc(50% - 85px);
+  }
+  .chartSection {
+    margin-top: 32px;
+  }
+  .raitBar {
+    width: 395px;
+    margin-top: 85px;
+    margin-bottom: 46px;
+    height: 607px;
+  }
+  .custom-select__control {
+    width: 100% !important;
+  }
+  .custom-select__menu {
+    width: 336px !important;
+    max-height: 444px !important;
+  }
+  .custom-select__menu-list {
+    width: 336px !important;
+    max-height: 240px !important;
+  }
+  .qwe {
+    height: 677px;
+  }
+  .expensesIncomeBlock {
+    margin-top: 20px;
   }
 }

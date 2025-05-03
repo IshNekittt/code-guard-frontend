@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Chart from "../Chart/Chart.jsx";
 import "./StatisticsMain.css";
 import Select from "react-select";
@@ -8,6 +8,7 @@ import { components } from "react-select";
 import { FaChevronDown } from "react-icons/fa";
 import { selectStatistics } from "../../../redux/statistics/selectors.js";
 import { getTransactions } from "../../../redux/transactionsOp.js";
+
 const months = [
   "January",
   "February",
@@ -26,63 +27,41 @@ const months = [
 const years = ["2020", "2021", "2022", "2023", "2024", "2025"];
 
 const categoryColors = {
-  "Main expenses": "#FF6B6B",
-  Products: "#FF6B6B",
-  Car: "#FF6B6B",
-  "Self care": "#A18AFF",
-  "Child care": "#7BDFF2",
-  "Household products": "#5C7CFA",
-  Education: "#63E6BE",
-  Leisure: "#38D9A9",
-  "Other expenses": "#69DB7C",
+  "Main expenses": "#FED057",
+  Products: "#FFD8D0",
+  Car: "#FD9498",
+  "Self care": "#C5BAFF",
+  "Child care": "#6E78E8",
+  "Household products": "#4A56E2",
+  Education: "#81E1FF",
+  Leisure: "#24CCA7",
+  "Other expenses": "#00AD84",
   Entertainment: "#69DB7C",
-  Income: "#69DB7C",
 };
 
 const getStartEndDates = (monthName, year) => {
   const monthIndex = months.indexOf(monthName);
-  if (monthIndex === -1) throw new Error("Invalid month name");
-
   const startDate = new Date(year, monthIndex, 1);
   const endDate = new Date(year, monthIndex + 1, 0);
-
   const format = (date) => date.toISOString().slice(0, 10);
-
-  return {
-    start: format(startDate),
-    end: format(endDate),
-  };
+  return { start: format(startDate), end: format(endDate) };
 };
 
 const StatisticsMain = () => {
-  const [filteredStatistics, setFilteredStatistics] = useState([]);
+  const dispatch = useDispatch();
+  const statistics = useSelector(selectStatistics);
+
   const now = new Date();
   const [selectedMonth, setSelectedMonth] = useState(months[now.getMonth()]);
   const [selectedYear, setSelectedYear] = useState(String(now.getFullYear()));
-  // const [selectedMonth, setSelectedMonth] = useState("April");
-  // const [selectedYear, setSelectedYear] = useState("2024");
-
-  const dispatch = useDispatch();
-
-  const statistics = useSelector(selectStatistics);
-  // console.log(statistics);
-
-  const monthOptions = months.map((month) => ({
-    value: month,
-    label: month,
-  }));
-
-  const yearsOptions = years.map((year) => ({
-    value: year,
-    label: year,
-  }));
-
+  const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [selected, setSelected] = useState(() => {
     const saved = localStorage.getItem("selectedCategories");
     return saved ? JSON.parse(saved) : [];
   });
 
-  //console.log(' cелектед лог ', selected)
+  const monthOptions = months.map((month) => ({ value: month, label: month }));
+  const yearsOptions = years.map((year) => ({ value: year, label: year }));
 
   const toggleCategory = (option) => {
     setSelected((prevSelected) => {
@@ -90,10 +69,8 @@ const StatisticsMain = () => {
         (sel) => sel.value === option.value
       );
       if (isAlreadySelected) {
-        // console.log(' возвращфет  превСел если СелЕктВыбран', prevSelected)
         return prevSelected.filter((sel) => sel.value !== option.value);
       } else {
-        //console.log(' возвращфет  превСел если СелЕктНеВыбран', option)
         return [...prevSelected, option];
       }
     });
@@ -102,10 +79,8 @@ const StatisticsMain = () => {
   const CustomOption = (props) => {
     const { data, isFocused, innerRef, innerProps } = props;
     const isSelected = selected.some((sel) => sel.value === data.value);
-
     const baseStyle = {
       padding: "10px 14px",
-
       cursor: "pointer",
       transition: "transform 0.2s ease",
       transform: "scale(1)",
@@ -113,12 +88,10 @@ const StatisticsMain = () => {
       fontWeight: isSelected ? "bold" : "normal",
       border: "none",
     };
-
     if (isFocused) {
       baseStyle.transform = "scale(1.05)";
       baseStyle.backgroundColor = "#FFFFFF1A";
     }
-
     return (
       <div
         ref={innerRef}
@@ -136,7 +109,6 @@ const StatisticsMain = () => {
 
   const CustomMenu = (props) => {
     const { menuIsOpen } = props.selectProps;
-
     return (
       <AnimatePresence>
         {menuIsOpen && (
@@ -146,7 +118,6 @@ const StatisticsMain = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            // style={{ position: 'absolute', width: '100%', zIndex: 999 }}
           >
             <components.Menu {...props} />
           </motion.div>
@@ -154,9 +125,9 @@ const StatisticsMain = () => {
       </AnimatePresence>
     );
   };
+
   const CustomDropdownIndicator = (props) => {
     const isOpen = props.selectProps.menuIsOpen;
-
     return (
       <components.DropdownIndicator {...props}>
         <FaChevronDown
@@ -169,9 +140,9 @@ const StatisticsMain = () => {
       </components.DropdownIndicator>
     );
   };
+
   const CustomDropdownIndicatorSecond = (props) => {
     const isOpen = props.selectProps.menuIsOpen;
-
     return (
       <components.DropdownIndicator {...props}>
         <FaChevronDown
@@ -185,70 +156,48 @@ const StatisticsMain = () => {
     );
   };
 
-  const categoryOptions = Array.isArray(filteredStatistics)
-    ? Array.from(
-        new Set(filteredStatistics.map((statis) => statis.category))
-      ).map((category) => ({
-        value: category,
-        label: category,
-      }))
-    : [];
-  // console.log("Что выбрано в категориОпц", categoryOptions);
+  const groupedStatistics = useMemo(() => {
+    const grouped = {};
+    filteredTransactions.forEach((tx) => {
+      const category = tx.category;
+      if (!grouped[category]) {
+        grouped[category] = { category, summ: 0 };
+      }
+      grouped[category].summ += tx.summ || 0;
+    });
+    return Object.values(grouped);
+  }, [filteredTransactions]);
 
-  const totalIncome = Array.isArray(filteredStatistics)
-    ? filteredStatistics
-        .filter((stat) => stat.category === "Income")
-        .reduce((acc, stat) => acc + (stat.summ || 0), 0)
-    : 0;
+  const statisticsForChartAndSelect = useMemo(() => {
+    return groupedStatistics.filter((stat) => stat.category !== "Income");
+  }, [groupedStatistics]);
 
-  const totalExpenses = Array.isArray(filteredStatistics)
-    ? filteredStatistics
-        .filter((stat) => stat.category !== "Income")
-        .reduce((acc, stat) => acc + (stat.summ || 0), 0)
-    : 0;
+  const categoryOptions = statisticsForChartAndSelect.map((item) => ({
+    value: item.category,
+    label: item.category,
+  }));
 
-  const visibleCategories = Array.isArray(filteredStatistics)
-    ? filteredStatistics.filter((stat) =>
-        selected.some((sel) => sel.value === stat.category)
-      )
-    : [];
+  const visibleCategories = statisticsForChartAndSelect.filter((stat) =>
+    selected.some((sel) => sel.value === stat.category)
+  );
 
-  // console.log('видимые категории', visibleCategories);
+  const totalIncome = groupedStatistics
+    .filter((stat) => stat.category === "Income")
+    .reduce((acc, stat) => acc + stat.summ, 0);
 
-  // useEffect(() => {
-  //   const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+  const totalExpenses = groupedStatistics
+    .filter((stat) => stat.category !== "Income")
+    .reduce((acc, stat) => acc + stat.summ, 0);
 
-  //   dispatch(getTransactions({ start, end })).then((res) => {
-  //     const stats = res.payload?.data;
-
-  //     if (Array.isArray(stats)) {
-  //       const allCategories = Array.from(
-  //         new Set(stats.map((s) => s.category))
-  //       ).map((category) => ({
-  //         value: category,
-  //         label: category,
-  //       }));
-
-  //       setSelected(allCategories);
-  //       localStorage.setItem(
-  //         "selectedCategories",
-  //         JSON.stringify(allCategories)
-  //       );
-  //     }
-  //   });
-  // }, [selectedMonth, selectedYear, dispatch]);
   useEffect(() => {
     const { start, end } = getStartEndDates(selectedMonth, selectedYear);
-
     dispatch(getTransactions()).then((res) => {
       const allTransactions = res.payload;
-
       const filtered = allTransactions.filter((tx) => {
         const date = new Date(tx.date);
         return date >= new Date(start) && date <= new Date(end);
       });
-
-      setFilteredStatistics(filtered);
+      setFilteredTransactions(filtered);
 
       const allCategories = Array.from(
         new Set(filtered.map((s) => s.category))
@@ -256,7 +205,6 @@ const StatisticsMain = () => {
         value: category,
         label: category,
       }));
-
       setSelected(allCategories);
       localStorage.setItem("selectedCategories", JSON.stringify(allCategories));
     });
@@ -273,7 +221,7 @@ const StatisticsMain = () => {
           <div className="chartNameBox">
             <p className="chartName">Statistics</p>
           </div>
-          <Chart statistics={statistics} />
+          <Chart statistics={statisticsForChartAndSelect} />
         </div>
 
         <div className="raitBar">
@@ -287,9 +235,7 @@ const StatisticsMain = () => {
                 options={monthOptions}
                 className="custom-select"
                 classNamePrefix="custom-select"
-                components={{
-                  DropdownIndicator: CustomDropdownIndicator,
-                }}
+                components={{ DropdownIndicator: CustomDropdownIndicator }}
               />
             </div>
 
@@ -333,19 +279,20 @@ const StatisticsMain = () => {
               </div>
             }
           />
+
           <div className="qwe">
             {visibleCategories.map((cat) => {
               const color = categoryColors[cat.category] || "#ccc";
               return (
-                <div key={cat._id} className="categoriWrapper">
+                <div key={cat.category} className="categoriWrapper">
                   <div className="nameCategoriContainer">
                     <div className="quad" style={{ backgroundColor: color }} />
                     <span className="quadStyle">{cat.category}</span>
                   </div>
                   <span className="numberSpan">
-                    {cat.summ?.toLocaleString(undefined, {
+                    {cat.summ.toLocaleString(undefined, {
                       minimumFractionDigits: 2,
-                    }) || "0.00"}
+                    })}
                   </span>
                 </div>
               );

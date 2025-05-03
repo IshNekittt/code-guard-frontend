@@ -1,33 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
-import css from "./Shart.module.css";
+import css from "./Chart.module.css";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { useSelector } from "react-redux";
-import { selectBalanсe } from "../../../redux/auth/selectors";
-ChartJS.register(ArcElement, Tooltip, Legend);
-import { useEffect, useState } from "react";
 import axios from "axios";
-const COLORS = [
-  "#FF6B6B",
-  "#A18AFF",
-  "#7BDFF2",
-  "#5C7CFA",
-  "#63E6BE",
-  "#38D9A9",
-  "#69DB7C",
-];
+
+// Зарегистрируем компоненты Chart.js
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+// Здесь нужно либо скопировать ваш объект categoryColors,
+// либо импортировать его из родительского модуля
+const categoryColors = {
+  "Main expenses": "#FED057",
+  Products: "#FFD8D0",
+  Car: "#FD9498",
+  "Self care": "#C5BAFF",
+  "Child care": "#6E78E8",
+  "Household products": "#4A56E2",
+  Education: "#81E1FF",
+  Leisure: "#24CCA7",
+  "Other expenses": "#00AD84",
+  Entertainment: "#69DB7C",
+};
 
 const Chart = ({ statistics }) => {
-  // const balance = useSelector(selectBalanсe);
-  // console.log('баланс',balance)
-  // const total = statistics.reduce((acc, item) => acc + (item.summ || 0), 0);
   const [balance, setBalance] = useState(0);
+
+  // Создаём массив лейблов и данных
+  const labels = statistics.map((item) => item.category);
+  const dataValues = statistics.map((item) => item.summ);
+
+  // Мапим цвета так, чтобы индексы совпадали
+  const backgroundColor = statistics.map(
+    (item) => categoryColors[item.category] || "#ccc"
+  );
+
   const data = {
-    labels: statistics.map((item) => item.name || ""),
+    labels,
     datasets: [
       {
-        data: statistics.map((item) => item.summ),
-        backgroundColor: COLORS,
+        data: dataValues,
+        backgroundColor,
         borderWidth: 0,
       },
     ],
@@ -38,17 +50,8 @@ const Chart = ({ statistics }) => {
     maintainAspectRatio: false,
     cutout: "75%",
     plugins: {
-      tooltip: {
-        enabled: false,
-        // backgroundColor: '#2e2e5c',
-        // titleColor: '#fff',
-        // bodyColor: '#fff',
-        // bodyFont: { size: 12 },
-        // padding: 8,
-      },
-      legend: {
-        display: false,
-      },
+      tooltip: { enabled: false },
+      legend: { display: false },
     },
   };
 
@@ -62,7 +65,6 @@ const Chart = ({ statistics }) => {
         setBalance(0);
       }
     };
-
     fetchBalance();
   }, []);
 
@@ -70,7 +72,6 @@ const Chart = ({ statistics }) => {
     <div className={css.chartWrapper}>
       <div className={css.chartSize}>
         <Pie data={data} options={options} />
-
         {balance > 0 && (
           <div className={css.chartStyle}>
             ₴ {balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
