@@ -23,18 +23,42 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
   const [transactionType, setTransactionType] = useState("expense");
   const token = useSelector((state) => state.auth.token);
 
-  const expenseOptions = [
-    { value: "Main expenses", label: "Main expenses" },
-    { value: "Products", label: "Products" },
-    { value: "Car", label: "Car" },
-    { value: "Self care", label: "Self care" },
-    { value: "Child care", label: "Child care" },
-    { value: "Household products", label: "Household products" },
-    { value: "Education", label: "Education" },
-    { value: "Leisure", label: "Leisure" },
-    { value: "Other expenses", label: "Other expenses" },
-    { value: "Entertainment", label: "Entertainment" },
-  ];
+  const [expenseOptions, setExpenseOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("/categories");
+
+        const categoriesArray = response.data.data.expenseCategories || [];
+
+        const options = categoriesArray.map((item) => ({
+          value: item,
+          label: item,
+        }));
+
+        setExpenseOptions(options);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+        setExpenseOptions([]);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  // [
+  //   { value: "Main expenses", label: "Main expenses" },
+  //   { value: "Products", label: "Products" },
+  //   { value: "Car", label: "Car" },
+  //   { value: "Self care", label: "Self care" },
+  //   { value: "Child care", label: "Child care" },
+  //   { value: "Household products", label: "Household products" },
+  //   { value: "Education", label: "Education" },
+  //   { value: "Leisure", label: "Leisure" },
+  //   { value: "Other expenses", label: "Other expenses" },
+  //   { value: "Entertainment", label: "Entertainment" },
+  // ];
   const dispatch = useDispatch();
 
   const schema = yup.object().shape({
@@ -43,11 +67,7 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
       .typeError("Money must be a number")
       .positive("Money must be positive")
       .required("Money is required"),
-    comment: yup
-      .string()
-      .min(3, "Comment must be at least 3 characters")
-      .max(50, "Comment must be at most 50 characters")
-      .required("Comment is required"),
+    comment: yup.string().max(50, "Comment must be at most 50 characters"),
     category: yup.string().when("$transactionType", {
       is: "expense",
       then: (schema) => schema.required("Category is required"),
@@ -212,7 +232,7 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
             <div className={css.tabletWrap}>
               <div className={css.moneyWrapp}>
                 <input
-                  type="text"
+                  type="number"
                   {...register("money", { required: "This is required" })}
                   className={css.money}
                   placeholder="0.00"
@@ -225,7 +245,7 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
-                  dateFormat="dd/MM/yyyy"
+                  dateFormat="dd.MM.yyyy"
                   className={css.date}
                 />
                 <FaRegCalendarAlt className={css.calendarIcon} />
@@ -250,7 +270,7 @@ const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
                 className={css.btnCancel}
                 onClick={closeModal}
               >
-                CANCEl
+                CANCEL
               </button>
             </div>
           </form>

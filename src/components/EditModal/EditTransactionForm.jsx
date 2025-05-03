@@ -9,7 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IoCloseOutline } from "react-icons/io5";
-import { addTransaction, patchTransaction } from "../../redux/transactionsOp";
+import { patchTransaction } from "../../redux/transactionsOp";
 import Select from "react-select";
 import customSelectStyles from "../ModalAddTransaction/customSelectStyles.js";
 import "izitoast/dist/css/iziToast.min.css";
@@ -102,6 +102,8 @@ const EditTransactionForm = ({
       reset();
       closeModal();
     } catch (err) {
+      console.log(err);
+
       iziToast.error({
         title: "Error",
         message:
@@ -212,7 +214,7 @@ const EditTransactionForm = ({
             <div className={css.tabletWrap}>
               <div className={css.moneyWrapp}>
                 <input
-                  type="text"
+                  type="number"
                   {...register("money", { required: "This is required" })}
                   className={css.money}
                   placeholder="0.00"
@@ -225,7 +227,7 @@ const EditTransactionForm = ({
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
-                  dateFormat="dd/MM/yyyy"
+                  dateFormat="dd.MM.yyyy"
                   className={css.date}
                 />
                 <FaRegCalendarAlt className={css.calendarIcon} />
@@ -250,7 +252,7 @@ const EditTransactionForm = ({
                 className={css.btnCancel}
                 onClick={closeModal}
               >
-                CANCEl
+                CANCEL
               </button>
             </div>
           </form>

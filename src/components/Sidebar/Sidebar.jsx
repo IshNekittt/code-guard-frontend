@@ -29,7 +29,7 @@ const SideBar = ({ balance, setBalance }) => {
       <div className={s.sidebar}>
         <div className={s.balance_content}>
           <Navigation />
-          {isBalancePage && (isTablet || isDesktop) && (
+          {isBalancePage && (
             <Balance balance={balance} setBalance={setBalance} />
           )}
         </div>

@@ -69,6 +69,7 @@ const TransactionsList = () => {
             openEditModal={(id) => openEditModal(transact._id)}
             closeEditModal={closeEditModal}
             editingTransactionId={editingTransactionId}
+            setBalance={setBalance}
           />
         ))
       ) : (

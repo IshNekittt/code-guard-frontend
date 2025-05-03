@@ -224,7 +224,12 @@ const StatisticsMain = () => {
           <div className="chartNameBox">
             <p className="chartName">Statistics</p>
           </div>
-          <Chart statistics={statisticsForChartAndSelect} />
+          <Chart
+            statistics={statisticsForChartAndSelect}
+            expensesCount={totalExpenses.toLocaleString(undefined, {
+              minimumFractionDigits: 2,
+            })}
+          />
         </div>
 
         <div className="raitBar">

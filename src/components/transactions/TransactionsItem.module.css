@@ -79,6 +79,10 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+.btnEditMob:focus,
+.btnEditMob:focus-visible {
+  outline: none;
+}
 .btnCard {
   border-radius: 18px;
   padding: 8px 12px;
@@ -206,6 +210,11 @@
     align-items: center;
     justify-content: center;
   }
+  .editBtn:focus,
+  .editBtn:focus-visible {
+    outline: none;
+  }
+
   .editBtn,
   .deleteBtn {
     padding: 4px 8px;

@@ -22,9 +22,7 @@ const categoryColors = {
   Entertainment: "#69DB7C",
 };
 
-const Chart = ({ statistics }) => {
-  const [balance, setBalance] = useState(0);
-
+const Chart = ({ statistics, expensesCount }) => {
   // Создаём массив лейблов и данных
   const labels = statistics.map((item) => item.category);
   const dataValues = statistics.map((item) => item.summ);
@@ -55,27 +53,12 @@ const Chart = ({ statistics }) => {
     },
   };
 
-  useEffect(() => {
-    const fetchBalance = async () => {
-      try {
-        const res = await axios.get("/sidebar/balance");
-        setBalance(res.data.balance || 0);
-      } catch (error) {
-        console.error("Error fetching balance:", error);
-        setBalance(0);
-      }
-    };
-    fetchBalance();
-  }, []);
-
   return (
     <div className={css.chartWrapper}>
       <div className={css.chartSize}>
         <Pie data={data} options={options} />
-        {balance > 0 && (
-          <div className={css.chartStyle}>
-            ₴ {balance.toLocaleString(undefined, { minimumFractionDigits: 2 })}
-          </div>
+        {expensesCount && (
+          <div className={css.chartStyle}>₴ {expensesCount}</div>
         )}
       </div>
     </div>
