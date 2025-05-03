@@ -1,4 +1,4 @@
-import s from "./SideBar.module.css";
+import s from "./Sidebar.module.css";
 import Navigation from "./Navigation/Navigation";
 import Balance from "./Balance/Balance";
 import ExchangeRates from "./ExchangeRates/ExchangeRates";
