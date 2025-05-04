@@ -40,22 +40,13 @@
 
 @media screen and (min-width: 768px) {
   .wrapper {
-    /* width: 100%; */
     max-width: 768px;
     margin: 0 auto;
   }
   .content {
     max-width: 100%;
     min-height: 120px;
-    margin: 0 16px 0 0;
-    /* max-height: calc(100vh - 330px);
-    overflow-y: scroll; */
   }
-
-  /* .sideBarAndTransaction {
-    display: flex;
-    justify-content: space-between;
-  } */
 }
 
 @media screen and (min-width: 1280px) {
@@ -74,5 +65,8 @@
     max-width: 1280px;
     width: 100%;
     margin: 0 auto;
+  }
+  .content {
+    margin: 0 16px 0 0;
   }
 }
