@@ -1,18 +1,27 @@
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import { Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 
 import Layout from "./Layout";
-import RegistrationPage from "../components/registerForm/registerForm";
-import LoginPage from "../pages/LoginPage/LoginPage";
-import DashboardPage from "../pages/DashboardPage/DashboardPage";
-import HomeTab from "../components/transactions/TransactionsList";
-import StatisticsTab from "./statistics/StatisticsMain/StatisticsMain";
-import CurrencyTab from "./Sidebar/ExchangeRates/ExchangeRates";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Loader from "./Loader/Loader";
-
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+
+const RegistrationPage = lazy(() =>
+  import("../components/registerForm/registerForm")
+);
+const LoginPage = lazy(() => import("../pages/LoginPage/LoginPage"));
+const DashboardPage = lazy(() =>
+  import("../pages/DashboardPage/DashboardPage")
+);
+const HomeTab = lazy(() =>
+  import("../components/transactions/TransactionsList")
+);
+const StatisticsTab = lazy(() =>
+  import("./statistics/StatisticsMain/StatisticsMain")
+);
+const CurrencyTab = lazy(() => import("./Sidebar/ExchangeRates/ExchangeRates"));
+const ErrorPage = lazy(() => import("../pages/ErrorPage/ErrorPage"));
+
 import { useDispatch, useSelector } from "react-redux";
 import { getUserInfo } from "../redux/auth/operations";
 import { selectToken } from "../redux/auth/selectors";
