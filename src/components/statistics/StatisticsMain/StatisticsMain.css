@@ -133,9 +133,6 @@
   font-weight: 600;
   font-size: 14px;
   color: #fbfbfb;
-}
-
-.expenses {
   margin-bottom: 16px;
 }
 
@@ -309,6 +306,7 @@
 
 .qwe {
   width: 100%;
+  min-height: 110px;
 }
 
 /* ========================= */
@@ -320,7 +318,7 @@
     width: 100%;
   }
   .wrapper {
-    padding: 0 32px;
+    /* padding: 0 32px; */
   }
   .container {
     display: flex;
@@ -341,7 +339,6 @@
     height: 100%;
     width: 100%;
     margin-bottom: 0;
-    padding-bottom: 20px;
   }
   .selectWrapper {
     max-width: 336px;
@@ -352,12 +349,15 @@
   }
   .chartSection {
     max-width: 336px;
+    max-height: 336px;
   }
   .raitBar {
     align-items: center;
     width: 336px;
-    height: 600px;
+    height: fit-content;
     margin-top: 20px;
+    max-height: calc(100vh - 330px);
+    /* overflow-y: scroll; */
   }
   .custom-select__control {
     margin: 0 auto 20px auto !important;
@@ -409,7 +409,9 @@
     width: 395px;
     margin-top: 85px;
     margin-bottom: 46px;
-    height: 607px;
+    height: calc(100vh - 160px);
+    max-height: 677px;
+    margin-bottom: 0;
   }
   .custom-select__control {
     width: 100% !important;

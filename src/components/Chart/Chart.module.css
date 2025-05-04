@@ -1,27 +1,33 @@
 /* .selectWrapper {
     width: 100%;
     min-width: 250px;
-    
+
     margin: 0 auto;
     margin-bottom: 2rem;
-   
+
 } */
 .chartWrapper {
-    width: 100%;
-    /* padding: 10px; */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  /* padding: 10px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (max-width: 768px) {
-    .selectWrapper {
-        padding: 8px;
-    }
+  .selectWrapper {
+    padding: 8px;
+  }
+  .chartWrapper,
+  .chartSize {
+    width: 338px;
+    height: 338px;
+  }
 }
 
 @media (max-width: 480px) {
-    .selectWrapper {
-        padding: 6px;
-    }
+  .selectWrapper {
+    padding: 6px;
+  }
 }

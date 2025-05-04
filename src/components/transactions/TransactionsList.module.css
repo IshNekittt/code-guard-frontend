@@ -36,6 +36,9 @@
     width: 100%;
     margin: 0 auto;
     color: white;
+    min-height: 120px;
+    max-height: calc(100vh - 476px);
+    overflow-y: scroll;
   }
 
   .headerRow {
@@ -97,6 +100,8 @@
 @media screen and (min-width: 1280px) {
   .transactionContainer {
     margin: 0;
+    height: calc(100vh - 280px);
+    max-height: 520px;
   }
   .noTransactions {
     display: flex;

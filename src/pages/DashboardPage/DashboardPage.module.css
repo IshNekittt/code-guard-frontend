@@ -46,6 +46,10 @@
   }
   .content {
     max-width: 100%;
+    min-height: 120px;
+    margin: 0 16px 0 0;
+    /* max-height: calc(100vh - 330px);
+    overflow-y: scroll; */
   }
 
   /* .sideBarAndTransaction {

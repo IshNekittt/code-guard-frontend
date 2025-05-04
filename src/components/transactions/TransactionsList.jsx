@@ -73,7 +73,7 @@ const TransactionsList = () => {
           />
         ))
       ) : (
-        <div className={css.transactionContainer}>
+        <div>
           <div className={css.headerRow}>
             <div className={css.headerCell}>Date</div>
             <div className={css.headerCell}>Type</div>
@@ -82,17 +82,18 @@ const TransactionsList = () => {
             <div className={css.headerCell}>Sum</div>
             <div className={css.headerCell}></div>
           </div>
-
-          {transactions.map((transact, ind) => (
-            <TransactionsItem
-              key={ind}
-              data={transact}
-              openEditModal={(id) => openEditModal(transact._id)}
-              closeEditModal={closeEditModal}
-              editingTransactionId={editingTransactionId}
-              setBalance={setBalance}
-            />
-          ))}
+          <div className={css.transactionContainer}>
+            {transactions.map((transact, ind) => (
+              <TransactionsItem
+                key={ind}
+                data={transact}
+                openEditModal={(id) => openEditModal(transact._id)}
+                closeEditModal={closeEditModal}
+                editingTransactionId={editingTransactionId}
+                setBalance={setBalance}
+              />
+            ))}
+          </div>
         </div>
       )}
     </div>
