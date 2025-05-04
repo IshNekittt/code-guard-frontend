@@ -16,7 +16,7 @@
     display: flex;
     /* gap: 3rem; */
     height: 100%;
-
+justify-content: space-between;
     width: 100%;
     /* max-width: 80rem; */
 
@@ -145,10 +145,10 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 240px;
+    max-width: 290px;
     max-height: 288px;
     margin-top: 80px;
-    margin-right: 40px;
+    /* margin-right: 40px; */
 
 }
 
@@ -195,7 +195,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 395px;
+    max-width: 338px;
 height: 400px;
     margin-top: 77px;
 
@@ -351,7 +351,7 @@ max-height: 200px;
     border-radius: 8px !important;
     padding: 4px !important;
     width: 100% !important;
-    max-width: 181px !important;
+    max-width: 160px !important;
     height: 50px !important;
     font-family: 'Poppins', sans-serif !important;
     font-size: 16px !important;
@@ -413,6 +413,7 @@ max-height: 200px;
         width: 100%;
         max-width: 338px;
         margin-left: auto;
+        margin-right: auto;
         margin-top: 24px;
         height: 400px;
         
@@ -452,6 +453,7 @@ max-height: 200px;
         max-width: 280px;
     height: 600px;
     margin-left: auto;
+    margin-right: auto;
         
 
     }
@@ -460,6 +462,10 @@ max-height: 200px;
 .qwe {
     max-height: 200px;
 overflow: auto;
+
+scrollbar-width: thin !important;
+    scrollbar-color: #888 transparent !important;
+    overflow-x: hidden !important;
 }
 
 
@@ -524,6 +530,7 @@ overflow: auto;
     width: 100%;
     max-width: 395px !important;
     max-height: 250px !important;
+    scrollbar-width: thin !important;
     scrollbar-color: #888 transparent !important;
     /* animation: fadeInMenu 0.2s ease-out !important; */
 }
@@ -593,12 +600,15 @@ overflow: auto;
             width: 336px!important;
             max-width: 395px !important;
             max-height: 444px !important;
-            scrollbar-color: #888 transparent !important;
+            scrollbar-width: thin !important;
+                scrollbar-color: #888 transparent !important;
+        
         }
         .category-select__menu-list {
             padding: 0 !important;
             max-height: 240px !important;
-          width: 336px!important;        
+          width: 336px!important;  
+        scrollbar-width: thin !important;
         }
 
     .expensesIncomeBlock {
@@ -629,8 +639,15 @@ overflow: auto;
     .category-select__menu {
         width: 100% !important;
         max-width: 280px !important;
+        scrollbar-width: thin !important;
+            scrollbar-color: #888 transparent !important;
     }
-
+  .category-select__menu-list {
+      /* padding: 0 !important;
+      max-height: 240px !important;
+      width: 336px !important; */
+    scrollbar-width: thin !important;
+  }
     .selectorBlock {
         /* display: flex !important;
         flex-direction: column !important; */

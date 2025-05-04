@@ -1,6 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-
 axios.defaults.baseURL = "https://code-guard-backend.onrender.com";
 axios.defaults.withCredentials = true;
 
@@ -68,7 +67,7 @@ export const refresh = createAsyncThunk("auth/refresh", async (_, thunkAPI) => {
 });
 export const getTransactionsStatistics = createAsyncThunk(
     "transactions/fetchAllTransaction",
-    async ({ start, end }, thunkAPI) => {
+    async ({ start }, thunkAPI) => {
       const state = thunkAPI.getState();
         
       const persistedToken = state.auth.token;
@@ -84,9 +83,9 @@ export const getTransactionsStatistics = createAsyncThunk(
         headers: {
           Authorization: `Bearer ${persistedToken}`, // передаем токен в заголовке
         },
-        params: { start, end },
+        params: { start },
       });
-      console.log(data.data);
+      // console.log(data.data);
       return data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

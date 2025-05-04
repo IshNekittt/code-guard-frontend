@@ -12,6 +12,7 @@ import { getTransactionsStatistics } from "../../../redux/auth/operations.js";
 import { motion, AnimatePresence } from 'framer-motion';
 import { components } from 'react-select';
 import { FaChevronDown } from 'react-icons/fa';
+import { split } from "postcss/lib/list";
 const months = [
   "January",
   "February",
@@ -44,22 +45,21 @@ const categoryColors = {
 };
 
 const getStartEndDates = (monthName, year) => {
-  const monthIndex = months.indexOf(monthName);
+  
+  const monthIndex = months.indexOf(monthName)+1;
   if (monthIndex === -1) throw new Error("Invalid month name");
-
-  const startDate = new Date(year, monthIndex, 1);
-  const endDate = new Date(year, monthIndex + 1, 0);
-
-  const format = (date) => date.toISOString().slice(0, 10);
-
+  const startDate = new Date(year, monthIndex, 1)
+  const start = startDate.toISOString().slice(0, 7);
+  //console.log(start)
   return {
-    start: format(startDate),
-    end: format(endDate),
+  start   
   };
 };
 
+
+
 const StatisticsMain = () => {
-  const [selectedMonth, setSelectedMonth] = useState("April");
+  const [selectedMonth, setSelectedMonth] = useState("March");
   const [selectedYear, setSelectedYear] = useState("2024");
 
 
@@ -230,9 +230,9 @@ const CustomDropdownIndicatorSecond = (props) => {
 
 
   useEffect(() => {
-  const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+  const { start } = getStartEndDates(selectedMonth, selectedYear);
 
-  dispatch(getTransactionsStatistics({ start, end })).then((res) => {
+  dispatch(getTransactionsStatistics({ start })).then((res) => {
     const stats = res.payload?.data;
 
     if (Array.isArray(stats)) {

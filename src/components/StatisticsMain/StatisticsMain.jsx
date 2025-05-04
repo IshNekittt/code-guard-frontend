@@ -140,11 +140,11 @@ const visibleCategories = statistics.filter(stat =>
   selected.some(sel => sel.value === stat.category)
 );
   useEffect(() => {
-    const { start, end } = getStartEndDates(selectedMonth, selectedYear);
+    const { start} = getStartEndDates(selectedMonth, selectedYear);
 
     console.log('📅 Start:', start, 'End:', end);
 
-    dispatch(getTransactions({ start, end }))
+    dispatch(getTransactions({ start }))
       .then(res => {
         console.log('👉 Transactions:', res.payload);
       });
