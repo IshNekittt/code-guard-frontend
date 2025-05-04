@@ -21,24 +21,26 @@ import { CalendarIcon } from "@heroicons/react/24/solid";
 import styles from "./ModalAddTransaction.module.css";
 
 // Custom input for DatePicker: icon toggles calendar, input supports manual entry
-const CustomDateInput = forwardRef(({ value, onChange, onIconClick, onInputClick }, ref) => (
-  <div className={styles.dateWrapper}>
-    <input
-      ref={ref}
-      type="text"
-      value={value}
-      onChange={onChange}
-      onClick={onInputClick}    // prevent calendar open on input
-      className={styles.input}
-      placeholder="dd.MM.yyyy"
-    />
-    <CalendarIcon
-      onClick={onIconClick}    // toggle calendar on icon click
-      className={styles.dateIcon}
-      style={{ cursor: "pointer" }}
-    />
-  </div>
-));
+const CustomDateInput = forwardRef(
+  ({ value, onChange, onIconClick, onInputClick }, ref) => (
+    <div className={styles.dateWrapper}>
+      <input
+        ref={ref}
+        type="text"
+        value={value}
+        onChange={onChange}
+        onClick={onInputClick}
+        className={styles.input}
+        placeholder="dd.MM.yyyy"
+      />
+      <CalendarIcon
+        onClick={onIconClick}
+        className={styles.dateIcon}
+        style={{ cursor: "pointer" }}
+      />
+    </div>
+  )
+);
 
 export default function AddTransactionForm({ categories, onSubmit, onCancel }) {
   const schema = Yup.object().shape({
@@ -48,13 +50,28 @@ export default function AddTransactionForm({ categories, onSubmit, onCancel }) {
       .positive("Must be > 0")
       .required("Required"),
     date: Yup.date().required("Required"),
-    category: Yup.string().when("type", { is: "expense", then: Yup.string().required("Required") }),
+    category: Yup.string().when("type", {
+      is: "expense",
+      then: Yup.string().required("Required"),
+    }),
     comment: Yup.string().required("Required"),
   });
 
-  const { control, register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm({
+  const {
+    control,
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm({
     resolver: yupResolver(schema),
-    defaultValues: { type: "expense", amount: "", date: new Date(), category: "", comment: "" },
+    defaultValues: {
+      type: "expense",
+      amount: "",
+      date: new Date(),
+      category: "",
+      comment: "",
+    },
   });
 
   const [calendarOpen, setCalendarOpen] = useState(false);
@@ -202,6 +219,7 @@ export default function AddTransactionForm({ categories, onSubmit, onCancel }) {
             render={({ field }) => (
               <DatePicker
                 {...field}
+                calendarClassName={styles.customDatepicker}
                 selected={field.value}
                 onChange={(date) => {
                   field.onChange(date);
