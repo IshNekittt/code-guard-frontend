@@ -194,7 +194,7 @@ body {
 /* Стили для React Datepicker */
 .react-datepicker,
 .react-datepicker__month-container {
-  background: rgba(114, 46, 206, 0.5) !important;
+  background: rgba(94, 46, 206, 0.5) !important;
   backdrop-filter: blur(15px) !important;
   border: none !important;
   border-radius: 16px !important;
@@ -266,7 +266,7 @@ body {
   font-size: 16px !important;
   font-weight: 500 !important;
   box-sizing: border-box !important;
-  margin-top: 5px;
+  margin-top: 5px !important;
 }
 
 .react-datepicker__day-name {
