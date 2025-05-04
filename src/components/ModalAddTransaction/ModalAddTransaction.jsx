@@ -6,7 +6,7 @@ import { IoAddOutline } from "react-icons/io5";
 import { FiMinus } from "react-icons/fi";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -16,23 +16,49 @@ import Select from "react-select";
 import customSelectStyles from "./customSelectStyles";
 import "izitoast/dist/css/iziToast.min.css";
 import iziToast from "izitoast";
+import axios from "../../api/axios";
 
-const ModalAddTransaction = ({ openModal, closeModal }) => {
+const ModalAddTransaction = ({ openModal, closeModal, setBalance }) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [transactionType, setTransactionType] = useState("income");
+  const [transactionType, setTransactionType] = useState("expense");
+  const token = useSelector((state) => state.auth.token);
 
-  const expenseOptions = [
-    { value: "Main expenses", label: "Main expenses" },
-    { value: "Products", label: "Products" },
-    { value: "Car", label: "Car" },
-    { value: "Self care", label: "Self care" },
-    { value: "Child care", label: "Child care" },
-    { value: "Household products", label: "Household products" },
-    { value: "Education", label: "Education" },
-    { value: "Leisure", label: "Leisure" },
-    { value: "Other expenses", label: "Other expenses" },
-    { value: "Entertainment", label: "Entertainment" },
-  ];
+  const [expenseOptions, setExpenseOptions] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("/categories");
+
+        const categoriesArray = response.data.data.expenseCategories || [];
+
+        const options = categoriesArray.map((item) => ({
+          value: item,
+          label: item,
+        }));
+
+        setExpenseOptions(options);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+        setExpenseOptions([]);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+  // [
+  //   { value: "Main expenses", label: "Main expenses" },
+  //   { value: "Products", label: "Products" },
+  //   { value: "Car", label: "Car" },
+  //   { value: "Self care", label: "Self care" },
+  //   { value: "Child care", label: "Child care" },
+  //   { value: "Household products", label: "Household products" },
+  //   { value: "Education", label: "Education" },
+  //   { value: "Leisure", label: "Leisure" },
+  //   { value: "Other expenses", label: "Other expenses" },
+  //   { value: "Entertainment", label: "Entertainment" },
+  // ];
   const dispatch = useDispatch();
 
   const schema = yup.object().shape({
@@ -41,11 +67,7 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
       .typeError("Money must be a number")
       .positive("Money must be positive")
       .required("Money is required"),
-    comment: yup
-      .string()
-      .min(3, "Comment must be at least 3 characters")
-      .max(50, "Comment must be at most 50 characters")
-      .required("Comment is required"),
+    comment: yup.string().max(50, "Comment must be at most 50 characters"),
     category: yup.string().when("$transactionType", {
       is: "expense",
       then: (schema) => schema.required("Category is required"),
@@ -88,6 +110,12 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
 
     try {
       await dispatch(addTransaction(payload)).unwrap();
+      const res = await axios.get("/sidebar/balance", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBalance(res.data.balance || 0);
       reset();
       closeModal();
     } catch (err) {
@@ -130,6 +158,7 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
           <p className={css.addTransaction}>Add transaction</p>
           <div className={css.typeTransaction}>
             <p
+              onClick={() => setTransactionType((prev) => "income")}
               className={clsx(
                 css.income,
                 transactionType === "income" && css.active
@@ -152,7 +181,12 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
                 transactionType === "expense" && css.expenseActive
               )}
             >
-              <button className={clsx(css.btnType)}>
+              <button
+                className={clsx(
+                  css.btnType,
+                  transactionType === "expense" && css.btnTypeExpense
+                )}
+              >
                 {transactionType === "income" ? (
                   <IoAddOutline className={css.btnIconType} />
                 ) : (
@@ -161,9 +195,10 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
               </button>
             </div>
             <p
+              onClick={() => setTransactionType((prev) => "expense")}
               className={clsx(
                 css.expense,
-                transactionType === "expense" && css.active
+                transactionType === "expense" && css.activeExpense
               )}
             >
               Expense
@@ -197,7 +232,7 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
             <div className={css.tabletWrap}>
               <div className={css.moneyWrapp}>
                 <input
-                  type="text"
+                  type="number"
                   {...register("money", { required: "This is required" })}
                   className={css.money}
                   placeholder="0.00"
@@ -210,7 +245,7 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
-                  dateFormat="dd/MM/yyyy"
+                  dateFormat="dd.MM.yyyy"
                   className={css.date}
                 />
                 <FaRegCalendarAlt className={css.calendarIcon} />
@@ -235,7 +270,7 @@ const ModalAddTransaction = ({ openModal, closeModal }) => {
                 className={css.btnCancel}
                 onClick={closeModal}
               >
-                CANCEl
+                CANCEL
               </button>
             </div>
           </form>

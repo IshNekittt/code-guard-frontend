@@ -1,17 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { deleteTransaction } from "../../redux/transactionsOp";
 import css from "../transactions/TransactionsItem.module.css";
 import { useIsMobile } from "../hooks/isMobile";
 import { MdOutlineEdit } from "react-icons/md";
 import EditTransactionForm from "../EditModal/EditTransactionForm";
+import axios from "../../api/axios";
 
 const TransactionsItem = ({
   data,
   openEditModal,
   closeEditModal,
   editingTransactionId,
+  setBalance,
 }) => {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
 
   const isEditing = editingTransactionId === data._id;
 
@@ -42,26 +45,37 @@ const TransactionsItem = ({
         <div className={css.actions}>
           <button
             className={`${css.delete} ${css.btnCard}`}
-            onClick={() => dispatch(deleteTransaction(data._id))}
+            onClick={async () =>
+              dispatch(deleteTransaction(data._id))
+                .unwrap()
+                .then(async () => {
+                  const res = await axios.get("/sidebar/balance", {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  });
+                  setBalance(res.data.balance || 0);
+                })
+            }
           >
             Delete
           </button>
-          <div>
-            <button
-              onClick={() => openEditModal(data._id)}
-              className={css.btnEditMob}
-            >
-              <MdOutlineEdit style={{ margingRight: "10px" }} />
-              Edit
-            </button>
-            {isEditing && (
-              <EditTransactionForm
-                openModal={true}
-                closeModal={closeEditModal}
-                data={data}
-              />
-            )}
-          </div>
+
+          <button
+            onClick={() => openEditModal(data._id)}
+            className={css.btnEditMob}
+          >
+            <MdOutlineEdit style={{ margingRight: "10px" }} />
+            Edit
+          </button>
+          {isEditing && (
+            <EditTransactionForm
+              openModal={true}
+              closeModal={closeEditModal}
+              data={data}
+              setBalance={setBalance}
+            />
+          )}
         </div>
       </div>
     );
@@ -85,7 +99,18 @@ const TransactionsItem = ({
             </button>
             <button
               className={css.deleteBtn}
-              onClick={() => dispatch(deleteTransaction(data._id))}
+              onClick={() =>
+                dispatch(deleteTransaction(data._id))
+                  .unwrap()
+                  .then(async () => {
+                    const res = await axios.get("/sidebar/balance", {
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                      },
+                    });
+                    setBalance(res.data.balance || 0);
+                  })
+              }
             >
               Delete
             </button>
@@ -95,6 +120,7 @@ const TransactionsItem = ({
               openModal={true}
               closeModal={closeEditModal}
               data={data}
+              setBalance={setBalance}
             />
           )}
         </div>

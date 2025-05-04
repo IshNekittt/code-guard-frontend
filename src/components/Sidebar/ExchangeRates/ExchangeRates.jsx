@@ -1,15 +1,18 @@
-import s from './ExchangeRates.module.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Chart from '../Chart/Chart';
+import s from "./ExchangeRates.module.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Chart from "../Chart/Chart";
+import { useLocation, useNavigate } from "react-router-dom";
 
-const STORAGE_KEY = 'monobank_rates';
+const STORAGE_KEY = "monobank_rates";
 
 // 🔹 Тимчасові фейкові дані (поки бек не готовий)
 const USE_FAKE_DATA = false;
 
 const ExchangeRates = () => {
   const [rates, setRates] = useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchRates = async () => {
@@ -32,20 +35,42 @@ const ExchangeRates = () => {
       }
 
       try {
-        const { data } = await axios.get('/sidebar/exchange-rates');
-        if (data && typeof data === 'object') {
+        const { data } = await axios.get("/sidebar/exchange-rates");
+        if (data && typeof data === "object") {
           setRates(data);
-          localStorage.setItem(STORAGE_KEY, JSON.stringify({ timestamp: now, data }));
+          localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify({ timestamp: now, data })
+          );
         }
       } catch (error) {
-        console.error('Failed to fetch exchange rates:', error);
+        console.error("Failed to fetch exchange rates:", error);
       }
     };
 
     fetchRates();
   }, []);
 
-  const formatRate = (value) => (typeof value === 'number' ? value.toFixed(2) : '-');
+  useEffect(() => {
+    const handleResize = () => {
+      if (
+        location.pathname === "/dashboard/currency" &&
+        window.innerWidth >= 768
+      ) {
+        navigate("/dashboard");
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [location, navigate]);
+
+  const formatRate = (value) =>
+    typeof value === "number" ? value.toFixed(2) : "-";
 
   return (
     <section className={s.rates}>
@@ -77,7 +102,7 @@ const ExchangeRates = () => {
           </div>
         </div>
       )}
-      <Chart/>
+      <Chart />
     </section>
   );
 };

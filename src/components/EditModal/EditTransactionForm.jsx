@@ -4,24 +4,27 @@ import { useEffect, useState } from "react";
 import css from "./EditTransactionForm.module.css";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import clsx from "clsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IoCloseOutline } from "react-icons/io5";
-import { addTransaction, patchTransaction } from "../../redux/transactionsOp";
+import { patchTransaction } from "../../redux/transactionsOp";
 import Select from "react-select";
 import customSelectStyles from "../ModalAddTransaction/customSelectStyles.js";
 import "izitoast/dist/css/iziToast.min.css";
 import iziToast from "izitoast";
+import axios from "../../api/axios.js";
 
 const EditTransactionForm = ({
   openModal,
   closeModal,
   data: { category, comment, date, summ, type, _id },
+  setBalance,
 }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [transactionType, setTransactionType] = useState("income");
+  const token = useSelector((state) => state.auth.token);
 
   const expenseOptions = [
     { value: "Main expenses", label: "Main expenses" },
@@ -90,9 +93,17 @@ const EditTransactionForm = ({
 
     try {
       await dispatch(patchTransaction({ id: _id, payload })).unwrap();
+      const res = await axios.get("/sidebar/balance", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBalance(res.data.balance || 0);
       reset();
       closeModal();
     } catch (err) {
+      console.log(err);
+
       iziToast.error({
         title: "Error",
         message:
@@ -138,29 +149,42 @@ const EditTransactionForm = ({
         <div className={css.addModalWrapp}>
           <p className={css.addTransaction}>Edit transaction</p>
           <div className={css.typeTransaction}>
-            <button
-              onClick={() => setTransactionType("income")}
-              className={clsx(
-                css.income,
-                transactionType === "income" && css.active
-              )}
-            >
-              Income
-            </button>
+            {transactionType === "income" ? (
+              <p
+                // onClick={() => setTransactionType("income")}
+                className={clsx(
+                  css.income,
+                  transactionType === "income" && css.active
+                )}
+              >
+                Income
+              </p>
+            ) : (
+              <p
+                // onClick={() => setTransactionType("expense")}
+                className={clsx(
+                  css.expense,
+                  transactionType === "expense" && css.activeExpense
+                )}
+              >
+                Expense
+              </p>
+            )}
             <button className={css.closeIconBtn} onClick={closeModal}>
               <IoCloseOutline className={css.closeIcon} />
             </button>
-            <p>/</p>
 
-            <button
-              onClick={() => setTransactionType("expense")}
-              className={clsx(
-                css.expense,
-                transactionType === "expense" && css.active
-              )}
-            >
-              Expense
-            </button>
+            {/* {transactionType === "expense" && (
+              <p
+                // onClick={() => setTransactionType("expense")}
+                className={clsx(
+                  css.expense,
+                  transactionType === "expense" && css.active
+                )}
+              >
+                Expense
+              </p>
+            )} */}
           </div>
           <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
             {transactionType === "expense" && (
@@ -190,7 +214,7 @@ const EditTransactionForm = ({
             <div className={css.tabletWrap}>
               <div className={css.moneyWrapp}>
                 <input
-                  type="text"
+                  type="number"
                   {...register("money", { required: "This is required" })}
                   className={css.money}
                   placeholder="0.00"
@@ -203,7 +227,7 @@ const EditTransactionForm = ({
                 <DatePicker
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
-                  dateFormat="dd/MM/yyyy"
+                  dateFormat="dd.MM.yyyy"
                   className={css.date}
                 />
                 <FaRegCalendarAlt className={css.calendarIcon} />
@@ -221,14 +245,14 @@ const EditTransactionForm = ({
             </div>
             <div className={css.btnWrapp}>
               <button type="submit" className={css.btnAdd}>
-                ADD
+                SAVE
               </button>
               <button
                 type="button"
                 className={css.btnCancel}
                 onClick={closeModal}
               >
-                CANCEl
+                CANCEL
               </button>
             </div>
           </form>

@@ -25,6 +25,7 @@ const slice = createSlice({
       .addCase(addTransaction.fulfilled, (state, action) => {
         state.items.unshift(action.payload);
         state.isLoading = false;
+        state.error = null;
       })
       .addCase(patchTransaction.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -46,7 +47,8 @@ const slice = createSlice({
         isAnyOf(
           getTransactions.pending,
           deleteTransaction.pending,
-          patchTransaction.pending
+          patchTransaction.pending,
+          addTransaction.pending
         ),
         (state) => {
           state.isLoading = true;

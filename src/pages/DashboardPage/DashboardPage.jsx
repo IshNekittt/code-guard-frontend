@@ -2,8 +2,11 @@ import { Outlet } from "react-router-dom";
 import SideBar from "../../components/Sidebar/Sidebar";
 import css from "./DashboardPage.module.css";
 import HeaderWithLogoutModal from "../../components/HeaderWithLogoutModal/HeaderWithLogoutModal";
+import { useState } from "react";
 
 const DashboardPage = () => {
+  const [balance, setBalance] = useState(0);
+
   return (
     <div className={css.layout}>
       <div className={css.wrapper}>
@@ -12,10 +15,10 @@ const DashboardPage = () => {
         </div>
         <div className={css.sideBarAndTransaction}>
           <div className={css.sideBar}>
-            <SideBar />
+            <SideBar balance={balance} setBalance={setBalance} />
           </div>
           <div className={css.content}>
-            <Outlet />
+            <Outlet context={{ balance, setBalance }} />
           </div>
         </div>
       </div>

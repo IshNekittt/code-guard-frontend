@@ -44,6 +44,7 @@ export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
     await axios.post("/auth/logout");
     removeToken();
+    localStorage.clear(); // Очистка локального хранилища
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -69,11 +70,10 @@ export const getTransactionsStatistics = createAsyncThunk(
     "transactions/fetchAllTransaction",
     async ({ start }, thunkAPI) => {
       const state = thunkAPI.getState();
-        
-      const persistedToken = state.auth.token;
-       
+  
+    const persistedToken = state.auth.token;
 
-     if (!persistedToken) {
+    if (!persistedToken) {
       return thunkAPI.rejectWithValue("Not authorized");
     }
 
@@ -93,11 +93,17 @@ export const getTransactionsStatistics = createAsyncThunk(
   }
 );
 
-export const registration = createAsyncThunk("auth/register", async (user) => {
-  try {
-    const { data } = await axios.post("/auth/register", user);
-    return data;
-  } catch (e) {
-    throw e;
+export const registration = createAsyncThunk(
+  "auth/register",
+  async (user, thunkAPI) => {
+    try {
+      const { data } = await axios.post("/auth/register", user);
+      return data;
+    } catch (error) {
+      if (error.response?.status === 409) {
+        return thunkAPI.rejectWithValue("Пользователь уже существует.");
+      }
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
-});
+);

@@ -1,680 +1,431 @@
+/* ========================= */
+/* Base styles (default)    */
+/* ========================= */
+
 .wrapper {
-    padding: 24px;
-    /* min-height: 100vh; */
-    min-width: 715px;
-    height: 502px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 45px;
+}
 
-    display: flex;
-    justify-content: center;
-    background: linear-gradient(180deg, #2d1e4a, #1b1030);
-    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
-
-    margin-bottom: 22px;
+.category-select {
+  margin-top: 20px;
 }
 
 .container {
-    display: flex;
-    /* gap: 3rem; */
-    height: 100%;
-justify-content: space-between;
-    width: 100%;
-    /* max-width: 80rem; */
-
-    /* margin-top: 73px; */
+  max-width: 280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  width: 100%;
 }
 
 .selectBox {
-    display: flex;
-    /* justify-content: center;
-        gap: 20px; */
-    justify-content: space-between;
-    width: 100%;
-    max-width: 395px;
-    margin-bottom: 15px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
 }
 
 .selectWrapper {
-    max-width: 181px;
-    width: 100%;
-}
-
-@media (max-width: 1280px) {
-    .wrapper {
-        /* padding: 8px; */
-        width: 100%;
-        height: 502px;
-    }
-
-
-    .container {
-        /* padding: 8px; */
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin: 0px;
-
-    }
-
-    .selectBox {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        max-width: 336px;
-        margin-bottom: 15px;
-
-        /* margin-bottom: 15px; */
-    }
-
-    .selectWrapper {
-        max-width: 160px;
-        width: 100%;
-    }
-}
-
-
-
-@media (max-width: 768px) {
-    .container {
-        padding: 6px;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-
-        align-items: center;
-    }
-
-    .selectBox {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        max-width: 336px;
-
-
-        /* margin-bottom: 15px; */
-    }
-
-    .wrapper {
-        height: 100%;
-        
-        min-width: 100px;
-        width: 100%;
-        margin-bottom: 0px;
-        padding-bottom: 20px;
-    }
-
-    .selectWrapper {
-        max-width: 336px;
-        width: 100%;
-        /* margin-right: auto; */
-        /* margin-left: 30px; */
-        /* display: flex; */
-        margin-left: auto;
-        /* margin-right: auto; */
-
-        justify-content: center;
-    }
+  flex: 1;
+  min-width: 0;
 }
 
 .chartNameBox {
-    position: relative;
+  width: 100%;
+  margin-bottom: 16px;
 }
 
 .chartName {
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 30px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-align: center;
-    vertical-align: middle;
-    position: absolute;
-    left: 50%;
-    color: #FBFBFB;
-    /* центр */
-    transform: translateX(-100%);
-    /* сдвигаем влево от центра */
-    top: calc(50% - 85px);
-
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 100%;
+  color: #fbfbfb;
+  margin: 0;
 }
 
 .chartSection {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 290px;
-    max-height: 288px;
-    margin-top: 80px;
-    /* margin-right: 40px; */
-
-}
-
-
-
-
-
-@media (max-width: 1280px) {
-    .chartSection {
-        display: flex;
-        width: 100%;
-        max-width: 336px;
-        margin-right: 0px;
-        margin-top: 97px;
-
-    }
-
-    .chartName {
-
-        top: calc(50% - 85px);
-
-    }
-}
-
-@media (max-width: 768px) {
-
-    .chartSection {
-        max-height: 280px;
-        width: 100%;
-        max-width: 280px;
-        margin-right: 0px;
-        margin-bottom: 30px;
-
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 280px;
 }
 
 .text-style {
-    width: 100%;
-    max-width: 51px;
-    height: 24px;
+  width: 100%;
+  max-width: 51px;
+  height: 24px;
 }
 
 .raitBar {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 338px;
-height: 400px;
-    margin-top: 77px;
-
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .categoriWrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid;
-    border-color: #FFFFFF69;
-    width: 100%;
-    max-width: 395px;
-    height: 54px;
-
-
-
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ffffff69;
+  width: 100%;
+  max-width: 395px;
+  height: 54px;
+  padding: 0 15px;
 }
 
 .selectorBlock {
-    min-height: 100px;
-    
-    overflow-y: auto;
-height: 250px;
-        max-height: none;
-       border-bottom: 8px;
-       border-top: 8px;
-    border-right: 8px;
-    border-left: 8px;
+  min-height: 100px;
+  overflow-y: auto;
+  height: 250px;
+  border: 8px solid transparent;
 }
-.selectedCategoryRenderBlock{
-max-height: 200px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-.selectorBlock::-webkit-scrollbar {
-    width: 6px;
-    /* тонкий скроллбар */
+.selectedCategoryRenderBlock {
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .quad {
-
-    height: 24px;
-    width: 24px;
-    border-radius: 2px;
-    margin-right: 10px;
-    margin-left: 15px;
-
+  height: 24px;
+  width: 24px;
+  border-radius: 2px;
+  margin: 0 10px 0 0;
 }
 
 .quadStyle {
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    color: #FBFBFB;
-
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fbfbfb;
 }
 
-.nameCategoriContainer {
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 14px;
-}
-
+.nameCategoriContainer,
 .numberSpan {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    font-family: Poppins;
-    font-weight: 400;
-    font-size: 14px;
-    color: #FBFBFB;
-
+  display: flex;
+  align-items: center;
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  color: #fbfbfb;
 }
 
 .expensesIncomeBlock {
-    margin-top: 15px;
+  margin: 15px auto 0;
+  max-width: 247px;
+  width: 100%;
+}
 
+.expenses,
+.income {
+  display: flex;
+  justify-content: space-between;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 14px;
+  color: #fbfbfb;
 }
 
 .expenses {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    margin-left: 15px;
-    margin-right: 15px;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    color: #FBFBFB;
-}
-
-.income {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 15px;
-    margin-right: 15px;
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    color: #FBFBFB;
+  margin-bottom: 16px;
 }
 
 .expensesNumber {
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-align: right;
-    color: #FF868D;
+  text-align: right;
+  color: #ff868d;
 }
 
 .incomeNumber {
-    font-family: Poppins;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 100%;
-    letter-spacing: 0%;
-    text-align: right;
-    color: #FF868D;
-    color: #FFB627;
+  text-align: right;
+  color: #ffb627;
 }
-
 
 @keyframes fadeInMenu {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
+@keyframes fadeInOption {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ========================= */
+/* Custom-select section (keep !important) */
+/* ========================= */
+
 .custom-select__control {
-    background-color: rgba(74, 86, 226, 0.1) !important;
-    border: 1px solid rgba(255, 255, 255, 0.6) !important;
-    border-radius: 8px !important;
-    padding: 4px !important;
-    width: 100% !important;
-    max-width: 160px !important;
-    height: 50px !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-size: 16px !important;
-    box-shadow: none !important;
+  background-color: rgba(74, 86, 226, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  width: 100% !important;
+  height: 50px !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: 16px !important;
+  box-shadow: none !important;
 }
 
 .custom-select__single-value {
-    color: white !important;
-    font-family: 'Poppins', sans-serif !important;
+  color: white !important;
+  font-family: "Poppins", sans-serif !important;
+  width: 100% !important;
 }
 
 .custom-select__option {
-    font-family: 'Poppins' !important;
-    font-weight: 400 !important;
-    font-size: 16px !important;
-    line-height: 100% !important;
-    letter-spacing: 0% !important;
-    color: #FBFBFB !important;
+  font-family: "Poppins" !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 100% !important;
+  color: #fbfbfb !important;
 }
 
-/* Список */
 .custom-select__menu {
-    border-radius: 8px !important;
-    background-color: #50309A !important;
-    overflow: hidden !important;
-    animation: fadeInMenu 0.2s ease-out !important;
+  border-radius: 8px !important;
+  background-color: #50309a !important;
+  overflow: hidden !important;
+  animation: fadeInMenu 0.2s ease-out !important;
 }
 
-/* Прокрутка */
 .custom-select__menu-list {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    scrollbar-width: thin !important;
-    /* Firefox */
-    scrollbar-color: #888 transparent !important;
-
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #888 transparent !important;
 }
 
-/* Убираем разделитель */
 .custom-select__indicator-separator {
-    display: none !important;
+  display: none !important;
 }
 
 .custom-select__option:hover {
-    background-color: #FFFFFF1A !important;
-    color: inherit !important;
+  background-color: #ffffff1a !important;
 }
 
-/* Убираем подсветку выбранного элемента */
 .custom-select__option--is-selected {
-    background-color: transparent !important;
-    color: #FF868D !important;
-    font-weight: normal !important;
-}
-  
-
-@media (max-width: 1280px) {
-    .raitBar {
-        width: 100%;
-        max-width: 338px;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 24px;
-        height: 400px;
-        
-
-    }
-
-    .custom-select__control {
-
-
-        width: 100% !important;
-        max-width: 160px !important;
-
-    }
-
+  background-color: transparent !important;
+  color: #ff868d !important;
 }
 
-@media (max-width: 768px) {
-    .custom-select__control {
+/* ========================= */
+/* Category-select section (keep !important) */
+/* ========================= */
 
-        margin-right: auto !important;
-        margin-left: auto !important;
-        background-color: rgba(74, 86, 226, 0.1) !important;
-        border: 1px solid rgba(255, 255, 255, 0.6) !important;
-        width: 100% !important;
-        max-width: 280px !important;
-        margin-bottom: 20px !important;
-        font-size: 16px !important;
-
-    }
-
-    .raitBar {
-        display: flex;
-        align-items: center;
-        margin-right: 0px;
-        margin-top: 0px;
-        width: 100%;
-        max-width: 280px;
-    height: 600px;
-    margin-left: auto;
-    margin-right: auto;
-        
-
-    }
-
-}
-.qwe {
-    max-height: 200px;
-overflow: auto;
-
-scrollbar-width: thin !important;
-    scrollbar-color: #888 transparent !important;
-    overflow-x: hidden !important;
-}
-
-
-/* Основной контрол */
-
-@keyframes fadeInOption {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-@keyframes fadeInMenu {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-/* .category-select__option {
-    animation: fadeInOption 0.2s ease-in-out !important;
-} */
 .category-select__control {
-    background-color: #523B7E99 !important;
-    backdrop-filter: blur(100px) !important;
-    box-shadow: 0px 4px 60px 0px #00000040 !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 16px !important;
-    line-height: 100% !important;
-    letter-spacing: 0% !important;
-    color: #FBFBFB !important;
-    border-radius: 8px !important;
-    padding: 4px !important;
-    border: none !important;
-    width: 100% !important;
-    max-width: 395px !important;
-    overflow: hidden !important;
-    
+  background-color: #523b7e99 !important;
+  backdrop-filter: blur(100px) !important;
+  box-shadow: 0px 4px 60px 0px #00000040 !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  line-height: 100% !important;
+  letter-spacing: 0% !important;
+  color: #fbfbfb !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  border: none !important;
+  width: 100% !important;
+  max-width: 395px !important;
+  overflow: hidden !important;
 }
 
 .category-select__control--is-focused {
-    box-shadow: 0 0 0 1px #50309A !important;
+  box-shadow: 0 0 0 1px #50309a !important;
 }
 
 .category-select__menu {
-    background: #50309A !important;
-    margin-top: 4px !important;
-    border-radius: 8px !important;
-    /* overflow: hidden !important; */
-    overflow: auto !important;
-    padding: 0 !important;
-    border: none !important;
-    width: 100%;
-    max-width: 395px !important;
-    max-height: 250px !important;
-    scrollbar-width: thin !important;
-    scrollbar-color: #888 transparent !important;
-    /* animation: fadeInMenu 0.2s ease-out !important; */
+  background: #50309a !important;
+  margin-top: 4px !important;
+  border-radius: 8px !important;
+  overflow: auto !important;
+  padding: 0 !important;
+  border: none !important;
+  width: 100% !important;
+  max-width: 395px !important;
+  max-height: 250px !important;
+  scrollbar-color: #888 transparent !important;
 }
 
 .category-select__menu-list {
-    padding: 0 !important;
-    max-height: 240px !important;
-    overflow: auto !important;
-    overflow-x: hidden !important;
-    scrollbar-width: thin !important;
-    max-height: 350px !important;
-    /* overflow: hidden !important; */
-    /* maxHeight: 300, */
-       
-    /* Firefox */
-    scrollbar-color: #888 transparent !important;
+  padding: 0 !important;
+  max-height: 350px !important;
+  overflow: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #888 transparent !important;
 }
 
 .category-select__placeholder {
-    display: flex !important;
-    justify-content: space-between !important;
-    width: 100% !important;
-    color: #FBFBFB !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  color: #fbfbfb !important;
 }
 
 .category-select__single-value {
-    color: #fff !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 400 !important;
-    font-size: 16px !important;
-    line-height: 100% !important;
-    letter-spacing: 0% !important;
-    vertical-align: middle !important;
+  color: #fff !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 100% !important;
+  letter-spacing: 0% !important;
+  vertical-align: middle !important;
 }
 
 .category-select__indicator-separator,
 .category-select__dropdown-indicator {
-    display: none !important;
+  display: none !important;
 }
 
-/* Убираем ховер и selected */
 .category-select__option:hover {
-    background-color: transparent !important;
-    color: inherit !important;
+  background-color: transparent !important;
 }
 
 .category-select__option--is-selected {
-    background-color: transparent !important;
-    color: inherit !important;
-    font-weight: normal !important;
-}
-.selectExpensesIncomeBlock{
-    color: rgb(204, 204, 204);
-        text-align: center;
-        margin-top: 20px;
+  background-color: transparent !important;
+  color: inherit !important;
 }
 
-@media (max-width: 1280px) {
-    .category-select__control {
-        max-width: 336px !important;
-        width: 100% !important;
-
-    }
-        .category-select__menu {
-          
-           
-            width: 336px!important;
-            max-width: 395px !important;
-            max-height: 444px !important;
-            scrollbar-width: thin !important;
-                scrollbar-color: #888 transparent !important;
-        
-        }
-        .category-select__menu-list {
-            padding: 0 !important;
-            max-height: 240px !important;
-          width: 336px!important;  
-        scrollbar-width: thin !important;
-        }
-
-    .expensesIncomeBlock {
-        max-width: 336px;
-        width: 100%;
-    }
-        .qwe {
-            
-            overflow: auto;
-        max-width: 336px;
-            width: 100%;
-        }
-                .selectExpensesIncomeBlock {
-                  max-width: 336px;
-                  width: 100%;
-
-                }
+.qwe {
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-    .category-select__control {
-        width: 100% !important;
-        width: 280px !important;
+/* ========================= */
+/* Media query: min-width 768px */
+/* ========================= */
 
-
-    }
-
-    .category-select__menu {
-        width: 100% !important;
-        max-width: 280px !important;
-        scrollbar-width: thin !important;
-            scrollbar-color: #888 transparent !important;
-    }
-  .category-select__menu-list {
-      /* padding: 0 !important;
-      max-height: 240px !important;
-      width: 336px !important; */
-    scrollbar-width: thin !important;
+@media (min-width: 768px) {
+  .category-select {
+    width: 100%;
   }
-    .selectorBlock {
-        /* display: flex !important;
-        flex-direction: column !important; */
-        align-items: center !important;
-        max-width: 280px;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        /* height: 200px; */
-    }
+  .wrapper {
+    padding: 0 32px;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    max-width: 100%;
+    margin-top: 0;
+    gap: 32px;
+  }
+  .selectBox {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 336px;
+    gap: 16px;
+  }
+  .wrapper {
+    height: 100%;
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+  }
+  .selectWrapper {
+    max-width: 336px;
+    width: 100%;
+    max-height: 50px;
+    margin-left: auto;
+    justify-content: center;
+  }
+  .chartSection {
+    max-width: 336px;
+  }
+  .raitBar {
+    align-items: center;
+    width: 336px;
+    height: 600px;
+    margin-top: 20px;
+  }
+  .custom-select__control {
+    margin: 0 auto 20px auto !important;
+    height: 56px !important;
+  }
+  .qwe {
+    margin-top: 14px;
+    overflow: scroll;
+  }
+  .expensesIncomeBlock {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  .chartNameBox {
+    margin-bottom: 20px;
+  }
+}
 
-    .categoriWrapper {
-        width: 100%;
-    }
+/* ========================= */
+/* Media query: min-width 1280px */
+/* ========================= */
 
-    .expensesIncomeBlock {
-
-        width: 100%;
-        max-width: 280px;
-        margin-left: auto;
-        margin-right: auto;
-        
-    }
-        .qwe {
-            max-height: 500px;
-            overflow: auto;
-            max-width: 280px;
-                width: 100%;
-        }
+@media (min-width: 1280px) {
+  .wrapper {
+    padding: 0;
+    min-width: 715px;
+    width: 100%;
+  }
+  .container {
+    flex-direction: row;
+    gap: 0;
+    margin: 0;
+  }
+  .selectBox {
+    gap: 32px;
+    justify-content: space-between;
+    max-width: 395px;
+  }
+  .selectWrapper {
+    width: 100%;
+  }
+  .chartName {
+    top: calc(50% - 85px);
+  }
+  .chartSection {
+    margin-top: 32px;
+  }
+  .raitBar {
+    width: 395px;
+    margin-top: 85px;
+    margin-bottom: 46px;
+    height: 607px;
+  }
+  .custom-select__control {
+    width: 100% !important;
+  }
+  .custom-select__menu {
+    width: 336px !important;
+    max-height: 444px !important;
+  }
+  .custom-select__menu-list {
+    width: 336px !important;
+    max-height: 240px !important;
+  }
+  .qwe {
+    height: 677px;
+  }
+  .expensesIncomeBlock {
+    margin-top: 20px;
+  }
 }

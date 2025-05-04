@@ -3,10 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: 40px;
-}
-
-.modalContent {
-  position: relative;
+  padding: 40px 20px;
 }
 
 .typeTransaction {
@@ -20,6 +17,7 @@
   font-weight: 400;
   font-size: 24px;
   color: #fff;
+  margin: 0;
 }
 .closeIconBtn {
   display: none;
@@ -52,12 +50,25 @@
   width: 44px;
   height: 44px;
   padding: 0;
-  background-color: yellow;
+  background-color: #ffb627;
   border-radius: 100%;
+  box-shadow: 0 6px 15px 0 rgba(255, 199, 39, 0.5);
+}
+.btnType svg {
+  width: 30px;
+  height: 30px;
+}
+
+.btnType:focus,
+.btnType:focus-visible {
+  outline: none;
 }
 
 .expenseActive {
   justify-content: flex-end;
+}
+.btnTypeExpense {
+  background-color: #ff868d;
 }
 
 .expense {
@@ -67,7 +78,11 @@
   transition: color 0.3s ease;
 }
 .active {
-  color: yellow;
+  color: #ffb627;
+}
+
+.activeExpense {
+  color: #ff868d;
 }
 
 .form {
@@ -91,6 +106,16 @@
   padding-left: 20px;
   padding-bottom: 8px;
 }
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
 .errMoney {
   color: red;
   margin: 0;
@@ -116,8 +141,11 @@
 .calendarIcon {
   position: absolute;
   right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: -3px;
+  /* transform: translateY(-50%); */
+  fill: #734aef;
+  height: 24px;
+  width: 24px;
 }
 
 .comment {
@@ -125,9 +153,9 @@
   font-size: 18px;
   color: rgba(255, 255, 255, 0.6);
   border-bottom: 2px solid gray;
-  padding-left: 20px;
-  padding-bottom: 20px;
+  height: 79px;
   width: 100%;
+  resize: none;
 }
 
 .btnWrapp {
@@ -147,9 +175,11 @@
     #9e40ba 61.46%,
     #7000ff 90.54%
   );
+  color: #fbfbfb;
 }
 
 .btnCancel {
+  color: #623f8b;
   border-radius: 20px;
   width: 280px;
   height: 50px;
@@ -174,6 +204,7 @@
 }
 
 .modalContent {
+  position: relative;
   margin-top: 0;
   width: 100%;
   padding: 0;
@@ -217,15 +248,25 @@
     width: 100%;
   }
   .modalContent {
-    margin: auto 0;
-    max-width: 480px;
+    min-height: auto;
+    margin: 0 auto;
+    max-width: 540px;
     width: 100%;
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 8px;
+    height: 100%;
+    max-height: fit-content;
   }
+
   .addModalWrapp {
     align-items: start;
     padding: 0 30px;
+    overflow-y: scroll;
+  }
+  .money {
+    padding-left: 0;
+    text-align: center;
+    /* transform: translate(-50%); */
   }
   .closeIconBtn {
     display: block;
@@ -233,20 +274,21 @@
     top: 20px;
     right: 20px;
     border: none;
+    padding: 0;
   }
   .date {
-    padding-left: 0;
+    padding-left: 20px;
   }
   .closeIcon {
     display: block;
     color: #fff;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
   }
 
   .addTransaction {
     margin: 0 auto;
-    margin-top: 40px;
+    /* margin-top: 40px; */
   }
   .dateWrapp {
     max-height: 35px;
@@ -266,7 +308,9 @@
     gap: 32px;
   }
   .comment {
+    height: 32px;
     width: 100%;
+    padding-bottom: 0;
   }
   .moneyWrapp {
     width: 100%;

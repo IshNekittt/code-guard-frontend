@@ -22,19 +22,18 @@
   width: 280px;
   margin: 0 auto;
   font-family: "PoppinsMedium", sans-serif;
+  position: relative;
 }
 
 @media screen and (min-width: 768px) {
   .transactionList {
-    width: 704px;
-    max-height: 312px;
+    width: 100%;
     overflow: auto;
+    padding: 0 32px;
   }
   .transactionContainer {
     border-radius: 12px;
-    padding: 1px;
     width: 100%;
-    max-width: 704px;
     margin: 0 auto;
     color: white;
   }
@@ -109,7 +108,9 @@
   }
   .transactionList {
     margin-top: 46px;
+    margin-left: 69px;
     width: 715px;
+    padding: 0;
   }
 }
 
