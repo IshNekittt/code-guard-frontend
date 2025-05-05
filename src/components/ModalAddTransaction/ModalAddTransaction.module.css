@@ -135,17 +135,18 @@ input[type="number"] {
   padding-left: 20px;
   width: 100%;
   padding-bottom: 8px;
-  padding-right: 30px;
+  padding-right: 70px;
 }
 
 .calendarIcon {
   position: absolute;
   right: 8px;
-  top: -3px;
+  top: 0px;
   /* transform: translateY(-50%); */
   fill: #734aef;
   height: 24px;
   width: 24px;
+  pointer-events: none;
 }
 
 .comment {
@@ -278,6 +279,7 @@ input[type="number"] {
   }
   .date {
     padding-left: 20px;
+    padding-right: 50px;
   }
   .closeIcon {
     display: block;

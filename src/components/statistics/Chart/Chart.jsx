@@ -48,7 +48,7 @@ const Chart = ({ statistics, expensesCount }) => {
     maintainAspectRatio: false,
     cutout: "75%",
     plugins: {
-      tooltip: { enabled: false },
+      tooltip: { enabled: true },
       legend: { display: false },
     },
   };

@@ -45,15 +45,15 @@ const RegistrationForm = () => {
     const data = {
       ...formData,
     };
-    reset();
     dispatch(registration(data))
       .unwrap()
       .then(() => {
+        reset();
         toast.success("Registered successfully");
         navigate("/login", { replace: true, state: { ...data } });
       })
-      .catch(() => {
-        toast.error("User is already exist");
+      .catch((e) => {
+        toast.error(e);
       });
   };
 

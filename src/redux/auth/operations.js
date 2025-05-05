@@ -101,10 +101,10 @@ export const registration = createAsyncThunk(
       const { data } = await axios.post("/auth/register", user);
       return data;
     } catch (error) {
-      if (error.response?.status === 409) {
-        return thunkAPI.rejectWithValue("Пользователь уже существует.");
+      if (error.response?.data?.status === 409) {
+        return thunkAPI.rejectWithValue("User already exists");
       }
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.response?.data?.message);
     }
   }
 );
